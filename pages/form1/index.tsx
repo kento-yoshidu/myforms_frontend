@@ -1,4 +1,7 @@
 import React, { useState } from "react"
+import Layout from '../components/Layout'
+
+import Styles from "./style.module.css"
 
 const Forms1 = () => {
   const [name, setName] = useState("")
@@ -7,7 +10,7 @@ const Forms1 = () => {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const data = await fetch("/api/form", {
+    const data = await fetch("/api/form1", {
       method: "POST",
       body: JSON.stringify(name),
       headers: { 'Content-Type': 'application/json' }
@@ -23,22 +26,28 @@ const Forms1 = () => {
     if (data.status !== 200) {
       window.alert("error!")
     }
-
-      /*
-      .then((res) => res.json())
-      .then((data) => setData(data.name))
-      */
   }
 
   return (
-    <>
+    <Layout>
       <h1>Form1</h1>
 
+      <p>あなたの名前を半角のアルファベットで入力してください。小文字だった場合は大文字にして返します。</p>
+
       <form onSubmit={submit}>
+        <label
+          htmlFor="name"
+          className={Styles.label}
+        >
+          お名前
+        </label>
+
         <input
+          id="name"
           type="text"
-          pattern="[a-z]*"
+          pattern="[A-Za-z]*"
           onChange={(e) => setName(e.target.value)}
+          placeholder="Michael Schumacher"
         />
 
         <br />
@@ -49,7 +58,7 @@ const Forms1 = () => {
       {data && (
         <p>あなたの名前を大文字に変換しました！ {data}</p>
       )}
-    </>
+    </Layout>
   )
 }
 
