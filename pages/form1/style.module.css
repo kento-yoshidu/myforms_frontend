@@ -1,4 +1,6 @@
-.label {
-  display: block;
-  font-weight: 900;
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
