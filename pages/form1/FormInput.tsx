@@ -7,19 +7,19 @@ type Props = {
 }
 
 const FormInput = (props: any) => {
-  const { label, onChange, id, ...inputProps} = props
-
-  console.log(label, onChange)
+  const { label, errorMessage, onChange, id, ...inputProps} = props
 
   return (
     <div className={Styles.formInput}>
-      <label>{label}</label>
+      <label className={Styles.label}>{label}</label>
 
       <input
         {...inputProps}
         onChange={onChange}
         className={Styles.input}
       /> 
+
+      <span>{errorMessage}</span>
     </div>
   )
 }
