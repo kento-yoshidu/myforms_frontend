@@ -84,6 +84,8 @@ const Forms1 = () => {
 
 export default Forms1
 
+// https://www.youtube.com/watch?v=tIdNeoHniEY&t=1537s
+
 // https://giancarlobuomprisco.com/next/handling-api-errors-in-nextjs
 
 // https://zenn.dev/takepepe/articles/fetch-error-convolution
