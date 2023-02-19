@@ -1,4 +1,3 @@
-import { notDeepStrictEqual } from "assert"
 import React, { useState } from "react"
 import FormInput from "./FormInput"
 
@@ -18,6 +17,7 @@ const inputs = [
     name: "username",
     type: "text",
     placeholder: "Username",
+    errorMessage: "Username should be 3-16 characters and shouldn't include any special character.",
     label: "Username"
   },
   {
@@ -25,6 +25,7 @@ const inputs = [
     name: "email",
     type: "text",
     placeholder: "Email",
+    errorMessage: "Username should be 3-16 charactors.",
     label: "Email"
   },
   {
@@ -61,7 +62,12 @@ const Forms1 = () => {
 
   return (
     <div className={Styles.app}>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        className={Styles.form}
+      >
+        <h1>Register</h1>
+
         {inputs.map((input) => (
           <FormInput
             key={input.id}
@@ -77,6 +83,8 @@ const Forms1 = () => {
 }
 
 export default Forms1
+
+// https://www.youtube.com/watch?v=tIdNeoHniEY&t=1537s
 
 // https://giancarlobuomprisco.com/next/handling-api-errors-in-nextjs
 
