@@ -1,25 +1,22 @@
-import React from "react"
-import Styles from "./input.module.css"
+import React, { RefObject } from "react"
+import styles from "./form-input.module.css"
 
 type Props = {
   placeholder: string,
   name: string
+  refer: RefObject<HTMLInputElement>
 }
 
-const FormInput = (props: any) => {
-  const { label, errorMessage, onChange, id, ...inputProps} = props
-
+const FormInput = ({ placeholder, refer }: Props) => {
   return (
-    <div className={Styles.formInput}>
-      <label className={Styles.label}>{label}</label>
+    <div className={styles.formInput}>
+      <label className={styles.label}>Username</label>
 
       <input
-        {...inputProps}
-        onChange={onChange}
-        className={Styles.input}
+        className={styles.input}
+        placeholder={placeholder}
+        ref={refer}
       /> 
-
-      <span>{errorMessage}</span>
     </div>
   )
 }

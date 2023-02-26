@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import React, { FormEventHandler, useRef, useState } from "react"
 import FormInput from "./FormInput"
 
-import Styles from "./style.module.css"
+import styles from "./style.module.css"
 
 type Values = {
   username: string
@@ -50,33 +50,28 @@ const inputs = [
 ]
 
 const Forms1 = () => {
-  const [values, setValues] = useState<any>({})
+  // const [username, setUsername] = useState("")
+  const usernameRef = useRef()
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-  }
-
-  const onChange = (e) => {
-    setValues({...values, [e.target.name]: e.target.value})
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+  
+    console.log("---", usernameRef)
   }
 
   return (
-    <div className={Styles.app}>
-      <form
-        onSubmit={handleSubmit}
-        className={Styles.form}
-      >
-        <h1>Register</h1>
+    <div className={styles.app}>
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          placeholder="Username"
+          refer={usernameRef}
+        />
 
-        {inputs.map((input) => (
-          <FormInput
-            key={input.id}
-            {...input}
-            value={values[input.name]}
-            onChange={onChange}
-          />
-        ))}
-      <button type="submit">送信</button>
+        <FormInput placeholder="Email"/>
+        <FormInput placeholder="Full Name"/>
+        <FormInput placeholder="Sth else"/>
+
+        <button>Submit</button>
       </form>
     </div>
   )
