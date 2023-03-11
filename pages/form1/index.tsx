@@ -8,7 +8,7 @@ type Values = {
   email: string
   birthday: string
   password: string
-  conformPassword: string
+  confirmPassword: string
 }
 
 const inputs = [
@@ -50,27 +50,32 @@ const inputs = [
 ]
 
 const Forms1 = () => {
-  // const [username, setUsername] = useState("")
-  const usernameRef = useRef()
+  const [values, setValues] = useState<Values>({
+    username: "",
+    email: "",
+    birthday: "",
+    password: "",
+    confirmPassword: ""
+  })
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-  
-    console.log("---", usernameRef)
   }
+
+  const onChange = (e: React.SyntheticEvent) => {
+    setValues({...values, [e.target.name]: e.target.value})
+  }
+
+  console.log(values)
 
   return (
     <div className={styles.app}>
       <form onSubmit={handleSubmit}>
-        <FormInput
-          placeholder="Username"
-          refer={usernameRef}
-        />
-
-        <FormInput placeholder="Email"/>
-        <FormInput placeholder="Full Name"/>
-        <FormInput placeholder="Sth else"/>
-
+        {inputs.map((input) => {
+          return (
+            <FormInput key={input.id} {...input} value={values[input.name]} onChange={onChange} />
+          )
+        })}
         <button>Submit</button>
       </form>
     </div>
