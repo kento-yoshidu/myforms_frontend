@@ -6,7 +6,7 @@ type Props = {
   name: string
 }
 
-const FormInput = (props) => {
+const FormInput = (props: any) => {
   const {label, onChange, id, ...inputProps} = props
 
   return (

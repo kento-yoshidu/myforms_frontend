@@ -73,6 +73,7 @@ const Forms1 = () => {
       <form onSubmit={handleSubmit}>
         {inputs.map((input) => {
           return (
+            /* @ts-ignore */
             <FormInput key={input.id} {...input} value={values[input.name]} onChange={onChange} />
           )
         })}
