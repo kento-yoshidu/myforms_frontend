@@ -4,19 +4,24 @@ import styles from "./form-input.module.css"
 type Props = {
   placeholder: string,
   name: string
-  refer: RefObject<HTMLInputElement>
 }
 
-const FormInput = ({ placeholder, refer }: Props) => {
+const FormInput = (props) => {
+  const {label, onChange, id, ...inputProps} = props
+
   return (
     <div className={styles.formInput}>
-      <label className={styles.label}>Username</label>
+      <label
+        className={styles.label}
+      >
+        {label}
+      </label>
 
       <input
         className={styles.input}
-        placeholder={placeholder}
-        ref={refer}
-      /> 
+        {...inputProps}
+        onChange={onChange}
+      />
     </div>
   )
 }
