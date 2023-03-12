@@ -18,7 +18,7 @@ const Forms1 = () => {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const data = await fetch("/api/form1", {
+    const data = await fetch("/api/form2", {
       method: "POST",
       body: JSON.stringify(name),
       headers: { 'Content-Type': 'application/json' }

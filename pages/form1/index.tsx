@@ -1,15 +1,8 @@
 import React, { useState } from "react"
+import Head from "next/head"
 import FormInput from "./FormInput"
 
 import styles from "./style.module.css"
-
-type Values = {
-  username: string
-  email: string
-  birthday: string
-  password: string
-  confirmPassword: string
-}
 
 const Forms1 = () => {
   const [values, setValues] = useState({
@@ -25,9 +18,9 @@ const Forms1 = () => {
       id: 1,
       name: "username",
       type: "text",
-      placeholder: "Username",
-      errorMessage: "Username should be 3-16 characters and shouldn't include any special character.",
-      label: "Username",
+      placeholder: "userId",
+      errorMessage: "ユーザー名は3-16文字のアルファベットです。記号は使用できません。",
+      label: "ユーザー名",
       pattern: "^[A-Za-z0-9]{3,16}$",
       required: true
     },
@@ -35,8 +28,8 @@ const Forms1 = () => {
       id: 2,
       name: "email",
       type: "email",
-      placeholder: "Email",
-      errorMessage: "Username should be 3-16 characters.",
+      placeholder: "example@myform.com",
+      errorMessage: "メールアドレスの形式が正しくありません。",
       label: "Email",
       required: true
     },
@@ -67,29 +60,47 @@ const Forms1 = () => {
     }
   ]
 
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    const data = await fetch("/api/form1", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: { "Content-Type": "application/json" }
+    })
+
+    const result = await data.json()
+
+    console.log(result)
+
   }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
 
-  console.log(values)
-
   return (
-    <div className={styles.app}>
-      <form onSubmit={handleSubmit}>
-        {inputs.map((input) => {
-          return (
-            /* @ts-ignore */
-            <FormInput key={input.id} {...input} value={values[input.name]} onChange={onChange} />
-          )
-        })}
-        <button>Submit</button>
-      </form>
-    </div>
+    <>
+      <Head>
+        <title>Form1</title>
+      </Head>
+
+      <div className={styles.app}>
+        <form onSubmit={handleSubmit}>
+          {inputs.map((input) => {
+            return (
+              <FormInput key={input.id} {...input} value={values[input.name]} onChange={onChange} />
+            )
+          })}
+
+          <button
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </>
   )
 }
 
