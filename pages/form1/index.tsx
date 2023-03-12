@@ -11,7 +11,6 @@ const Forms1 = () => {
   const [values, setValues] = useState({
     username: "",
     email: "",
-    birthday: "",
     password: "",
     confirmPassword: ""
   })
@@ -35,15 +34,8 @@ const Forms1 = () => {
       errorMessage: "メールアドレスの形式が正しくありません。",
       label: "Email",
       required: true
-    },
-    {
-      id: 3,
-      name: "birthday",
-      type: "date",
-      placeholder: "Birthday",
-      label: "Birthday"
     }, {
-      id: 4,
+      id: 3,
       name: "password",
       type: "password",
       placeholder: "Password",
@@ -52,7 +44,7 @@ const Forms1 = () => {
       pattern: "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}",
       required: true
     }, {
-      id: 5,
+      id: 4,
       name: "confirmPassword",
       type: "password",
       placeholder: "ConfirmPassword",
@@ -85,14 +77,19 @@ const Forms1 = () => {
         <title>Form1</title>
       </Head>
 
-      <Header pageTitle="Form1" />
+      <Header />
 
       <div className={styles.app}>
         <form onSubmit={handleSubmit}>
           {inputs.map((input) => {
             return (
-              /* @ts-ignore */
-              <FormInput key={input.id} {...input} value={values[input.name]} onChange={onChange} />
+              <FormInput
+                key={input.id}
+                {...input}
+                /* @ts-ignore */
+                value={values[input.name]}
+                onChange={onChange}
+              />
             )
           })}
 

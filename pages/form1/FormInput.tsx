@@ -1,15 +1,26 @@
-import React, { RefObject, useState } from "react"
+import React, { useState } from "react"
 import styles from "./form-input.module.css"
 
 type Props = {
-  placeholder: string,
+  label: string,
+  errorMessage: string
   name: string
+  value: {
+    input: {
+      name: string
+    }
+  }
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const FormInput = (props: any) => {
+const FormInput = ({
+  label,
+  onChange,
+  errorMessage,
+  value,
+  ...others
+}: Props) => {
   const [focused, setFocused] = useState(false)
-
-  const {label, onChange, errorMessage, id, ...inputProps} = props
 
   const handleFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFocused(true)
@@ -25,12 +36,13 @@ const FormInput = (props: any) => {
 
       <input
         className={styles.input}
-        {...inputProps}
+        {...others}
         onChange={onChange}
         onBlur={handleFocus}
         onFocus={() =>
-          inputProps.name === "confirmPassword" && setFocused(true)
+          others.name === "confirmPassword" && setFocused(true)
         }
+        /* @ts-ignore */
         focused={focused.toString()}
       />
 
