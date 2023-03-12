@@ -1,10 +1,11 @@
 import { ReactNode } from "react"
+import Header from "./header"
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div style={{ "border": "1px solid red ", "width": "50%", "margin": "100px auto" }}>
+    <>
       {children}
-    </div>
+    </>
   )
 }
 

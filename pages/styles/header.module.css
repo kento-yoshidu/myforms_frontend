@@ -1,0 +1,15 @@
+.header {
+  height: 80px;
+  border-bottom: 1px solid #444;
+}
+
+.sitename {
+  line-height: 80px;
+  font-size: 1.75rem;
+  font-weight: normal;
+  text-align: center;
+}
+
+.sitename a {
+  color: inherit;
+}

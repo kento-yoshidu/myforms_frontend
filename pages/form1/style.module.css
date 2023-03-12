@@ -2,8 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-image: linear-gradient(to right bottom, rgb(255 128, 255), rgb(128, 64, 255));
 }
 
 .form {
