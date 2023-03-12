@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react"
-import Layout from '../components/Layout'
 
 import Styles from "./style.module.css"
 
@@ -8,7 +7,7 @@ const Forms1 = () => {
   const [data, setData] = useState("")
   const [isInputValidate, setIsInputValidate] = useState(true)
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const temp = e.target.value
 
     setName(temp)
@@ -44,7 +43,7 @@ const Forms1 = () => {
   }
 
   return (
-    <Layout>
+    <>
       <h1>Form1</h1>
 
       <p>あなたの名前を半角のアルファベットで入力してください。小文字だった場合は大文字にして返します。</p>
@@ -79,7 +78,7 @@ const Forms1 = () => {
       {data && (
         <p>あなたの名前を大文字に変換しました！ {data}</p>
       )}
-    </Layout>
+    </>
   )
 }
 

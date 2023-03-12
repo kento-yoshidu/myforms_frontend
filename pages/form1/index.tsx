@@ -1,4 +1,4 @@
-import React, { FormEventHandler, useRef, useState } from "react"
+import React, { useState } from "react"
 import FormInput from "./FormInput"
 
 import styles from "./style.module.css"
@@ -25,7 +25,7 @@ const inputs = [
     name: "email",
     type: "text",
     placeholder: "Email",
-    errorMessage: "Username should be 3-16 charactors.",
+    errorMessage: "Username should be 3-16 characters.",
     label: "Email"
   },
   {
@@ -50,7 +50,7 @@ const inputs = [
 ]
 
 const Forms1 = () => {
-  const [values, setValues] = useState<Values>({
+  const [values, setValues] = useState({
     username: "",
     email: "",
     birthday: "",
@@ -58,12 +58,12 @@ const Forms1 = () => {
     confirmPassword: ""
   })
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
   }
 
-  const onChange = (e: React.SyntheticEvent) => {
-    setValues({...values, [e.target.name]: e.target.value})
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [e.target.name]: e.target.value })
   }
 
   console.log(values)
@@ -73,6 +73,7 @@ const Forms1 = () => {
       <form onSubmit={handleSubmit}>
         {inputs.map((input) => {
           return (
+            /* @ts-ignore */
             <FormInput key={input.id} {...input} value={values[input.name]} onChange={onChange} />
           )
         })}
