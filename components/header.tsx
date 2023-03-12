@@ -1,13 +1,9 @@
-type Props = {
-  pageTitle?: string
-}
+import styles from "../pages/styles/header.module.css"
 
-const Header = ({ pageTitle }: Props) => {
+const Header = () => {
   return (
-    <header>
-      <h1>My Forms</h1>
-
-      <h2>{pageTitle}</h2>
+    <header className={styles.header}>
+      <h1 className={styles.sitename}>My Forms</h1>
     </header>
   )
 }
