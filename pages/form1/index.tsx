@@ -1,5 +1,8 @@
 import React, { useState } from "react"
 import Head from "next/head"
+
+import Header from "../../components/header"
+
 import FormInput from "./FormInput"
 
 import styles from "./style.module.css"
@@ -70,9 +73,6 @@ const Forms1 = () => {
     })
 
     const result = await data.json()
-
-    console.log(result)
-
   }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,10 +85,13 @@ const Forms1 = () => {
         <title>Form1</title>
       </Head>
 
+      <Header pageTitle="Form1" />
+
       <div className={styles.app}>
         <form onSubmit={handleSubmit}>
           {inputs.map((input) => {
             return (
+              /* @ts-ignore */
               <FormInput key={input.id} {...input} value={values[input.name]} onChange={onChange} />
             )
           })}

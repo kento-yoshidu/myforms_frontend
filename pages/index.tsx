@@ -9,8 +9,6 @@ const Home: NextPage = () => {
         <title>My Forms</title>
       </Head>
 
-      <h1>My Forms</h1>
-
       <Link href="/form1">Form1</Link>
     </>
   )
