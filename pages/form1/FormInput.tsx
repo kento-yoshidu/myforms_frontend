@@ -7,7 +7,7 @@ type Props = {
 }
 
 const FormInput = (props: any) => {
-  const {label, onChange, id, ...inputProps} = props
+  const {label, onChange, errorMessage, id, ...inputProps} = props
 
   return (
     <div className={styles.formInput}>
@@ -22,6 +22,10 @@ const FormInput = (props: any) => {
         {...inputProps}
         onChange={onChange}
       />
+
+      <span className={styles.errorMessage}>
+        {errorMessage}
+      </span>
     </div>
   )
 }
