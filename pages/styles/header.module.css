@@ -9,3 +9,7 @@
   font-weight: normal;
   text-align: center;
 }
+
+.sitename a {
+  color: inherit;
+}
