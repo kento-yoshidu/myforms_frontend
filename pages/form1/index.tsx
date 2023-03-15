@@ -15,6 +15,8 @@ const Forms1 = () => {
     confirmPassword: ""
   })
 
+  const [username, setUsername] = useState<string | null>(null)
+
   const inputs = [
     {
       id: 1,
@@ -64,7 +66,9 @@ const Forms1 = () => {
       headers: { "Content-Type": "application/json" }
     })
 
-    const result = await data.json()
+    const { username } = await data.json()
+
+    setUsername(username)
   }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,6 +104,10 @@ const Forms1 = () => {
           </button>
         </form>
       </div>
+
+      {username && (
+        <p>{username}</p>
+      )}
     </>
   )
 }
