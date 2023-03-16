@@ -16,6 +16,7 @@ const Forms1 = () => {
   })
 
   const [username, setUsername] = useState<string | null>(null)
+  const [isOpen, setIsOpen] = useState(false)
 
   const inputs = [
     {
@@ -69,6 +70,7 @@ const Forms1 = () => {
     const { username } = await data.json()
 
     setUsername(username)
+    setIsOpen(true)
   }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,9 +107,9 @@ const Forms1 = () => {
         </form>
       </div>
 
-      {username && (
+      <dialog open={isOpen}>
         <p>{username}</p>
-      )}
+      </dialog>
     </>
   )
 }
