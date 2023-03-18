@@ -15,6 +15,9 @@ const Forms1 = () => {
     confirmPassword: ""
   })
 
+  const [username, setUsername] = useState<string | null>(null)
+  const [isOpen, setIsOpen] = useState(false)
+
   const inputs = [
     {
       id: 1,
@@ -41,7 +44,7 @@ const Forms1 = () => {
       placeholder: "Password",
       errorMessage: "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 spacial character. ",
       label: "Password",
-      pattern: "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}",
+      pattern: "^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{8,20}",
       required: true
     }, {
       id: 4,
@@ -64,7 +67,10 @@ const Forms1 = () => {
       headers: { "Content-Type": "application/json" }
     })
 
-    const result = await data.json()
+    const { username } = await data.json()
+
+    setUsername(username)
+    setIsOpen(true)
   }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,6 +106,10 @@ const Forms1 = () => {
           </button>
         </form>
       </div>
+
+      <dialog open={isOpen}>
+        <p>{username}</p>
+      </dialog>
     </>
   )
 }
