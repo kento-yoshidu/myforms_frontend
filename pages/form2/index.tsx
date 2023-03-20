@@ -11,8 +11,6 @@ const Forms1 = () => {
     const temp = e.target.value
 
     setName(temp)
-
-    console.log("name is", name)
   }
 
   const submit = async (e: React.FormEvent) => {
