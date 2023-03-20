@@ -1,4 +1,4 @@
-import styles from "../pages/styles/footer.module.css"
+import styles from "../styles/footer.module.css"
 
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"

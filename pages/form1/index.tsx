@@ -6,6 +6,7 @@ import Header from "../../components/header"
 import FormInput from "./FormInput"
 
 import styles from "./style.module.css"
+import PageTitle from "../../components/pageTitle"
 
 const Forms1 = () => {
   const [values, setValues] = useState({
@@ -84,6 +85,8 @@ const Forms1 = () => {
       </Head>
 
       <Header />
+
+      <PageTitle pageTitle="Form 1" />
 
       <div className={styles.app}>
         <form onSubmit={handleSubmit}>

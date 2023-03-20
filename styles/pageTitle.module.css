@@ -1,0 +1,10 @@
+.wrapper {
+  padding: 12px 0;
+  border-bottom: 1px solid #444;
+}
+
+.pageTitle {
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-align: center;
+}

@@ -4,6 +4,8 @@ import Link from 'next/link'
 
 import Header from '../components/header'
 
+import styles from "../styles/style.module.css"
+
 const Home: NextPage = () => {
   return (
     <>
@@ -13,7 +15,9 @@ const Home: NextPage = () => {
 
       <Header isTop />
 
-      <Link href="/form1">Form1</Link>
+      <main className={styles.main}>
+        <Link href="/form1">Form1</Link>
+      </main>
     </>
   )
 }
