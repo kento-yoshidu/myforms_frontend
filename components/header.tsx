@@ -1,5 +1,5 @@
 import Link from "next/link"
-import styles from "../pages/styles/header.module.css"
+import styles from "../styles/header.module.css"
 
 const Header = ({ isTop = false }) => {
   return (
