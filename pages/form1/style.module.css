@@ -1,7 +1,9 @@
 .app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 30%;
+  margin: 50px auto;
+  background-color: #fefefe;
+  border: 2px solid #ddd;
+  padding: 10px 20px;
 }
 
 .form {
