@@ -25,7 +25,7 @@ const Forms1 = () => {
       name: "username",
       type: "text",
       placeholder: "userId",
-      errorMessage: "ユーザー名は3-16文字のアルファベットです。記号は使用できません。",
+      errorMessage: "ユーザー名は3-16文字のアルファベットと数字です。記号は使用できません。",
       label: "ユーザー名",
       pattern: "^[A-Za-z0-9]{3,16}$",
       required: true
@@ -36,7 +36,7 @@ const Forms1 = () => {
       type: "email",
       placeholder: "example@myform.com",
       errorMessage: "メールアドレスの形式が正しくありません。",
-      label: "Email",
+      label: "メールアドレス",
       required: true
     }, {
       id: 3,
@@ -44,16 +44,16 @@ const Forms1 = () => {
       type: "password",
       placeholder: "Password",
       errorMessage: "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 spacial character. ",
-      label: "Password",
+      label: "パスワード",
       pattern: "^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{8,20}",
       required: true
     }, {
       id: 4,
       name: "confirmPassword",
       type: "password",
-      placeholder: "ConfirmPassword",
+      placeholder: "パスワード（確認用）",
       errorMessage: "Password don't match!",
-      label: "ConfirmPassword",
+      label: "パスワード（確認用）",
       pattern: values.password,
       required: true
     }
