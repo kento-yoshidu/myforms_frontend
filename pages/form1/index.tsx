@@ -27,7 +27,8 @@ const Form1 = () => {
       errorMessage: "ユーザー名は3-16文字のアルファベットと数字です。記号は使用できません。",
       label: "ユーザー名",
       pattern: "^[A-Za-z0-9]{3,16}$",
-      required: true
+      required: true,
+      testId: "username"
     },
     {
       id: 2,
@@ -36,7 +37,8 @@ const Form1 = () => {
       placeholder: "example@myform.com",
       errorMessage: "メールアドレスの形式が正しくありません。",
       label: "メールアドレス",
-      required: true
+      required: true,
+      testId: "email"
     }, {
       id: 3,
       name: "password",
@@ -45,7 +47,8 @@ const Form1 = () => {
       errorMessage: "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 spacial character. ",
       label: "パスワード",
       pattern: "^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{8,20}",
-      required: true
+      required: true,
+      testId: "password"
     }, {
       id: 4,
       name: "confirmPassword",
@@ -54,7 +57,8 @@ const Form1 = () => {
       errorMessage: "Password don't match!",
       label: "パスワード（確認用）",
       pattern: values.password,
-      required: true
+      required: true,
+      testId: "confirmPassword"
     }
   ]
 
@@ -67,7 +71,7 @@ const Form1 = () => {
       headers: { "Content-Type": "application/json" }
     })
 
-    const { username, email } = await data.json()
+    const { username } = await data.json()
 
     setUsername(username)
   }
@@ -111,7 +115,10 @@ const Form1 = () => {
       </div>
 
       {username && (
-        <div className={styles.message}>
+        <div
+          className={styles.message}
+          data-testid="message"
+        >
           <p>こんにちは {username}さん、ユーザー登録が完了しました。</p>
         </div>
       )}
