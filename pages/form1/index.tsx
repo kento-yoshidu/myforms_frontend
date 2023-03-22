@@ -8,7 +8,7 @@ import FormInput from "./FormInput"
 import styles from "./style.module.css"
 import PageTitle from "../../components/pageTitle"
 
-const Forms1 = () => {
+const Form1 = () => {
   const [values, setValues] = useState({
     username: "",
     email: "",
@@ -120,7 +120,7 @@ const Forms1 = () => {
   )
 }
 
-export default Forms1
+export default Form1
 
 // https://www.youtube.com/watch?v=tIdNeoHniEY&t=1537s
 
