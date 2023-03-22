@@ -17,7 +17,6 @@ const Forms1 = () => {
   })
 
   const [username, setUsername] = useState<string | null>(null)
-  const [isOpen, setIsOpen] = useState(false)
 
   const inputs = [
     {
@@ -68,10 +67,9 @@ const Forms1 = () => {
       headers: { "Content-Type": "application/json" }
     })
 
-    const { username } = await data.json()
+    const { username, email } = await data.json()
 
     setUsername(username)
-    setIsOpen(true)
   }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,6 +87,8 @@ const Forms1 = () => {
       <PageTitle pageTitle="Form 1" />
 
       <div className={styles.app}>
+        <h3 className={styles.formTitle}>ユーザー登録</h3>
+
         <form onSubmit={handleSubmit}>
           {inputs.map((input) => {
             return (
@@ -110,9 +110,12 @@ const Forms1 = () => {
         </form>
       </div>
 
-      <dialog open={isOpen}>
-        <p>{username}</p>
-      </dialog>
+      {username && (
+        <div className={styles.message}>
+          <p>こんにちは {username}さん、ユーザー登録が完了しました。</p>
+        </div>
+      )}
+
     </>
   )
 }
