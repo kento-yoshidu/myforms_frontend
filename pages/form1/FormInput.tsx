@@ -5,6 +5,7 @@ type Props = {
   label: string,
   errorMessage: string
   name: string
+  testId: string
   value: {
     input: {
       name: string
@@ -18,6 +19,7 @@ const FormInput = ({
   onChange,
   errorMessage,
   value,
+  testId,
   ...others
 }: Props) => {
   const [focused, setFocused] = useState(false)
@@ -44,6 +46,7 @@ const FormInput = ({
         }
         /* @ts-ignore */
         focused={focused.toString()}
+        data-testid={testId}
       />
 
       <span className={styles.errorMessage}>
