@@ -26,3 +26,8 @@ html {
 body {
   color: #444;
 }
+
+:root {
+
+  --max-width: 1156px;
+}
