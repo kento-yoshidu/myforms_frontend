@@ -17,11 +17,13 @@ const Form1 = () => {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const data = await fetch("/api/form1", {
+    const data = await fetch("http://localhost:3000/api/form1", {
       method: "POST",
       body: JSON.stringify(name),
       headers: { 'Content-Type': 'application/json' }
     })
+
+    console.log("data is", data)
 
     if (data.status === 200) {
       const result = await data.json()
@@ -70,6 +72,7 @@ const Form1 = () => {
             pattern="[A-Za-z]*"
             onChange={handleChange}
             placeholder="Michael Schumacher"
+            data-testid="name"
           />
 
           <p>name is {name}</p>
@@ -80,7 +83,11 @@ const Form1 = () => {
             </>
           )}
 
-          <input type="submit" name="Sign Up" />
+          <input
+            data-testid="submit"
+            type="submit"
+            name="Sign Up"
+          />
         </form>
 
         {data && (
