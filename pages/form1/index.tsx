@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import Container from "../../components/container"
 import Header from "../../components/header"
 import PageTitle from "../../components/pageTitle"
 
@@ -50,40 +51,42 @@ const Form1 = () => {
 
       <PageTitle pageTitle="Form 1" />
 
-      <h1 data-testid="page-title">Form1</h1>
+      <Container>
+        <h1 data-testid="page-title">Form1</h1>
 
-      <p>あなたの名前を半角のアルファベットで入力してください。小文字だった場合は大文字にして返します。</p>
+        <p>あなたの名前を半角のアルファベットで入力してください。小文字だった場合は大文字にして返します。</p>
 
-      <form onSubmit={submit}>
-        <label
-          htmlFor="name"
-          className={Styles.label}
-        >
-          お名前
-        </label>
+        <form onSubmit={submit}>
+          <label
+            htmlFor="name"
+            className={Styles.label}
+          >
+            お名前
+          </label>
 
-        <input
-          id="name"
-          type="text"
-          pattern="[A-Za-z]*"
-          onChange={handleChange}
-          placeholder="Michael Schumacher"
-        />
+          <input
+            id="name"
+            type="text"
+            pattern="[A-Za-z]*"
+            onChange={handleChange}
+            placeholder="Michael Schumacher"
+          />
 
-        <p>name is {name}</p>
+          <p>name is {name}</p>
 
-        {!isInputValidate && (
-          <>
-            <p>エラーです!</p>
-          </>
+          {!isInputValidate && (
+            <>
+              <p>エラーです!</p>
+            </>
+          )}
+
+          <input type="submit" name="Sign Up" />
+        </form>
+
+        {data && (
+          <p>あなたの名前を大文字に変換しました！ {data}</p>
         )}
-
-        <input type="submit" name="Sign Up" />
-      </form>
-
-      {data && (
-        <p>あなたの名前を大文字に変換しました！ {data}</p>
-      )}
+      </Container>
     </>
   )
 }
