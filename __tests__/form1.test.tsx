@@ -1,10 +1,10 @@
 import { cleanup, render, screen } from "@testing-library/react"
-import "@testing-library/jest-dom/extend-expect"
 import userEvent from "@testing-library/user-event"
-import 'cross-fetch/polyfill'
-
 import { rest } from "msw"
 import { setupServer } from "msw/node"
+
+import "@testing-library/jest-dom/extend-expect"
+import 'cross-fetch/polyfill'
 
 import Form1 from "../pages/form1"
 
