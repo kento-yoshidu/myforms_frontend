@@ -23,29 +23,11 @@ const Form1 = () => {
       headers: { 'Content-Type': 'application/json' }
     })
 
-    console.log("data is", data)
-
     if (data.status === 200) {
       const result = await data.json()
       setData(result.name)
     }
-
-    /*
-    if (data.status !== 200) {
-      window.alert("error!")
-    }
-    */
   }
-
-  /*
-  const validation = () => {
-    if (name.length === 0) {
-      setIsInputValidate(false)
-    } else {
-      setIsInputValidate(true)
-    }
-  }
-  */
 
   return (
     <>
@@ -74,8 +56,6 @@ const Form1 = () => {
             placeholder="Michael Schumacher"
             data-testid="name"
           />
-
-          <p>name is {name}</p>
 
           {!isInputValidate && (
             <>

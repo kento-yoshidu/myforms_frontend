@@ -9,8 +9,8 @@ import { setupServer } from "msw/node"
 import Form1 from "../pages/form1"
 
 const server = setupServer(
-  rest.get("http://localhost:3000/api/form1", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ name: "kento" }))
+  rest.post("/api/form1", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ name: "KENTO" }))
   })
 )
 
