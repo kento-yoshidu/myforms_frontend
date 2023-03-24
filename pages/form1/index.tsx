@@ -17,7 +17,7 @@ const Form1 = () => {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const data = await fetch("/api/form1", {
+    const data = await fetch("http://localhost:3000/api/form1", {
       method: "POST",
       body: JSON.stringify(name),
       headers: { 'Content-Type': 'application/json' }
@@ -56,8 +56,6 @@ const Form1 = () => {
             placeholder="Michael Schumacher"
             data-testid="name"
           />
-
-          <p>name is {name}</p>
 
           {!isInputValidate && (
             <>

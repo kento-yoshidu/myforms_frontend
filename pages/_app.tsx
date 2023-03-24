@@ -1,8 +1,9 @@
+import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 
 import Layout from '../components/layout'
 
-import "./css/global.css"
+import "../styles/globals.css"
 
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from '@fortawesome/fontawesome-svg-core'
@@ -15,4 +16,5 @@ function MyApp({ Component, pageProps }: AppProps) {
     </Layout>
   )
 }
+
 export default MyApp

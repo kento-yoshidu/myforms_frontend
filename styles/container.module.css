@@ -1,0 +1,10 @@
+.default {
+  width: 92%;
+  max-width: var(--max-width);
+  margin: 50px auto;
+}
+
+.large {
+  composes: default;
+  max-width: 1280px;
+}
