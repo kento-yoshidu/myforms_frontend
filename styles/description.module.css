@@ -1,0 +1,20 @@
+.description {
+  margin: 50px auto;
+  width: 55%;
+}
+
+.title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.description p {
+  text-indent: 0.8rem;
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+
+.description ol {
+  width: 80%;
+  margin: 20px auto;
+}
