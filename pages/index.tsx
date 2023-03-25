@@ -7,7 +7,7 @@ import styles from '../styles/style.module.css'
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>My Forms</title>
       </Head>
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       <Container>
         <Link href="/form1">Form1</Link>
       </Container>
-    </div>
+    </>
   )
 }
 
