@@ -1,9 +1,11 @@
 import React, { useState } from "react"
+import Head from "next/head"
 import Container from "../../components/container"
 import Header from "../../components/header"
 import PageTitle from "../../components/pageTitle"
 
 import styles from "./style.module.css"
+import descStyles from "../../styles/description.module.css"
 
 const Form1 = () => {
   const [name, setName] = useState("")
@@ -37,6 +39,10 @@ const Form1 = () => {
 
   return (
     <>
+      <Head>
+        <title>From1 | My Forms</title>
+      </Head>
+
       <Header />
 
       <PageTitle pageTitle="Form 1" />
@@ -86,28 +92,31 @@ const Form1 = () => {
           {data && (
             <div
               className={styles.result}
-              data-testid="result"
+              data-testid="result-area"
             >
               <p>あなたの名前を大文字に変換しました！<br />{data}</p>
             </div>
           )}
         </div>
 
-        <section className={styles.section}>
-          <h3>こぼれ話</h3>
+        <section className={descStyles.description}>
+          <h3 className={descStyles.title}>こぼれ話</h3>
 
-          <p>Form1の構成はシンプルです。フォームの機能としては、テキストボックスに名前（アルファベット）を入力し送信ボタンを押すと、名前が大文字で表示される、というものです。</p>
+          <p>Form1の構成は極力シンプルにしました。テキストボックスに文字列を入力し送信ボタンを押すと、小文字のアルファベットが大文字に変換され表示される、というものです。</p>
 
-          <p>フロントエンドではReactのuseStateで名前の値を管理し、fetch関数でAPIを叩いています。React Hook FormsもZodも使っていないシンプルな構成です。</p>
+          <p>フロントエンドではuseStateで入力値を管理し、fetch関数でAPIを叩いています。React Hook FormsもZodも使っていないシンプルな構成です。</p>
 
           <p>バックエンドではNext.jsのAPI Routeの機能を用いてAPIエンドポイントを作成し、そこで大文字への変換を行いJSONとして返しています。</p>
 
-          <p>テストコードはこちらです。テストは、</p>
+          <p>テストコードは<a href="https://github.com/kento-yoshidu/MyForms/blob/main/__tests__/form1.test.tsx">こちら</a>です。テストは、</p>
 
           <ol>
             <li>初回レンダリング時、変換結果が表示されるエリアに何も表示されていないこと</li>
+            <li>何も文字が入力されていない時、ボタンがdisabledになっていること</li>
+            <li>文字が入力されている時、ボタンがdisabledになっていないこと</li>
             <li>フォームに名前を入力し送信ボタンを押すことで、大文字になった文字列が表示されること</li>
           </ol>
+
           <p>のみを行っています。</p>
         </section>
       </Container>
