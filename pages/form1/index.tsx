@@ -8,10 +8,16 @@ import styles from "./style.module.css"
 const Form1 = () => {
   const [name, setName] = useState("")
   const [data, setData] = useState("")
-  const [isInputValidate, setIsInputValidate] = useState(true)
+  const [isClickable, setIsClickable] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value)
+
+    if (e.target.value.length > 0) {
+      setIsClickable(() => true)
+    } else {
+      setIsClickable(() => false)
+    }
   }
 
   const submit = async (e: React.FormEvent) => {
@@ -59,24 +65,31 @@ const Form1 = () => {
               id="name"
               className={styles.input}
               type="text"
-              pattern="[0-9A-Za-z !]*"
+              // pattern="[0-9A-Za-z !@_#$*]*"
               onChange={handleChange}
               placeholder="Taro Yamada"
               data-testid="name"
+              autoComplete="off"
             />
 
             <button
-            className={styles.button}
+              className={styles.button}
               data-testid="submit"
               type="submit"
               name="Sign Up"
+              disabled={!isClickable}
             >
               送信する
             </button>
           </form>
 
           {data && (
-            <p>あなたの名前を大文字に変換しました！ {data}</p>
+            <div
+              className={styles.result}
+              data-testid="result"
+            >
+              <p>あなたの名前を大文字に変換しました！<br />{data}</p>
+            </div>
           )}
         </div>
 
