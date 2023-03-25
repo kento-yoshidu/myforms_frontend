@@ -3,7 +3,7 @@ import Container from "../../components/container"
 import Header from "../../components/header"
 import PageTitle from "../../components/pageTitle"
 
-import Styles from "./style.module.css"
+import styles from "./style.module.css"
 
 const Form1 = () => {
   const [name, setName] = useState("")
@@ -17,7 +17,7 @@ const Form1 = () => {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const data = await fetch("http://localhost:3000/api/form1", {
+    const data = await fetch("/api/form1", {
       method: "POST",
       body: JSON.stringify(name),
       headers: { 'Content-Type': 'application/json' }
@@ -36,43 +36,67 @@ const Form1 = () => {
       <PageTitle pageTitle="Form 1" />
 
       <Container>
-        <h1 data-testid="page-title">Form1</h1>
+        <div className={styles.wrapper}>
+          <h3
+            className={styles.title}
+            data-testid="form-title"
+          >Form1</h3>
 
-        <p>あなたの名前を半角のアルファベットで入力してください。小文字だった場合は大文字にして返します。</p>
+          <p className={styles.text}>あなたの名前を半角のアルファベットで入力してください。<br />小文字だった場合は大文字にして返します。</p>
 
-        <form onSubmit={submit}>
-          <label
-            htmlFor="name"
-            className={Styles.label}
+          <form
+            className={styles.form}
+            onSubmit={submit}
           >
-            お名前
-          </label>
+            <label
+              htmlFor="name"
+              className={styles.label}
+            >
+              お名前
+            </label>
 
-          <input
-            id="name"
-            type="text"
-            pattern="[A-Za-z]*"
-            onChange={handleChange}
-            placeholder="Michael Schumacher"
-            data-testid="name"
-          />
+            <input
+              id="name"
+              className={styles.input}
+              type="text"
+              pattern="[0-9A-Za-z !]*"
+              onChange={handleChange}
+              placeholder="Taro Yamada"
+              data-testid="name"
+            />
 
-          {!isInputValidate && (
-            <>
-              <p>エラーです!</p>
-            </>
+            <button
+            className={styles.button}
+              data-testid="submit"
+              type="submit"
+              name="Sign Up"
+            >
+              送信する
+            </button>
+          </form>
+
+          {data && (
+            <p>あなたの名前を大文字に変換しました！ {data}</p>
           )}
+        </div>
 
-          <input
-            data-testid="submit"
-            type="submit"
-            name="Sign Up"
-          />
-        </form>
+        <section className={styles.section}>
+          <h3>こぼれ話</h3>
 
-        {data && (
-          <p>あなたの名前を大文字に変換しました！ {data}</p>
-        )}
+          <p>Form1の構成はシンプルです。フォームの機能としては、テキストボックスに名前（アルファベット）を入力し送信ボタンを押すと、名前が大文字で表示される、というものです。</p>
+
+          <p>フロントエンドではReactのuseStateで名前の値を管理し、fetch関数でAPIを叩いています。React Hook FormsもZodも使っていないシンプルな構成です。</p>
+
+          <p>バックエンドではNext.jsのAPI Routeの機能を用いてAPIエンドポイントを作成し、そこで大文字への変換を行いJSONとして返しています。</p>
+
+          <p>テストコードはこちらです。テストは、</p>
+
+          <ol>
+            <li>初回レンダリング時、変換結果が表示されるエリアに何も表示されていないこと</li>
+            <li>フォームに名前を入力し送信ボタンを押すことで、大文字になった文字列が表示されること</li>
+          </ol>
+          <p>のみを行っています。</p>
+        </section>
       </Container>
     </>
   )

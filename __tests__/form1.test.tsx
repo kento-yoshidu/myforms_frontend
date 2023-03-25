@@ -1,10 +1,10 @@
 import { cleanup, render, screen } from "@testing-library/react"
-import "@testing-library/jest-dom/extend-expect"
 import userEvent from "@testing-library/user-event"
-import 'cross-fetch/polyfill'
-
 import { rest } from "msw"
 import { setupServer } from "msw/node"
+
+import "@testing-library/jest-dom/extend-expect"
+import 'cross-fetch/polyfill'
 
 import Form1 from "../pages/form1"
 
@@ -26,7 +26,7 @@ afterAll(() => server.close())
 describe("Form1", () => {
   it("Rendering Form1", () => {
     render(<Form1 />)
-    expect(screen.getByTestId("page-title")).toHaveTextContent(/^Form1$/)
+    expect(screen.getByTestId("form-title")).toHaveTextContent(/^Form1$/)
   })
 
   it("送信テスト", async () => {
