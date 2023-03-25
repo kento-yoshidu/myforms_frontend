@@ -39,19 +39,17 @@ describe("Form1", () => {
     expect(screen.getByRole("button")).toBeDisabled()
   })
 
-  it("Input value, button should be not disabled.", async () => {
+  it("Input value, button should not be disabled.", async () => {
     render(<Form1 />)
     await userEvent.type(screen.getByTestId("name"), "kento")
     expect(screen.getByRole("button")).not.toBeDisabled()
   })
 
-  /*
-  it("First rendered, button should be disabled.", async () => {
+  it("Click button, should render result", async () => {
     render(<Form1 />)
     const nameForm = screen.getByTestId("name") as HTMLInputElement
     await userEvent.type(nameForm, "kento")
     await userEvent.click(screen.getByTestId("submit"))
-    screen.debug()
+    expect(screen.getByTestId("result-area")).toHaveTextContent("KENTO")
   })
-  */
 })
