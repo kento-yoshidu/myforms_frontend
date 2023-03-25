@@ -3,7 +3,7 @@
   border-radius: 2px;
   width: 55%;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 0 40px;
 }
 
 .title {
@@ -27,6 +27,7 @@
 
 .label {
   display: block;
+  margin-bottom: 5px;
   font-size: 0.9rem;
 }
 
@@ -38,7 +39,7 @@
 
 .button {
   width: 50%;
-  margin: 20px auto;
+  margin: 40px auto 0;
   cursor: pointer;
   background-color: #efefef;
   border: 1px solid #888;
@@ -48,6 +49,14 @@
 
 .button:hover {
   background-color: #fefefe
+}
+
+.button:disabled {
+  cursor: not-allowed;
+}
+
+.result {
+  text-align: center;
 }
 
 .section {
