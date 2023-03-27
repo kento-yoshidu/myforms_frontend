@@ -6,6 +6,6 @@
 
 .link {
   color: #fff;
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 2vw, 3rem);
   line-height: 80px;
 }
