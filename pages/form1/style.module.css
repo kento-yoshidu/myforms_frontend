@@ -1,9 +1,16 @@
 .wrapper {
-  border: 1px solid #bbb;
-  border-radius: 2px;
   width: 55%;
   margin: 0 auto;
   padding: 20px 0 40px;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+}
+
+@media (width < 768px) {
+  .wrapper {
+    width: 90%;
+    padding: 20px;
+  }
 }
 
 .title {
@@ -23,6 +30,12 @@
   flex-direction: column;
   width: 50%;
   margin: 30px auto;
+}
+
+@media (width < 768px) {
+  .form {
+    width: 80%;
+  }
 }
 
 .label {
