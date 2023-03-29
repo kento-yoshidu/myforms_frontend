@@ -3,25 +3,67 @@
   width: 55%;
 }
 
-.title {
+.open,
+.close {
+  border: 1px solid #ddd;
+}
+
+.heading {
+  font-size: 1.25rem;
   margin-bottom: 20px;
   text-align: center;
 }
 
-.description p {
-  font-size: clamp(0.95rem, 1.8vw, 1rem);
-  text-indent: 0.8rem;
-  line-height: 1.65;
-  margin-bottom: 10px;
+.heading button {
+  all: unset;
+  outline: revert;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 50%;
+  pad: 1em;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  gap: 1em
 }
 
-.description ol {
-  width: 80%;
+.icon {
+  color: #888;
+  font-size: 1.2em;
+  transition: 0.5s;
+}
+
+.open .icon {
+  transform: rotate(180deg);
+}
+
+.text {
+  overflow: hidden;
+  height: 0px;
+  transition: height 0.5s;
+}
+
+.open .text {
+  height: auto;
+}
+
+.textInner {
+  padding: 0 1.14em 1.14em;
+  font-size: clamp(0.95rem, 1.8vw, 1rem);
+}
+
+.textInner p {
+  text-indent: 0.75rem;
+  margin-bottom: 10px;
+  line-height: 1.65;
+}
+
+.textInner ol {
+  width: 90%;
   margin: 20px auto;
 }
 
-@media (width < 768px) {
-  .description {
-    width: 90%;
-  }
+.textInner li {
+  margin-bottom: 8px;
 }
