@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react"
+import { CSSProperties, ReactNode, useRef, useState } from "react"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleChevronDown } from "@fortawesome/free-solid-svg-icons"
@@ -11,6 +11,8 @@ const Description = ({ children }: { children: ReactNode }) => {
   const toggleText = () => {
     setTextIsOpen((prev) => !prev)
   }
+
+  const refText = useRef<HTMLDivElement>(null)
 
   return (
     <div className={textIsOpen ? styles.open : styles.close}>
@@ -25,7 +27,15 @@ const Description = ({ children }: { children: ReactNode }) => {
         </button>
       </h3>
 
-      <div className={styles.text}>
+      <div
+        className={styles.text}
+        ref={refText}
+        style={{
+          "--text-height": refText.current
+            ?  `${refText.current?.scrollHeight}px`
+            : "0px"
+        } as CSSProperties}
+      >
         <div className={styles.textInner}>
           {children}
         </div>
