@@ -24,28 +24,28 @@ afterEach(() => {
 afterAll(() => server.close())
 
 describe("Form1", () => {
-  it("Rendering Form1.", () => {
+  it("Form1がレンダリングされること", () => {
     render(<Form1 />)
     expect(screen.getByTestId("form-title")).toHaveTextContent(/^Form1$/)
   })
 
-  it("First rendered, nothing is displayed in the result-area", () => {
+  it("初回レンダリング時, 変換結果が表示されるエリアに何も表示されていないこと", () => {
     render(<Form1 />)
     expect(screen.queryByTestId("result-area")).toBeNull()
   })
 
-  it("First rendered, button should be disabled.", () => {
+  it("初回レンダリング時, ボタンがdisabledになっていること", () => {
     render(<Form1 />)
     expect(screen.getByTestId("submit")).toBeDisabled()
   })
 
-  it("Input value, button should not be disabled.", async () => {
+  it("フォームに値が入力された時、ボタンのdisabledが解除されること", async () => {
     render(<Form1 />)
     await userEvent.type(screen.getByTestId("name"), "kento")
     expect(screen.getByTestId("submit")).not.toBeDisabled()
   })
 
-  it("Click button, should render result", async () => {
+  it("送信ボタンをクリックした時, 変換結果が表示されること", async () => {
     render(<Form1 />)
     const nameForm = screen.getByTestId("name") as HTMLInputElement
     await userEvent.type(nameForm, "kento")
