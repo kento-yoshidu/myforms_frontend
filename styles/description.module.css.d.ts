@@ -5,6 +5,8 @@ declare const styles: {
   readonly "heading": string;
   readonly "icon": string;
   readonly "text": string;
+  readonly "openAnime": string;
+  readonly "closeAnime": string;
   readonly "textInner": string;
 };
 export = styles;

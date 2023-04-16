@@ -1,8 +1,10 @@
 import React, { useState } from "react"
 import Head from "next/head"
+
 import Container from "../../components/container"
 import Header from "../../components/header"
 import PageTitle from "../../components/pageTitle"
+import Button from "../../components/button"
 
 import styles from "./style.module.css"
 import descStyles from "../../styles/description.module.css"
@@ -102,7 +104,7 @@ const Form1 = () => {
 
         <section className={descStyles.description}>
           <Description>
-            <p>Form1の構成は極力シンプルにしました（シンプルにしたというより、テストがちゃんと働き、本番環境でちゃんと動作するかを確認することが目的）。テキストボックスに文字列を入力し送信ボタンを押すと、小文字のアルファベットが大文字に変換され表示される、というものです。</p>
+            <p>Form1の構成は極力シンプルにしました（シンプルにしたというより、本番環境でちゃんと動作するかを確認することが目的）。テキストボックスに文字列を入力し送信ボタンを押すと、小文字のアルファベットが大文字に変換され表示される、というものです。</p>
 
             <p>フロントエンドではuseStateで入力値を管理し、fetch関数でAPIを叩いています。React Hook FormsもZodも使っていないシンプルな構成です。</p>
 
@@ -121,6 +123,8 @@ const Form1 = () => {
           </Description>
         </section>
       </Container>
+
+      <Button />
     </>
   )
 }
