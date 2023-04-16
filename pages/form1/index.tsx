@@ -4,7 +4,7 @@ import Head from "next/head"
 import Container from "../../components/container"
 import Header from "../../components/header"
 import PageTitle from "../../components/pageTitle"
-import Button from "../../components/button"
+import HomeLink from "../../components/home-link"
 
 import styles from "./style.module.css"
 import descStyles from "../../styles/description.module.css"
@@ -124,7 +124,7 @@ const Form1 = () => {
         </section>
       </Container>
 
-      <Button />
+      <HomeLink />
     </>
   )
 }

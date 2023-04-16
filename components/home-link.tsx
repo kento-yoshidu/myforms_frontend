@@ -2,7 +2,7 @@ import Link from "next/link"
 
 import styles from "../styles/button.module.css"
 
-const Button = () => (
+const HomeLink = () => (
   <div className={styles.wrapper}>
     <Link
       className={styles.button}
@@ -13,4 +13,4 @@ const Button = () => (
   </div>
 )
 
-export default Button
+export default HomeLink
