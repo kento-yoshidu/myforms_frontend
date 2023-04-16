@@ -5,6 +5,7 @@
 
 @media (width < 768px) {
   .description {
+    margin: 20px auto;
     width: 100%;
     padding: 20px;
   }
@@ -12,7 +13,7 @@
 
 .open,
 .close {
-  border: 1px solid #ddd;
+  border: 1px solid #bbb;
 }
 
 .heading {
@@ -48,7 +49,6 @@
 .text {
   overflow: hidden;
   height: 0px;
-  /* transition: height 0.5s; */
   transition: none;
 }
 
