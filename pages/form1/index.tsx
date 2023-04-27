@@ -12,7 +12,7 @@ import Description from "../../components/description"
 
 const Form1 = () => {
   const [name, setName] = useState("")
-  const [data, setData] = useState("")
+  const [convertedData, setConvertedData] = useState("")
   const [isClickable, setIsClickable] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +36,7 @@ const Form1 = () => {
 
     if (data.status === 200) {
       const result = await data.json()
-      setData(result.name)
+      setConvertedData(result.name)
     }
   }
 
@@ -48,25 +48,18 @@ const Form1 = () => {
 
       <Header />
 
-      <PageTitle pageTitle="Form 1" />
+      <PageTitle pageTitle="Form1" />
 
       <Container>
         <div className={styles.wrapper}>
-          <h3
-            className={styles.title}
-            data-testid="form-title"
-          >Form1</h3>
+          <h3 className={styles.title} data-testid="form-title">
+            Form1
+          </h3>
 
           <p className={styles.text}>あなたの名前を半角のアルファベットで入力してください。<br />小文字だった場合は大文字にして返します。</p>
 
-          <form
-            className={styles.form}
-            onSubmit={submit}
-          >
-            <label
-              htmlFor="name"
-              className={styles.label}
-            >
+          <form className={styles.form} onSubmit={submit}>
+            <label htmlFor="name" className={styles.label}>
               お名前
             </label>
 
@@ -74,7 +67,6 @@ const Form1 = () => {
               id="name"
               className={styles.input}
               type="text"
-              // pattern="[0-9A-Za-z !@_#$*]*"
               onChange={handleChange}
               placeholder="Taro Yamada"
               data-testid="name"
@@ -92,12 +84,9 @@ const Form1 = () => {
             </button>
           </form>
 
-          {data && (
-            <div
-              className={styles.result}
-              data-testid="result-area"
-            >
-              <p>あなたの名前を大文字に変換しました！<br />{data}</p>
+          {convertedData && (
+            <div className={styles.result} data-testid="result-area">
+              <p>あなたの名前を大文字に変換しました！<br />{convertedData}</p>
             </div>
           )}
         </div>
@@ -106,7 +95,7 @@ const Form1 = () => {
           <Description>
             <p>Form1の構成は極力シンプルにしました（シンプルにしたというより、本番環境でちゃんと動作するかを確認することが目的）。テキストボックスに文字列を入力し送信ボタンを押すと、小文字のアルファベットが大文字に変換され表示される、というものです。</p>
 
-            <p>フロントエンドではuseStateで入力値を管理し、fetch関数でAPIを叩いています。React Hook FormsもZodも使っていないシンプルな構成です。</p>
+            <p>フロントエンドではuseStateで入力値を管理し、fetch関数でAPIを叩いています。React Hook FormもZodも使っていないシンプルな構成です。</p>
 
             <p>バックエンドではNext.jsのAPI Routeの機能を用いてAPIエンドポイントを作成し、そこで大文字への変換を行いJSONとして返しています。</p>
 
@@ -116,7 +105,7 @@ const Form1 = () => {
               <li>初回レンダリング時、変換結果が表示されるエリアに何も表示されていないこと</li>
               <li>何も文字が入力されていない時、ボタンがdisabledになっていること</li>
               <li>文字が入力されている時、ボタンがdisabledになっていないこと</li>
-              <li>フォームに名前を入力し送信ボタンを押すことで、大文字になった文字列が表示されること</li>
+              <li>フォームに名前を入力し送信ボタンを押すことで、大文字になった名前が表示されること</li>
             </ol>
 
             <p>のみを行っています。</p>
