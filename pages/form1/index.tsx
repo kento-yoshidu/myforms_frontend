@@ -19,9 +19,9 @@ const Form1 = () => {
     setName(e.target.value)
 
     if (e.target.value.length > 0) {
-      setIsClickable(() => true)
+      setIsClickable(true)
     } else {
-      setIsClickable(() => false)
+      setIsClickable(false)
     }
   }
 
@@ -43,7 +43,7 @@ const Form1 = () => {
   return (
     <>
       <Head>
-        <title>From1 | My Forms</title>
+        <title>Form1 | My Forms</title>
       </Head>
 
       <Header />
@@ -60,7 +60,7 @@ const Form1 = () => {
 
           <form className={styles.form} onSubmit={submit}>
             <label htmlFor="name" className={styles.label}>
-              お名前
+              お名前 <span>※必須</span>
             </label>
 
             <input
@@ -103,8 +103,8 @@ const Form1 = () => {
 
             <ol>
               <li>初回レンダリング時、変換結果が表示されるエリアに何も表示されていないこと</li>
-              <li>何も文字が入力されていない時、ボタンがdisabledになっていること</li>
-              <li>文字が入力されている時、ボタンがdisabledになっていないこと</li>
+              <li>テキストボックスに何も文字が入力されていない時、ボタンがdisabledになっていること</li>
+              <li>テキストボックスに文字が入力されている時、ボタンがdisabledになっていないこと</li>
               <li>フォームに名前を入力し送信ボタンを押すことで、大文字になった名前が表示されること</li>
             </ol>
 
