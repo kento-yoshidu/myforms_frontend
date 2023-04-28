@@ -13,15 +13,17 @@ import Description from "../../components/description"
 const Form1 = () => {
   const [name, setName] = useState("")
   const [convertedData, setConvertedData] = useState("")
-  const [isClickable, setIsClickable] = useState(false)
+  const [isInputValid, setIsInputValid] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value)
 
-    if (e.target.value.length > 0) {
-      setIsClickable(true)
+    const trimedName = e.target.value.trim()
+
+    if (trimedName.length > 0) {
+      setIsInputValid(true)
     } else {
-      setIsClickable(false)
+      setIsInputValid(false)
     }
   }
 
@@ -56,7 +58,8 @@ const Form1 = () => {
             Form1
           </h3>
 
-          <p className={styles.text}>あなたの名前を半角のアルファベットで入力してください。<br />小文字だった場合は大文字にして返します。</p>
+          <p className={styles.text}>あなたの名前を半角のアルファベットで入力し、「変換する」ボタンをクリックしてください。</p>
+          <p className={styles.text}>小文字を大文字に変換して表示します。</p>
 
           <form className={styles.form} onSubmit={submit}>
             <label htmlFor="name" className={styles.label}>
@@ -78,9 +81,9 @@ const Form1 = () => {
               data-testid="submit"
               type="submit"
               name="Sign Up"
-              disabled={!isClickable}
+              disabled={!isInputValid}
             >
-              送信する
+              変換する
             </button>
           </form>
 
@@ -103,9 +106,9 @@ const Form1 = () => {
 
             <ol>
               <li>初回レンダリング時、変換結果が表示されるエリアに何も表示されていないこと</li>
-              <li>テキストボックスに何も文字が入力されていない時、ボタンがdisabledになっていること</li>
-              <li>テキストボックスに文字が入力されている時、ボタンがdisabledになっていないこと</li>
-              <li>フォームに名前を入力し送信ボタンを押すことで、大文字になった名前が表示されること</li>
+              <li>テキストボックスに何も文字が入力されていない時、送信ボタンがdisabledになっていること</li>
+              <li>テキストボックスに文字が入力されている時、送信ボタンがdisabledになっていないこと</li>
+              <li>テキストボックスに名前を入力し送信ボタンを押すことで、大文字になった名前が表示されること</li>
             </ol>
 
             <p>のみを行っています。</p>
