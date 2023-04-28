@@ -21,8 +21,16 @@
 }
 
 .text {
-  font-size: 0.95rem;
+  width: 80%;
+  margin: 0 auto 10px;
+  font-size: clamp(0.9rem, 2vw, 0.95rem);
   text-align: center;
+}
+
+@media (width < 768px) {
+  .text {
+    width: 100%;
+  }
 }
 
 .form {

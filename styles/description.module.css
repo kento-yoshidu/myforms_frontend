@@ -83,7 +83,7 @@
 
 .textInner {
   padding: 1em 3em 1.14em;
-  font-size: clamp(0.95rem, 1.8vw, 1rem);
+  font-size: clamp(0.95rem, 1.8vw, 0.98rem);
 }
 
 @media (width < 768px) {
@@ -95,7 +95,7 @@
 .textInner p {
   text-indent: 0.75rem;
   margin-bottom: 10px;
-  line-height: 1.65;
+  line-height: 1.85;
 }
 
 .textInner ol {
