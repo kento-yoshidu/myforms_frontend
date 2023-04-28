@@ -14,7 +14,15 @@ const Home: NextPage = () => {
       <Header isTop />
 
       <Container>
-        <Link href="/form1">Form1</Link>
+        <ul>
+          <li>
+            <Link href="/form1">Form1</Link>
+          </li>
+
+          <li>
+            <Link href="/form2">Form2</Link>
+          </li>
+        </ul>
       </Container>
     </>
   )
