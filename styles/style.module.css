@@ -2,3 +2,11 @@
   width: 50%;
   margin: 50px auto;
 }
+
+.list li {
+  margin-bottom: 10px;
+}
+
+.list li a {
+  font-size: 1.35rem;
+}

@@ -19,7 +19,9 @@ const Form2 = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value)
 
-    if (e.target.value.length > 0) {
+    const trimmedName = e.target.value.trim()
+
+    if (trimmedName.length > 0) {
       setIsClickable(true)
       setIsInputInvalid(false)
     } else {
@@ -59,11 +61,12 @@ const Form2 = () => {
             Form2
           </h3>
 
-          <p className={styles.text}>あなたの名前を半角のアルファベットで入力してください。<br />小文字だった場合は大文字にして返します。</p>
+          <p className={styles.text}>あなたの名前を半角のアルファベットで入力し、「変換する」ボタンをクリックしてください。</p>
+          <p className={styles.text}>小文字を大文字に変換して表示します。</p>
 
           <form className={styles.form} onSubmit={submit}>
             <label htmlFor="name" className={styles.label}>
-              お名前
+              お名前 <span>※必須</span>
             </label>
 
             <input
@@ -74,10 +77,11 @@ const Form2 = () => {
               placeholder="Taro Yamada"
               data-testid="name"
               autoComplete="off"
+              value={name}
             />
 
             {isInputInvalid && (
-              <p>文字が入力されていません</p>
+              <p className={styles.errorMessage} data-testid="error-message">文字が入力されていません</p>
             )}
 
             <button
@@ -87,7 +91,7 @@ const Form2 = () => {
               name="Sign Up"
               disabled={!isClickable}
             >
-              送信する
+              変換する
             </button>
           </form>
 
@@ -100,22 +104,22 @@ const Form2 = () => {
 
         <section className={descStyles.description}>
           <Description>
-            <p>Form1の構成は極力シンプルにしました（シンプルにしたというより、本番環境でちゃんと動作するかを確認することが目的）。テキストボックスに文字列を入力し送信ボタンを押すと、小文字のアルファベットが大文字に変換され表示される、というものです。</p>
+            <p>Form2の構成はForm1とほとんど同じです。違う点は、テキストボックスに文字を入力した後で、文字を全て削除すると、「文字が入力されていません」というエラーメッセージが表示される点です。</p>
 
-            <p>フロントエンドではuseStateで入力値を管理し、fetch関数でAPIを叩いています。React Hook FormもZodも使っていないシンプルな構成です。</p>
+            <p>onChangeイベントハンドラーで入力された文字数をカウントし、0になった時にエラーメッセージのstateを変化させ表示させます。</p>
 
-            <p>バックエンドではNext.jsのAPI Routeの機能を用いてAPIエンドポイントを作成し、そこで大文字への変換を行いJSONとして返しています。</p>
-
-            <p>テストコードは<a href="https://github.com/kento-yoshidu/MyForms/blob/main/__tests__/form1.test.tsx">こちら</a>です。テストは、</p>
+            <p>テストコードは<a href="https://github.com/kento-yoshidu/MyForms/blob/main/__tests__/form2.test.tsx">こちら</a>です。テストは、</p>
 
             <ol>
               <li>初回レンダリング時、変換結果が表示されるエリアに何も表示されていないこと</li>
-              <li>何も文字が入力されていない時、ボタンがdisabledになっていること</li>
-              <li>文字が入力されている時、ボタンがdisabledになっていないこと</li>
-              <li>フォームに名前を入力し送信ボタンを押すことで、大文字になった名前が表示されること</li>
+              <li>初回レンダリング時、エラーメッセージが表示されていないこと</li>
+              <li>テキストボックスに文字が入力されていない時、ボタンがdisabledになっていること</li>
+              <li>テキストボックスに文字が入力されている時、ボタンがdisabledになっていないこと</li>
+              <li>テキストボックスに文字を入力してから削除した時、エラーメッセージが表示されること</li>
+              <li>フォームに名前を入力し送信ボタンをクリックした時、大文字になった名前が表示されること</li>
             </ol>
 
-            <p>のみを行っています。</p>
+            <p>を行っています。</p>
           </Description>
         </section>
       </Container>

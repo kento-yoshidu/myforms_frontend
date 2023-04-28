@@ -40,7 +40,7 @@
 
 .label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   font-size: 0.95rem;
 }
 
@@ -56,6 +56,13 @@
   display: block;
   padding: 5px 8px;
   width: 100%;
+}
+
+.errorMessage {
+  margin-top: 5px;
+  color: red;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
 .button {

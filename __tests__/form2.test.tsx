@@ -24,7 +24,7 @@ afterEach(() => {
 afterAll(() => server.close())
 
 describe("Form2", () => {
-  it("Form1がレンダリングされること", () => {
+  it("Form2がレンダリングされること", () => {
     render(<Form2 />)
     expect(screen.getByTestId("form-title")).toHaveTextContent(/^Form2$/)
   })
@@ -34,15 +34,27 @@ describe("Form2", () => {
     expect(screen.queryByTestId("result-area")).toBeNull()
   })
 
+  it("初回レンダリング時、エラーメッセージが表示されていないこと", () => {
+    render(<Form2 />)
+    expect(screen.queryByTestId("error-message")).toBeNull()
+  })
+
   it("初回レンダリング時, ボタンがdisabledになっていること", () => {
     render(<Form2 />)
     expect(screen.getByTestId("submit")).toBeDisabled()
   })
 
-  it("フォームに値が入力された時、ボタンのdisabledが解除されること", async () => {
+  it("フォームに値を入力した時、ボタンのdisabledが解除されること", async () => {
     render(<Form2 />)
     await userEvent.type(screen.getByTestId("name"), "kento")
     expect(screen.getByTestId("submit")).not.toBeDisabled()
+  })
+
+  it("フォームに値を入力してから削除した時、エラーメッセージが表示されること", async () => {
+    render(<Form2 />)
+    await userEvent.type(screen.getByTestId("name"), "kento")
+    await userEvent.clear(screen.getByTestId("name"))
+    expect(screen.getByTestId("error-message")).toBeTruthy()
   })
 
   it("送信ボタンをクリックした時, 変換結果が表示されること", async () => {
