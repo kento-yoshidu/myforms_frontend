@@ -25,6 +25,10 @@ const Home: NextPage = () => {
             <li>
               <Link href="/form2">Form2</Link>
             </li>
+
+            <li>
+              <Link href="/form3">Form3</Link>
+            </li>
           </ul>
         </main>
       </Container>
