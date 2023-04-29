@@ -9,6 +9,7 @@ import HomeLink from "../../components/home-link"
 import styles from "../form1/style.module.css"
 import descStyles from "../../styles/description.module.css"
 import Description from "../../components/description"
+import PageLink from "../../components/page-link"
 
 const Form3 = () => {
   const [password, setPassword] = useState("")
@@ -97,7 +98,7 @@ const Form3 = () => {
               name="Sign Up"
               disabled={!isInputValid}
             >
-              変換する
+              パスワードを設定する
             </button>
           </form>
 
@@ -143,6 +144,8 @@ const Form3 = () => {
       </Container>
 
       <HomeLink />
+
+      <PageLink prev="2" />
     </>
   )
 }

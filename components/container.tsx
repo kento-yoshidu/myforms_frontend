@@ -1,9 +1,9 @@
 import { ReactNode } from "react"
 import styles from "styles/container.module.css"
 
-export default function Container({ children, large = false }: { children: ReactNode, large?: boolean }) {
+export default function Container({ children }: { children: ReactNode }) {
   return (
-    <div className={large ? styles.large : styles.default}>
+    <div className={styles.default}>
       {children}
     </div>
   )
