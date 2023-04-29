@@ -1,10 +1,10 @@
 import { ReactNode } from "react"
 import styles from "styles/container.module.css"
 
-export default function Container({ children }: { children: ReactNode }) {
-  return (
-    <div className={styles.default}>
-      {children}
-    </div>
-  )
-}
+const Container = ({ children }: { children: ReactNode }) => (
+  <div className={styles.wrapper}>
+    {children}
+  </div>
+)
+
+export default Container
