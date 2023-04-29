@@ -9,6 +9,7 @@ import HomeLink from "../../components/home-link"
 import styles from "../form1/style.module.css"
 import descStyles from "../../styles/description.module.css"
 import Description from "../../components/description"
+import PageLink from "../../components/page-link"
 
 const Form3 = () => {
   const [password, setPassword] = useState("")
@@ -97,7 +98,7 @@ const Form3 = () => {
               name="Sign Up"
               disabled={!isInputValid}
             >
-              変換する
+              パスワードを設定する
             </button>
           </form>
 
@@ -114,7 +115,7 @@ const Form3 = () => {
           <Description>
             <p>Form3では<strong>リアルタイムバリデーション</strong>を実装してみました。送信ボタンを押して初めてエラーメッセージが表示されるのではなく、送信ボタンを押す前に表示されるアレですね。</p>
 
-            <p>しかし、<strong>入力途中</strong>でエラーメッセージが出るとイラッとします。今回の例ですと最低文字数は8文字ですから、1～7文字目を打っている間にずっとエラーメッセージが表示されるわけです。これは良くありませんね。</p>
+            <p>しかし、<strong>入力途中</strong>でエラーメッセージが出るとイラッとします。今回の例ですと最低文字数は8文字ですから、1～7文字目を打っている間にずっとエラーメッセージが表示されるわけです。これから勉強しようとしている時に、お母さんに「勉強しなさい！」と怒られた時の感情と似ています。これは良くありませんね。</p>
 
             <p>さらに言うと、タイプミスして最初から入力し直す場合もあるので、入力中は黙っておいて欲しいわけです。</p>
 
@@ -133,6 +134,7 @@ const Form3 = () => {
               <li>テキストボックスに8文字以上の文字が入力されている時、ボタンがdisabledになっていないこと</li>
               <li>テキストボックスに7文字以下の入力してからフォーカスを外した時、エラーメッセージが表示されること</li>
               <li>テキストボックスに7文字以下の入力してからフォーカスを外し、再度フォーカスした時、エラーメッセージが表示されないこと</li>
+              <li>テキストボックスに8文字以上の入力してからフォーカスを外した時、エラーメッセージが表示されないこと</li>
               <li>テキストボックスに文字を入力し設定ボタンをクリックした時、入力した文字と同じ文字が表示されること</li>
             </ol>
 
@@ -142,6 +144,8 @@ const Form3 = () => {
       </Container>
 
       <HomeLink />
+
+      <PageLink prev="2" />
     </>
   )
 }

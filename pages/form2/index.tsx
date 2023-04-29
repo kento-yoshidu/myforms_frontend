@@ -5,6 +5,7 @@ import Container from "../../components/container"
 import Header from "../../components/header"
 import PageTitle from "../../components/pageTitle"
 import HomeLink from "../../components/home-link"
+import PageLink from "../../components/page-link"
 
 import styles from "../form1/style.module.css"
 import descStyles from "../../styles/description.module.css"
@@ -125,6 +126,9 @@ const Form2 = () => {
       </Container>
 
       <HomeLink />
+
+
+      <PageLink prev="1" next="3" />
     </>
   )
 }

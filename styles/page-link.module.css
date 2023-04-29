@@ -1,0 +1,25 @@
+.prev,
+.next {
+  position: fixed;
+  top: 50%;
+  padding: 0 20px;
+  transform: translateY(-50%);
+  height: 95vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-duration: 0.2s;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(210, 210, 210, 0.6);
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
