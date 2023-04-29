@@ -66,6 +66,13 @@ describe("Form3", () => {
     expect(screen.queryByTestId("error-message")).toBeNull()
   })
 
+  it("フォームに8文字以上の値を入力してからフォーカスを外した時、エラーメッセージが表示されないこと", async () => {
+    render(<Form3 />)
+    await userEvent.type(screen.getByTestId("password"), "Hello World")
+    await userEvent.tab()
+    expect(screen.queryByTestId("error-message")).toBeNull()
+  })
+
   it("送信ボタンをクリックした時, 変換結果が表示されること", async () => {
     render(<Form3 />)
     const passwordForm = screen.getByTestId("password") as HTMLInputElement
