@@ -1,5 +1,5 @@
 .description {
-  margin: 50px auto;
+  margin: 30px auto;
   width: 55%;
 }
 
@@ -13,12 +13,16 @@
 
 .open,
 .close {
-  border: 1px solid #bbb;
+  border: 1px solid var(--border-color);
 }
 
 .heading {
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   text-align: center;
+}
+
+.heading:hover {
+  background-color: rgba(250, 250, 250, 0.9);
 }
 
 .heading button {

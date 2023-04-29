@@ -4,7 +4,11 @@
 }
 
 .button {
-  border: 1px solid #bbb;
+  border: 1px solid #888;
   padding: 10px 40px;
-  color: #888;
+  color: #444;
+}
+
+.button:hover {
+  background-color: rgba(250, 250, 250, 0.9);
 }

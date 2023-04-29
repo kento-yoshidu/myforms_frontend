@@ -141,11 +141,11 @@ const Form3 = () => {
             <p>を行っています。</p>
           </Description>
         </section>
+
+        <PageLink prev="2" />
+
+        <HomeLink />
       </Container>
-
-      <HomeLink />
-
-      <PageLink prev="2" />
     </>
   )
 }
