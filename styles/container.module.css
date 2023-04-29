@@ -1,13 +1,12 @@
-.default {
-  width: 92%;
+.wrapper {
   max-width: var(--max-width);
-  margin: 50px auto;
-  padding: 30px 0 0;
+  margin: 30px auto;
 }
 
 @media (width < 768px) {
-  .default {
+  .wrapper {
     margin: 20px auto;
     padding: 10px 0;
+    width: 87%;
   }
 }

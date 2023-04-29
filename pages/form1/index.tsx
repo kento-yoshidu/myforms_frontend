@@ -117,10 +117,9 @@ const Form1 = () => {
         </section>
 
         <PageLink next="2" />
+
+        <HomeLink />
       </Container>
-
-      <HomeLink />
-
     </>
   )
 }

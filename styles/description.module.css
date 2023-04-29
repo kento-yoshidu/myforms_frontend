@@ -1,13 +1,10 @@
 .description {
   margin: 30px auto;
-  width: 55%;
 }
 
 @media (width < 768px) {
   .description {
     margin: 20px auto;
-    width: 100%;
-    padding: 20px;
   }
 }
 
