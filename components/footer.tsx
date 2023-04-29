@@ -1,11 +1,11 @@
 import styles from "../styles/footer.module.css"
 
-import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 const Footer = () => (
   <footer className={styles.footer}>
-    <a href="#" className={styles.link}>
+    <a href="https://github.com/kento-yoshidu/MyForms" className={styles.link}>
       <FontAwesomeIcon icon={faGithub} />
     </a>
   </footer>

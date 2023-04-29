@@ -2,7 +2,7 @@
   width: 55%;
   margin: 0 auto;
   padding: 20px 0 40px;
-  border: 1px solid #bbb;
+  border: 1px solid var(--border-color);
   border-radius: 2px;
 }
 
@@ -55,7 +55,7 @@
 .label span {
   display: inline-block;
   margin-left: 8px;
-  color: red;
+  color: rgb(200, 100, 100);
   font-size: 0.8em;
   font-weight: bold;
 }

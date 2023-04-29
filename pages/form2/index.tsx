@@ -123,12 +123,11 @@ const Form2 = () => {
             <p>を行っています。</p>
           </Description>
         </section>
+
+        <PageLink prev="1" next="3" />
+
+        <HomeLink />
       </Container>
-
-      <HomeLink />
-
-
-      <PageLink prev="1" next="3" />
     </>
   )
 }

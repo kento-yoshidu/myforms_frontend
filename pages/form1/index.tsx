@@ -115,11 +115,12 @@ const Form1 = () => {
             <p>のみを行っています。</p>
           </Description>
         </section>
+
+        <PageLink next="2" />
       </Container>
 
       <HomeLink />
 
-      <PageLink next="2" />
     </>
   )
 }
