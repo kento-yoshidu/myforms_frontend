@@ -30,4 +30,5 @@ body {
 :root {
   --max-width: 635px;
   --border-color: #aaa;
+  --clickable-height: 58px;
 }
