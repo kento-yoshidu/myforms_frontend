@@ -1,4 +1,8 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
   max-width: var(--max-width);
   margin: 30px auto;
 }
@@ -8,5 +12,6 @@
     margin: 20px auto;
     padding: 10px 0;
     width: 87%;
+    gap: 20px;
   }
 }

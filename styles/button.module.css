@@ -1,12 +1,15 @@
 .wrapper {
-  margin: 20px 0 50px;
+  width: 100%;
   text-align: center;
 }
 
 .button {
-  border: 1px solid #888;
-  padding: 10px 40px;
+  display: block;
+  border: 1px solid var(--border-color);
   color: #444;
+  width: 100%;
+  height: var(--clickable-height);
+  line-height: var(--clickable-height);
 }
 
 .button:hover {
