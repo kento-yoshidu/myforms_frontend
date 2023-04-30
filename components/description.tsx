@@ -5,7 +5,12 @@ import { faCircleChevronDown } from "@fortawesome/free-solid-svg-icons"
 
 import styles from "../styles/description.module.css"
 
-const Description = ({ children }: { children: ReactNode }) => {
+type Props = {
+  children: ReactNode,
+  heading?: string
+}
+
+const Description = ({ children, heading }: Props) => {
   const [textIsOpen, setTextIsOpen] = useState(false)
 
   const toggleText = () => {
@@ -18,7 +23,10 @@ const Description = ({ children }: { children: ReactNode }) => {
     <div className={textIsOpen ? styles.open : styles.close}>
       <h3 className={styles.heading}>
         <button onClick={toggleText}>
-          こぼれ話
+          {heading
+            ? heading
+            : "こぼれ話"
+          }
           <FontAwesomeIcon
             /* @ts-ignore */
             icon={faCircleChevronDown}
