@@ -1,5 +1,4 @@
 declare const styles: {
-  readonly "description": string;
   readonly "open": string;
   readonly "close": string;
   readonly "heading": string;
