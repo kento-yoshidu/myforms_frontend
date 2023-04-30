@@ -16,7 +16,7 @@ const Home: NextPage = () => (
 
     <main className={styles.main}>
       <section className={styles.section}>
-        <h2 className={styles.h2}>My Forms</h2>
+        <h2 className={styles.h2} data-testid="site-title">My Forms</h2>
 
         <p>ダミーのフォームを作成し、沢山並べているサイトです。</p>
       </section>

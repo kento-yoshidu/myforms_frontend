@@ -6,6 +6,6 @@ import Home from "../pages"
 describe("Home", () => {
   it("Rendering Page Title", () => {
     render(<Home />)
-    expect(screen.getByRole("heading")).toHaveTextContent("My Forms")
+    expect(screen.getByTestId("site-title")).toHaveTextContent("My Forms")
   })
 })
