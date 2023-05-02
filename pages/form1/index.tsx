@@ -8,7 +8,6 @@ import HomeLink from "../../components/home-link"
 import PageLink from "../../components/page-link"
 
 import styles from "./style.module.css"
-import descStyles from "../../styles/description.module.css"
 import Description from "../../components/description"
 
 const Form1 = () => {
@@ -75,6 +74,8 @@ const Form1 = () => {
               placeholder="Taro Yamada"
               data-testid="name"
               autoComplete="off"
+              required
+              aria-required="true"
             />
 
             <button
