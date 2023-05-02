@@ -5,6 +5,7 @@ import Container from "../../components/container"
 
 import styles from "../form1/style.module.css"
 import { useEffect, useState } from "react"
+import Description from "../../components/description"
 
 const Form4 = () => {
   const [text, setText] = useState("")
@@ -103,6 +104,20 @@ const Form4 = () => {
           )}
         </div>
       </Container>
+
+      <Description>
+        <p>これまでのフォームは全て、必須項目を全て入力しないとボタンを押せない仕様になっていました。具体的にはbutton要素にdisabled属性を付与することでボタンを無効化していました。</p>
+
+        <p>しかし、</p>
+
+        <p>個人的には「送信した後に間違いがあることが分かり、」よりかは、「入力を終わらせないと送信できない」方がユーザー体験はいいと思っているので、基本的にはdisabled属性を付与する機会の方が多いかと思います。ただ、そのためには「送信ボタンを押そうとして、ボタンが無効化されていることに気づく」前に、さもなくば、「入力を終わらせたはずなのに何故かボタンが押せない」状態になっていまいます。</p>
+
+        <p>そこで色々な企業のWebサイトの問い合わせフォームを確認してみると、体感9割以上は「必須項目を入力しなくてもボタンが押せる」仕様になっていました。</p>
+
+        <p>ただ、ボタンが押せるといっても、押したときの挙動は様々です。そもそもエラーメッセージすら表示されないサイトが大半でした。</p>
+
+
+      </Description>
     </>
   )
 }
