@@ -2,6 +2,7 @@
   padding: 20px 0;
   border: 1px solid var(--border-color);
   border-radius: 2px;
+  width: 100%;
 }
 
 .title {

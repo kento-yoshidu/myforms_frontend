@@ -8,7 +8,6 @@ import HomeLink from "../../components/home-link"
 import PageLink from "../../components/page-link"
 
 import styles from "./style.module.css"
-import descStyles from "../../styles/description.module.css"
 import Description from "../../components/description"
 
 const Form1 = () => {
@@ -75,6 +74,8 @@ const Form1 = () => {
               placeholder="Taro Yamada"
               data-testid="name"
               autoComplete="off"
+              required
+              aria-required="true"
             />
 
             <button
@@ -83,6 +84,8 @@ const Form1 = () => {
               type="submit"
               name="Sign Up"
               disabled={!isInputValid}
+              aria-disabled={!isInputValid}
+              // aria-describedby="お名前は入力必須項目です。"
             >
               変換する
             </button>
