@@ -1,24 +1,16 @@
-.description {
-  margin: 50px auto;
-  width: 55%;
-}
-
-@media (width < 768px) {
-  .description {
-    margin: 20px auto;
-    width: 100%;
-    padding: 20px;
-  }
-}
-
 .open,
 .close {
-  border: 1px solid #bbb;
+  border: 1px solid var(--border-color);
 }
 
 .heading {
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   text-align: center;
+  height: var(--clickable-height);
+}
+
+.heading:hover {
+  background-color: rgba(250, 250, 250, 0.9);
 }
 
 .heading button {
@@ -92,9 +84,13 @@
   }
 }
 
+.textInner section {
+  margin: 0 auto 40px;
+}
+
 .textInner p {
   text-indent: 0.75rem;
-  margin-bottom: 10px;
+  margin: 10px 0;
   line-height: 1.85;
 }
 

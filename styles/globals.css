@@ -27,18 +27,8 @@ body {
   color: #444;
 }
 
-/*
-button {
-  padding: 0;
-  background-color: transparent;
-  border: none;
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-}
-*/
-
 :root {
-  --max-width: 1156px;
+  --max-width: 635px;
+  --border-color: #aaa;
+  --clickable-height: 58px;
 }

@@ -1,20 +1,30 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import Container from '../components/container'
 import Header from '../components/header'
 
-const Home: NextPage = () => {
-  return (
-    <>
-      <Head>
-        <title>My Forms</title>
-      </Head>
+import styles from "../styles/style.module.css"
+import Description from '../components/description'
 
-      <Header isTop />
+const Home: NextPage = () => (
+  <>
+    <Head>
+      <title>My Forms</title>
+    </Head>
 
-      <Container>
-        <ul>
+    <Header isTop />
+
+    <main className={styles.main}>
+      <section className={styles.section}>
+        <h2 className={styles.h2} data-testid="site-title">My Forms</h2>
+
+        <p>ダミーのフォームを作成し、沢山並べているサイトです。</p>
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.h2}>フォーム一覧</h2>
+
+        <ul className={styles.list}>
           <li>
             <Link href="/form1">Form1</Link>
           </li>
@@ -22,10 +32,31 @@ const Home: NextPage = () => {
           <li>
             <Link href="/form2">Form2</Link>
           </li>
+
+          <li>
+            <Link href="/form3">Form3</Link>
+          </li>
         </ul>
-      </Container>
-    </>
-  )
-}
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.h2}>&lt;!-- フォームガチャを回す（実装中🙇‍♂️） --&gt;</h2>
+
+      </section>
+
+      <Description heading="このサイトについて">
+        <section>
+          <h2>このサイトについて</h2>
+          <p>私のUI/UX、アクセシビリティに関する力を高めるため、ダミーのフォームを沢山作って並べているサイトです。ボタンをクリックしても何も起こらないので、気軽に遊んで行ってください。</p>
+        </section>
+
+        <section>
+          <h2>技術</h2>
+          <p>Next.jsで構築しています。Next.jsのAPI Routeの機能でAPIエンドポイントを作成、そこを叩いてデータを取得しています。React Hook FormやZodといった便利なライブラリーもあるのですが、あまり使用しない方向で作成したいと考えています。自力で構築できるのが一番ですからね💪。</p>
+        </section>
+      </Description>
+    </main>
+  </>
+)
 
 export default Home
