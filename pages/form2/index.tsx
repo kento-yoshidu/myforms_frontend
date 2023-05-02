@@ -82,7 +82,12 @@ const Form2 = () => {
             />
 
             {isInputInvalid && (
-              <p className={styles.errorMessage} data-testid="error-message">文字が入力されていません</p>
+              <p
+                className={styles.errorMessage}
+                data-testid="error-message"
+              >
+                文字が入力されていません。
+              </p>
             )}
 
             <button
@@ -91,6 +96,7 @@ const Form2 = () => {
               type="submit"
               name="Sign Up"
               disabled={!isClickable}
+              aria-disabled="true"
             >
               変換する
             </button>
