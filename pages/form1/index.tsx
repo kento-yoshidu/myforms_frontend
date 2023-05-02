@@ -82,6 +82,8 @@ const Form1 = () => {
               type="submit"
               name="Sign Up"
               disabled={!isInputValid}
+              aria-disabled={!isInputValid}
+              // aria-describedby="お名前は入力必須項目です。"
             >
               変換する
             </button>

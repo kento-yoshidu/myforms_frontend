@@ -15,7 +15,9 @@ const Description = ({ children }: { children: ReactNode }) => {
   const refText = useRef<HTMLDivElement>(null)
 
   return (
-    <div className={textIsOpen ? styles.open : styles.close}>
+    <div
+      className={textIsOpen ? styles.open : styles.close}
+    >
       <h3 className={styles.heading}>
         <button onClick={toggleText}>
           こぼれ話
@@ -28,6 +30,7 @@ const Description = ({ children }: { children: ReactNode }) => {
       </h3>
 
       <div
+        aria-hidden={textIsOpen ? "false" : "true"}
         className={styles.text}
         ref={refText}
         style={{
