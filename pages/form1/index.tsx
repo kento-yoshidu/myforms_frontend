@@ -3,7 +3,7 @@ import Head from "next/head"
 
 import Container from "../../components/container"
 import Header from "../../components/header"
-import PageTitle from "../../components/pageTitle"
+import PageTitle from "../../components/page-header"
 import HomeLink from "../../components/home-link"
 import PageLink from "../../components/page-link"
 
@@ -50,7 +50,11 @@ const Form1 = () => {
 
       <Header />
 
-      <PageTitle pageTitle="Form1" />
+      <PageTitle
+        pageTitle="Form1"
+        postdate="2023-02-01"
+        update="2023-05-01"
+      />
 
       <Container>
         <div className={styles.wrapper}>

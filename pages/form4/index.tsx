@@ -1,6 +1,6 @@
 import Head from "next/head"
 import Header from "../../components/header"
-import PageTitle from "../../components/pageTitle"
+import PageTitle from "../../components/page-header"
 import Container from "../../components/container"
 
 import styles from "../form1/style.module.css"
@@ -53,7 +53,11 @@ const Form4 = () => {
 
       <Header />
 
-      <PageTitle pageTitle="Form4" />
+      <PageTitle
+        pageTitle="Form4"
+        postdate="2099-01-01"
+        update="2099-01-01"
+      />
 
       <Container>
         <div className={styles.wrapper}>
@@ -115,8 +119,6 @@ const Form4 = () => {
         <p>そこで色々な企業のWebサイトの問い合わせフォームを確認してみると、体感9割以上は「必須項目を入力しなくてもボタンが押せる」仕様になっていました。</p>
 
         <p>ただ、ボタンが押せるといっても、押したときの挙動は様々です。そもそもエラーメッセージすら表示されないサイトが大半でした。</p>
-
-
       </Description>
     </>
   )

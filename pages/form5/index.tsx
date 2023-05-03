@@ -1,6 +1,6 @@
 import Head from "next/head"
 import Header from "../../components/header"
-import PageTitle from "../../components/pageTitle"
+import PageTitle from "../../components/page-header"
 import Container from "../../components/container"
 
 import styles from "../form1/style.module.css"
@@ -52,7 +52,11 @@ const Form4 = () => {
 
       <Header />
 
-      <PageTitle pageTitle="Form4" />
+      <PageTitle
+        pageTitle="Form4"
+        postdate="2099--01-01"
+        update="2099-01-01"
+      />
 
       <Container>
         <div className={styles.wrapper}>
