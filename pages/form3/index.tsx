@@ -68,7 +68,7 @@ const Form3 = () => {
       <Container>
         <div className={styles.wrapper}>
           <h3 className={styles.title} data-testid="form-title">
-            Form3
+            パスワード設定フォーム
           </h3>
 
           <p className={styles.text}>あなたのパスワードを設定します。任意のパスワード8文字を入力したら、「パスワードを設定する」ボタンをクリックしてください。</p>

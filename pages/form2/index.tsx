@@ -63,7 +63,7 @@ const Form2 = () => {
       <Container>
         <div className={styles.wrapper}>
           <h3 className={styles.title} data-testid="form-title">
-            Form2
+            名前変換フォーム(ver1.1)
           </h3>
 
           <p className={styles.text}>あなたの名前を半角のアルファベットで入力し、「変換する」ボタンをクリックしてください。</p>
