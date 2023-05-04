@@ -46,8 +46,8 @@ describe("Form4", () => {
     })
   })
 
-  describe("正しいメールアドレスを入力し送信した時に、各要素が正しく表示されていること", () => {
-    it("送信ボタンをクリックした時、変換結果が表示されること", async () => {
+  describe("フォームを送信した時に、正しい結果が得られること", () => {
+    it("送信ボタンをクリックした時、入力したパスワードが表示されること", async () => {
       render(<Form4 />)
       const passwordForm = screen.getByTestId("email")
       await userEvent.type(passwordForm, "dummy@example.com")
@@ -56,7 +56,7 @@ describe("Form4", () => {
     })
   })
 
-  describe("メールアドレスを入力した時、バリデーションが正しく働くこと", () => {
+  describe("フォームにメールアドレスを入力した時、各要素が正しい状態になること", () => {
     it("正しいメールアドレスを入力した時、ボタンのdisabledが解除されること", async () => {
       render(<Form4 />)
       await userEvent.type(screen.getByTestId("email"), "dummy@example.com")
