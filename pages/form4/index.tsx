@@ -26,11 +26,15 @@ const Form4 = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     SetEmail(e.target.value)
 
-    if (e.target.validity.valid) {
+    if (e.target.validity.valid && e.target.value) {
       setIsFormValid(true)
     } else {
       setIsFormValid(false)
     }
+  }
+
+  const handleFocus = () => {
+    setIsInputValid(true)
   }
 
   const submit = async (e: React.FormEvent) => {
@@ -59,18 +63,17 @@ const Form4 = () => {
 
       <PageTitle
         pageTitle="Form4"
-        postdate="2099-01-01"
-        update="2099-01-01"
+        postdate="2023-05-04"
+        update="2023-05-04"
       />
 
       <Container>
         <div className={styles.wrapper}>
-          <h2 className={styles.title}>メールアドレス登録フォーム</h2>
+          <h3 className={styles.title}>メールアドレス登録フォーム</h3>
 
-          <p className={styles.text}>メールアドレスを入力してください。</p>
+          <p className={styles.text}>利用するメールアドレスを入力してください（適当なアドレスでOKです。ただ、バリデーションがかかりますので、形式は正しいものにしてください）。</p>
 
           <form className={styles.form} onSubmit={submit}>
-
             <label htmlFor="email" className={styles.label}>
               メールアドレス <span>(※必須)</span>
             </label>
@@ -80,14 +83,20 @@ const Form4 = () => {
               name="email"
               type="email"
               className={styles.input}
-              placeholder="kent"
+              placeholder="dummy@example.com"
               data-testid="email"
               onChange={handleChange}
               onBlur={handleBlur}
+              onFocus={handleFocus}
             />
 
             {!isInputValid && (
-              <p>正しくない</p>
+              <p
+                className={styles.errorMessage}
+                data-testid="error-message"
+              >
+                メールアドレスの形式が正しくありません。
+              </p>
             )}
 
             <button
@@ -102,20 +111,22 @@ const Form4 = () => {
           </form>
 
           {returnedData && (
-            <p>{returnedData}</p>
+            <div className={styles.result} data-testid="result-area">
+              あなたが設定したメールアドレスは<br />
+                {returnedData}
+              ですね！
+            </div>
           )}
         </div>
 
         <Description>
-          <p>これまでのフォームは全て、必須項目を全て入力しないとボタンを押せない仕様になっていました。具体的にはbutton要素にdisabled属性を付与することでボタンを無効化していました。</p>
+          <p>今回はメールアドレスがテーマです。これまでは入力された文字列のバリデーションを行ってきませんでしたが、今回は入力された内容が正しいかをちゃんとチェックします。</p>
 
-          <p>しかし、</p>
+          <p>メールアドレスのバリデーションは、input要素のtypeをemailとすればHTML側で行ってくれます。具体的には、アドレスの形式が正しければe.target.validity.validがtrueになり、正しくなければfalseになります。これをonChangeで都度確認します。</p>
 
-          <p>個人的には「送信した後に間違いがあることが分かり、」よりかは、「入力を終わらせないと送信できない」方がユーザー体験はいいと思っているので、基本的にはdisabled属性を付与する機会の方が多いかと思います。ただ、そのためには「送信ボタンを押そうとして、ボタンが無効化されていることに気づく」前に、さもなくば、「入力を終わらせたはずなのに何故かボタンが押せない」状態になっていまいます。</p>
+          <p>HTML標準でこういう機能を提供してくれるのはありがたいですね。この正規表現も完璧なものではないらしいですが、今回はありがたく利用しましょう。</p>
 
-          <p>そこで色々な企業のWebサイトの問い合わせフォームを確認してみると、体感9割以上は「必須項目を入力しなくてもボタンが押せる」仕様になっていました。</p>
-
-          <p>ただ、ボタンが押せるといっても、押したときの挙動は様々です。そもそもエラーメッセージすら表示されないサイトが大半でした。</p>
+          <p>テストコードは実装中です。</p>
         </Description>
 
         <PageLink prev="3" />
@@ -125,9 +136,5 @@ const Form4 = () => {
     </>
   )
 }
-
-/* https://azukiazusa.dev/blog/use-aria-disabled-to-give-focus-to-disabled-button/ */
-
-/* https://yutaro-blog.net/2021/10/22/react-state-tips/ */
 
 export default Form4
