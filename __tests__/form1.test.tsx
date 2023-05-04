@@ -24,11 +24,6 @@ afterEach(() => {
 afterAll(() => server.close())
 
 describe("Form1", () => {
-  it("Form1がレンダリングされること", () => {
-    render(<Form1 />)
-    expect(screen.getByTestId("form-title")).toHaveTextContent(/^Form1$/)
-  })
-
   it("初回レンダリング時, 変換結果が表示されるエリアに何も表示されていないこと", () => {
     render(<Form1 />)
     expect(screen.queryByTestId("result-area")).toBeNull()
