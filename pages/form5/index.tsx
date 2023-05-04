@@ -139,8 +139,4 @@ const Form4 = () => {
   )
 }
 
-/* https://azukiazusa.dev/blog/use-aria-disabled-to-give-focus-to-disabled-button/ */
-
-/* https://yutaro-blog.net/2021/10/22/react-state-tips/ */
-
 export default Form4
