@@ -1,15 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-type Data = {
+type UserData = {
+  username: string
   email: string
 }
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<UserData>
 ) {
   try {
-    res.status(200).json({ email: req.body })
+    const { username, email } = req.body.formData
+    res.status(200).json({ username, email })
   } catch(e) {
     res.status(500)
   }
