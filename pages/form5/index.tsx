@@ -6,6 +6,8 @@ import Container from "../../components/container"
 import styles from "../form1/style.module.css"
 import { useState } from "react"
 import Description from "../../components/description"
+import PageLink from "../../components/page-link"
+import HomeLink from "../../components/home-link"
 
 export type UserData = {
   username: string
@@ -17,11 +19,16 @@ const Form4 = () => {
     username: "",
     email: ""
   })
+  // username, emailがちゃんと入力されているか
+  const [isInputForm, setIsInputForm] = useState({
+    username: true,
+    email: true
+  })
+  // フォーム全体として送信可能な状態か
   const [isFormValid, setIsFormValid] = useState(false)
   const [returnedData, setReturnedData] = useState<UserData | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(e.target.validity.valid)
     const { name, value } = e.target
 
     const data = {...formData, [name]: value}
@@ -31,7 +38,8 @@ const Form4 = () => {
     checkValid(data, e.target.validity.valid)
   }
 
-  const checkValid = ({ username, email}: UserData, emailValid: boolean) => {
+  // 入力内容から送信ボタンのON/OFFを切り替える
+  const checkValid = ({ username, email }: UserData, emailValid: boolean) => {
     if (username && email && emailValid) {
       setIsFormValid(true)
     } else {
@@ -39,12 +47,37 @@ const Form4 = () => {
     }
   }
 
+  // フォームのフォーカスを外した時、エラーメッセージの表示/非表示を切り替える
+  const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, validity } = e.target
+
+    if (name === "username") {
+      if (value) {
+        setIsInputForm((prevState) => ({...prevState, username: true}))
+      } else {
+        setIsInputForm((prevState) => ({...prevState, username: false}))
+      }
+    }
+
+    if (name === "email") {
+      if (value && validity.valid) {
+        setIsInputForm((prevState) => ({...prevState, "email": true}))
+      } else {
+        setIsInputForm((prevState) => ({...prevState, "email": false}))
+      }
+    }
+  }
+
+  const handleFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsInputForm((prevState) => ({...prevState, [e.target.name]: true}))
+  }
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const data = await fetch("/api/form3", {
+    const data = await fetch("/api/form4", {
       method: "POST",
-      body: JSON.stringify(formData),
+      body: JSON.stringify({ formData }),
       headers: { 'Content-Type': 'application/json' }
     })
 
@@ -85,10 +118,15 @@ const Form4 = () => {
               id="username"
               name="username"
               className={styles.input}
-              placeholder="kent"
+              placeholder="username"
               onChange={handleChange}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
               data-testid="username"
             />
+            {!isInputForm.username && (
+              <p className={styles.errorMessage}>ユーザー名を入力してください。</p>
+            )}
 
             <label htmlFor="email" className={styles.label}>
               メールアドレス <span>(※必須)</span>
@@ -99,27 +137,33 @@ const Form4 = () => {
               name="email"
               type="email"
               className={styles.input}
-              placeholder="kent"
-              data-testid="email"
+              placeholder="dummy@example.com"
               onChange={handleChange}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
+              data-testid="email"
             />
+
+            {!isInputForm.email && (
+              <p className={styles.errorMessage}>メールアドレスを正しく入力してください。</p>
+            )}
 
             <button
               className={styles.button}
-              data-testid="submit"
               type="submit"
-              name="Sign Up"
               disabled={!isFormValid}
+              data-testid="submit"
             >
-              送信する
+              ユーザー登録する
             </button>
           </form>
 
           {returnedData && (
-            <>
-              <p>{returnedData.username}</p>
-              <p>{returnedData.email}</p>
-            </>
+            <section className={styles.result}>
+              <p>ユーザー名 : {returnedData.username}</p>
+              <p>メールアドレス : {returnedData.email}</p>
+              <p>でユーザー登録を行いました。</p>
+            </section>
           )}
         </div>
 
@@ -134,9 +178,15 @@ const Form4 = () => {
 
           <p>ただ、ボタンが押せるといっても、押したときの挙動は様々です。そもそもエラーメッセージすら表示されないサイトが大半でした。</p>
         </Description>
+
+        <PageLink prev="4" />
+
+        <HomeLink />
       </Container>
     </>
   )
 }
+
+// https://www.freecodecamp.org/news/how-to-validate-forms-in-react/
 
 export default Form4
