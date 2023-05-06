@@ -19,13 +19,11 @@ const Form4 = () => {
     username: "",
     email: ""
   })
-
   // username, emailがちゃんと入力されているか
   const [isInputForm, setIsInputForm] = useState({
     username: true,
     email: true
   })
-
   // フォーム全体として送信可能な状態か
   const [isFormValid, setIsFormValid] = useState(false)
   const [returnedData, setReturnedData] = useState<UserData | null>(null)
@@ -40,22 +38,38 @@ const Form4 = () => {
     checkValid(data, e.target.validity.valid)
   }
 
-  const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-
-    if (name === "username") {
-      setIsInputForm({...isInputForm, [name]: value})
-    } else {
-      setIsInputForm({...isInputForm, [name]: e.target.validity.valid})
-    }
-  }
-
+  // 入力内容から送信ボタンのON/OFFを切り替える
   const checkValid = ({ username, email }: UserData, emailValid: boolean) => {
     if (username && email && emailValid) {
       setIsFormValid(true)
     } else {
       setIsFormValid(false)
     }
+  }
+
+  // フォームのフォーカスを外した時、エラーメッセージの表示/非表示を切り替える
+  const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, validity } = e.target
+
+    if (name === "username") {
+      if (value) {
+        setIsInputForm((prevState) => ({...prevState, username: true}))
+      } else {
+        setIsInputForm((prevState) => ({...prevState, username: false}))
+      }
+    }
+
+    if (name === "email") {
+      if (value && validity.valid) {
+        setIsInputForm((prevState) => ({...prevState, "email": true}))
+      } else {
+        setIsInputForm((prevState) => ({...prevState, "email": false}))
+      }
+    }
+  }
+
+  const handleFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsInputForm((prevState) => ({...prevState, [e.target.name]: true}))
   }
 
   const submit = async (e: React.FormEvent) => {
@@ -107,10 +121,11 @@ const Form4 = () => {
               placeholder="username"
               onChange={handleChange}
               onBlur={handleBlur}
+              onFocus={handleFocus}
               data-testid="username"
             />
             {!isInputForm.username && (
-              <p>ユーザー名を入力してください。</p>
+              <p className={styles.errorMessage}>ユーザー名を入力してください。</p>
             )}
 
             <label htmlFor="email" className={styles.label}>
@@ -125,11 +140,12 @@ const Form4 = () => {
               placeholder="dummy@example.com"
               onChange={handleChange}
               onBlur={handleBlur}
+              onFocus={handleFocus}
               data-testid="email"
             />
 
             {!isInputForm.email && (
-              <p>emailを正しく入力してください。</p>
+              <p className={styles.errorMessage}>メールアドレスを正しく入力してください。</p>
             )}
 
             <button
@@ -138,15 +154,16 @@ const Form4 = () => {
               disabled={!isFormValid}
               data-testid="submit"
             >
-              送信する
+              ユーザー登録する
             </button>
           </form>
 
           {returnedData && (
-            <>
-              <p>{returnedData.username}</p>
-              <p>{returnedData.email}</p>
-            </>
+            <section className={styles.result}>
+              <p>ユーザー名 : {returnedData.username}</p>
+              <p>メールアドレス : {returnedData.email}</p>
+              <p>でユーザー登録を行いました。</p>
+            </section>
           )}
         </div>
 
