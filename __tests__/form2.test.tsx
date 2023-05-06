@@ -25,6 +25,11 @@ afterAll(() => server.close())
 
 describe("Form2", () => {
   describe("初回レンダリング時、各要素が正しく表示されていること", () => {
+    it("Form2がレンダリングされること", () => {
+      render(<Form2 />)
+      expect(screen.getByRole("heading", { level: 3, name: /^名前変換フォーム/ })).toBeTruthy()
+    })
+
     it("初回レンダリング時, 変換結果が表示されるエリアに何も表示されていないこと", () => {
       render(<Form2 />)
       expect(screen.queryByTestId("result-area")).toBeNull()
@@ -37,16 +42,15 @@ describe("Form2", () => {
 
     it("初回レンダリング時, 送信ボタンがdisabledになっていること", () => {
       render(<Form2 />)
-      expect(screen.getByTestId("submit")).toBeDisabled()
+      expect(screen.getByRole("button", { name: /^変換する$/ })).toBeDisabled()
     })
   })
 
   describe("フォームを送信した時、正しい結果が得られること", () => {
     it("フォームを送信した時, 変換された名前が表示されること", async () => {
       render(<Form2 />)
-      const nameForm = screen.getByTestId("name") as HTMLInputElement
-      await userEvent.type(nameForm, "kento")
-      await userEvent.click(screen.getByTestId("submit"))
+      await userEvent.type(screen.getByRole("textbox", { name: /^お名前/ }), "kento")
+      await userEvent.click(screen.getByRole("button", { name: /^変換する$/}))
       expect(screen.getByTestId("result-area")).toHaveTextContent("KENTO")
     })
   })
@@ -54,14 +58,15 @@ describe("Form2", () => {
   describe("フォームに名前を入力した時、各要素が正しい状態になること", () => {
     it("名前を入力した時、変換ボタンのdisabledが解除されること", async () => {
       render(<Form2 />)
-      await userEvent.type(screen.getByTestId("name"), "kento")
-      expect(screen.getByTestId("submit")).not.toBeDisabled()
+      await userEvent.type(screen.getByRole("textbox", { name: /^お名前/ }), "kento")
+      expect(screen.getByRole("button", { name: /^変換する$/ })).toBeEnabled()
     })
 
     it("名前を入力してから削除した時、エラーメッセージが表示されること", async () => {
       render(<Form2 />)
-      await userEvent.type(screen.getByTestId("name"), "kento")
-      await userEvent.clear(screen.getByTestId("name"))
+      const inputForm = screen.getByRole("textbox", { name: /^お名前/ })
+      await userEvent.type(inputForm, "kento")
+      await userEvent.clear(inputForm)
       expect(screen.getByTestId("error-message")).toBeTruthy()
     })
   })
