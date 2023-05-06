@@ -58,7 +58,7 @@ const Form1 = () => {
 
       <Container>
         <div className={styles.wrapper}>
-          <h3 className={styles.title} data-testid="form-title">
+          <h3 className={styles.title}>
             名前変換フォーム(ver1.0)
           </h3>
 
@@ -76,20 +76,15 @@ const Form1 = () => {
               type="text"
               onChange={handleChange}
               placeholder="Taro Yamada"
-              data-testid="name"
-              autoComplete="off"
               required
               aria-required="true"
             />
 
             <button
               className={styles.button}
-              data-testid="submit"
               type="submit"
-              name="Sign Up"
               disabled={!isInputValid}
               aria-disabled={!isInputValid}
-              // aria-describedby="お名前は入力必須項目です。"
             >
               変換する
             </button>
