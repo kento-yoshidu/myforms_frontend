@@ -8,7 +8,6 @@ import HomeLink from "../../components/home-link"
 import PageLink from "../../components/page-link"
 
 import styles from "../form1/style.module.css"
-import descStyles from "../../styles/description.module.css"
 import Description from "../../components/description"
 
 const Form2 = () => {
@@ -62,7 +61,7 @@ const Form2 = () => {
 
       <Container>
         <div className={styles.wrapper}>
-          <h3 className={styles.title} data-testid="form-title">
+          <h3 className={styles.title}>
             名前変換フォーム(ver1.1)
           </h3>
 
@@ -78,11 +77,8 @@ const Form2 = () => {
               id="name"
               className={styles.input}
               type="text"
-              onChange={handleChange}
               placeholder="Taro Yamada"
-              data-testid="name"
-              autoComplete="off"
-              value={name}
+              onChange={handleChange}
             />
 
             {isInputInvalid && (
@@ -96,25 +92,23 @@ const Form2 = () => {
 
             <button
               className={styles.button}
-              data-testid="submit"
               type="submit"
-              name="Sign Up"
               disabled={!isClickable}
-              aria-disabled="true"
+              aria-disabled={!isClickable}
             >
               変換する
             </button>
           </form>
 
           {convertedData && (
-            <div className={styles.result} data-testid="result-area">
+            <section className={styles.result} data-testid="result-area">
               <p>あなたの名前を大文字に変換しました！<br />{convertedData}</p>
-            </div>
+            </section>
           )}
         </div>
 
         <Description>
-          <p>Form2の構成はForm1とほとんど同じです。違う点は、テキストボックスに文字を入力した後で、文字を全て削除すると、「文字が入力されていません」というエラーメッセージが表示される点です。</p>
+          <p>Form2の構成はForm1とほとんど同じです。違う点は、テキストボックスに文字を入力した後で文字を全て削除すると、「文字が入力されていません」というエラーメッセージが表示される点です。</p>
 
           <p>onChangeイベントハンドラーで入力された文字数をカウントし、0になった時にエラーメッセージのstateを変化させ表示させます。</p>
 
