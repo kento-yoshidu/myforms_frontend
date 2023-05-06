@@ -18,9 +18,9 @@ const Form1 = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value)
 
-    const trimedName = e.target.value.trim()
+    const trimmedName = e.target.value.trim()
 
-    if (trimedName.length > 0) {
+    if (trimmedName.length > 0) {
       setIsInputValid(true)
     } else {
       setIsInputValid(false)

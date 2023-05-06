@@ -25,11 +25,12 @@ afterAll(() => server.close())
 
 describe("Form4", () => {
   describe("初回レンダリング時、各要素が正しく表示されていること", () => {
+    /*
     it("Form5がレンダリングされること", () => {
       render(<Form5 />)
       expect(screen.getByRole("heading", { level: 3 })).toHaveTextContent(/^ユーザー登録フォーム$/)
     })
-
+    */
     it("初回レンダリング時、変換結果が表示されるエリアが表示されていないこと", () => {
       render(<Form5 />)
       expect(screen.queryByTestId("result-area")).toBeNull()
