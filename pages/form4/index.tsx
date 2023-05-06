@@ -71,7 +71,6 @@ const Form4 = () => {
         <div className={styles.wrapper}>
           <h3
             className={styles.title}
-            data-testid="form-title"
           >
             メールアドレス登録フォーム
           </h3>
@@ -89,7 +88,6 @@ const Form4 = () => {
               type="email"
               className={styles.input}
               placeholder="dummy@example.com"
-              data-testid="email"
               onChange={handleChange}
               onBlur={handleBlur}
               onFocus={handleFocus}
@@ -106,10 +104,9 @@ const Form4 = () => {
 
             <button
               className={styles.button}
-              data-testid="submit"
               type="submit"
-              name="Sign Up"
               disabled={!isFormValid}
+              aria-disabled={!isFormValid}
             >
               送信する
             </button>
