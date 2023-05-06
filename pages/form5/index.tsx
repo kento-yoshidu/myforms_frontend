@@ -97,14 +97,19 @@ const Form4 = () => {
       <Header />
 
       <PageTitle
-        pageTitle="Form4"
+        pageTitle="Form5"
         postdate="2099-01-01"
         update="2099-01-01"
       />
 
       <Container>
         <div className={styles.wrapper}>
-          <h2 className={styles.title}>ユーザー登録フォーム</h2>
+          <h3
+            className={styles.title}
+            data-testid="form5"
+          >
+            ユーザー登録フォーム
+          </h3>
 
           <p className={styles.text}>ユーザー名とメールアドレスを入力してください。</p>
 
@@ -125,7 +130,12 @@ const Form4 = () => {
               data-testid="username"
             />
             {!isInputForm.username && (
-              <p className={styles.errorMessage}>ユーザー名を入力してください。</p>
+              <p
+                className={styles.errorMessage}
+                data-testid="username-error-message"
+              >
+                ユーザー名を入力してください。
+              </p>
             )}
 
             <label htmlFor="email" className={styles.label}>
@@ -145,7 +155,12 @@ const Form4 = () => {
             />
 
             {!isInputForm.email && (
-              <p className={styles.errorMessage}>メールアドレスを正しく入力してください。</p>
+              <p
+                className={styles.errorMessage}
+                data-testid="email-error-message"
+              >
+                メールアドレスを正しく入力してください。
+              </p>
             )}
 
             <button
@@ -159,7 +174,7 @@ const Form4 = () => {
           </form>
 
           {returnedData && (
-            <section className={styles.result}>
+            <section className={styles.result} data-testid="result-area">
               <p>ユーザー名 : {returnedData.username}</p>
               <p>メールアドレス : {returnedData.email}</p>
               <p>でユーザー登録を行いました。</p>
