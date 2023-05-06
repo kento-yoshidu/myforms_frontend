@@ -106,7 +106,6 @@ const Form4 = () => {
         <div className={styles.wrapper}>
           <h3
             className={styles.title}
-            data-testid="form5"
           >
             ユーザー登録フォーム
           </h3>
@@ -127,7 +126,6 @@ const Form4 = () => {
               onChange={handleChange}
               onBlur={handleBlur}
               onFocus={handleFocus}
-              data-testid="username"
             />
             {!isInputForm.username && (
               <p
@@ -151,7 +149,6 @@ const Form4 = () => {
               onChange={handleChange}
               onBlur={handleBlur}
               onFocus={handleFocus}
-              data-testid="email"
             />
 
             {!isInputForm.email && (
@@ -167,7 +164,7 @@ const Form4 = () => {
               className={styles.button}
               type="submit"
               disabled={!isFormValid}
-              data-testid="submit"
+              aria-disabled={!isFormValid}
             >
               ユーザー登録する
             </button>
@@ -175,8 +172,8 @@ const Form4 = () => {
 
           {returnedData && (
             <section className={styles.result} data-testid="result-area">
-              <p>ユーザー名 : {returnedData.username}</p>
-              <p>メールアドレス : {returnedData.email}</p>
+              <p>ユーザー名 : <span data-testid="result-username">{returnedData.username}</span></p>
+              <p>メールアドレス : <span data-testid="result-email">{returnedData.email}</span></p>
               <p>でユーザー登録を行いました。</p>
             </section>
           )}
