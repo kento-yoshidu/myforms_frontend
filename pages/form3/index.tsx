@@ -67,7 +67,7 @@ const Form3 = () => {
 
       <Container>
         <div className={styles.wrapper}>
-          <h3 className={styles.title} data-testid="form-title">
+          <h3 className={styles.title}>
             パスワード設定フォーム
           </h3>
 
@@ -83,11 +83,10 @@ const Form3 = () => {
               id="password"
               className={styles.input}
               type="password"
+              placeholder="Password"
               onChange={handleChange}
               onBlur={handleBlur}
               onFocus={handleFocus}
-              placeholder="Password"
-              data-testid="password"
             />
 
             {isShowError && (
@@ -96,21 +95,20 @@ const Form3 = () => {
 
             <button
               className={styles.button}
-              data-testid="submit"
               type="submit"
-              name="Sign Up"
               disabled={!isInputValid}
+              aria-disabled={!isInputValid}
             >
               パスワードを設定する
             </button>
           </form>
 
           {convertedData && (
-            <div className={styles.result} data-testid="result-area">
+            <section className={styles.result} data-testid="result-area">
               <p>あなたが設定したパスワードは<br />
               {convertedData} <br />
               ですね！</p>
-            </div>
+            </section>
           )}
         </div>
 
