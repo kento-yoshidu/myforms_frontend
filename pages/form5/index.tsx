@@ -31,15 +31,17 @@ const Form4 = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
 
-    const data = {...formData, [name]: value}
+    const trimmedValue = value.trim()
+
+    const data = {...formData, [name]: trimmedValue}
 
     setFormData(data)
 
-    checkValid(data, e.target.validity.valid)
+    checkFormValid(data, e.target.validity.valid)
   }
 
   // 入力内容から送信ボタンのON/OFFを切り替える
-  const checkValid = ({ username, email }: UserData, emailValid: boolean) => {
+  const checkFormValid = ({ username, email }: UserData, emailValid: boolean) => {
     if (username && email && emailValid) {
       setIsFormValid(true)
     } else {
@@ -51,8 +53,10 @@ const Form4 = () => {
   const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, validity } = e.target
 
+    // Todo : validity.validでリファクタ
+    // Todo : この辺換数に切り出せない？
     if (name === "username") {
-      if (value) {
+      if (value.trim().length !== 0) {
         setIsInputForm((prevState) => ({...prevState, username: true}))
       } else {
         setIsInputForm((prevState) => ({...prevState, username: false}))
@@ -61,9 +65,9 @@ const Form4 = () => {
 
     if (name === "email") {
       if (value && validity.valid) {
-        setIsInputForm((prevState) => ({...prevState, "email": true}))
+        setIsInputForm((prevState) => ({...prevState, email: true}))
       } else {
-        setIsInputForm((prevState) => ({...prevState, "email": false}))
+        setIsInputForm((prevState) => ({...prevState, email: false}))
       }
     }
   }
@@ -91,15 +95,15 @@ const Form4 = () => {
   return (
     <>
       <Head>
-        <title>Form4 | My Forms</title>
+        <title>Form5 | My Forms</title>
       </Head>
 
       <Header />
 
       <PageTitle
         pageTitle="Form5"
-        postdate="2099-01-01"
-        update="2099-01-01"
+        postdate="2023-05-07"
+        update="2023-05-07"
       />
 
       <Container>
@@ -110,7 +114,7 @@ const Form4 = () => {
             ユーザー登録フォーム
           </h3>
 
-          <p className={styles.text}>ユーザー名とメールアドレスを入力してください。</p>
+          <p className={styles.text}>ユーザー名とメールアドレスを入力し、ユーザー登録するボタンをクリックしてください。</p>
 
           <form className={styles.form} onSubmit={submit}>
 
@@ -126,6 +130,8 @@ const Form4 = () => {
               onChange={handleChange}
               onBlur={handleBlur}
               onFocus={handleFocus}
+              required
+              aria-required
             />
             {!isInputForm.username && (
               <p
@@ -149,6 +155,8 @@ const Form4 = () => {
               onChange={handleChange}
               onBlur={handleBlur}
               onFocus={handleFocus}
+              required
+              aria-required
             />
 
             {!isInputForm.email && (
@@ -180,15 +188,22 @@ const Form4 = () => {
         </div>
 
         <Description>
-          <p>これまでのフォームは全て、必須項目を全て入力しないとボタンを押せない仕様になっていました。具体的にはbutton要素にdisabled属性を付与することでボタンを無効化していました。</p>
+          <p>これまでのフォームは入力項目が一つでしたが、今回は二つ存在します。項目が一つなら単純にuseStateで状態管理できますが、項目が増えるにつれ、それぞれを個別のstateで管理しようとすると思ったよりもコードが複雑になります。</p>
 
-          <p>しかし、</p>
+          <p>今回は項目が二つだけのため、項目それぞれの状態をフィールドにしたオブジェクトで状態管理しています。二つでも結構大変なため、数が多くなってきたらReact Hook Formなどのライブラリーの力を借りた方がよさそうです。</p>
 
-          <p>個人的には「送信した後に間違いがあることが分かり、」よりかは、「入力を終わらせないと送信できない」方がユーザー体験はいいと思っているので、基本的にはdisabled属性を付与する機会の方が多いかと思います。ただ、そのためには「送信ボタンを押そうとして、ボタンが無効化されていることに気づく」前に、さもなくば、「入力を終わらせたはずなのに何故かボタンが押せない」状態になっていまいます。</p>
+          <p>テストコードは<a href="https://github.com/kento-yoshidu/MyForms/blob/main/__tests__/form5.test.tsx">こちら</a>です。</p>
 
-          <p>そこで色々な企業のWebサイトの問い合わせフォームを確認してみると、体感9割以上は「必須項目を入力しなくてもボタンが押せる」仕様になっていました。</p>
+          <p>テストケースが15個になってしまったため、ここでの説明は割愛します。テストを大きく分類すると、</p>
 
-          <p>ただ、ボタンが押せるといっても、押したときの挙動は様々です。そもそもエラーメッセージすら表示されないサイトが大半でした。</p>
+          <ol>
+            <li>初回レンダリング時、送信ボタンがdisabledになっていたり、エラーメッセージが表示されていないこと</li>
+            <li>必須項目を埋めると送信ボタンのdisabledが解除されること</li>
+            <li>無効な値を入力しフォーカスを外した時、エラーメッセージが表示されること</li>
+          </ol>
+
+          <p>という風になります。</p>
+
         </Description>
 
         <PageLink prev="4" />

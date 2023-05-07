@@ -16,7 +16,7 @@ const Home: NextPage = () => (
 
     <main className={styles.main}>
       <section className={styles.section}>
-        <h2 className={styles.h2} data-testid="site-title">My Forms</h2>
+        <h1 className={styles.h1} data-testid="site-title">My Forms</h1>
 
         <p>ダミーのフォームを作成し、沢山並べているサイトです。</p>
       </section>
@@ -40,6 +40,10 @@ const Home: NextPage = () => (
           <li>
             <Link href="/form4">Form4</Link>
           </li>
+
+          <li>
+            <Link href="/form5">Form5</Link>
+          </li>
         </ul>
       </section>
 
@@ -57,7 +61,7 @@ const Home: NextPage = () => (
 
         <section>
           <h2>技術</h2>
-          <p>Next.jsで構築しています。Next.jsのAPI Routeの機能でAPIエンドポイントを作成、そこを叩いてデータを取得しています。React Hook FormやZodといった便利なライブラリーもあるのですが、あまり使用しない方向で作成したいと考えています。自力で構築できるのが一番ですからね💪。</p>
+          <p>Next.jsで構築しています。React Hook FormやZodといった便利なライブラリーもあるのですが、あまり使用しない方向で作成したいと考えています。自力で構築できるのが一番ですからね💪。</p>
         </section>
       </Description>
     </main>
