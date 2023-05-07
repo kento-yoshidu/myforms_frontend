@@ -7,7 +7,6 @@ import "@testing-library/jest-dom/extend-expect"
 import 'cross-fetch/polyfill'
 
 import Form5 from "../pages/form5"
-import { faArrowRightArrowLeft } from "@fortawesome/free-solid-svg-icons"
 
 const server = setupServer(
   rest.post("/api/form4", (_req, res, ctx) => {
@@ -63,13 +62,13 @@ describe("Form4", () => {
   })
 
   describe("フォームにメールアドレスを入力した時、各要素が正しい状態になること", () => {
-    it("ユーザー名を入力した時、登録ボタンがdisabledになっていること", async () => {
+    it("ユーザー名のみを入力した時、登録ボタンがdisabledになっていること", async () => {
       render(<Form5 />)
       await userEvent.type(screen.getByRole("textbox", { name: usernameText }), "kento")
       expect(screen.getByRole("button", { name: buttonText })).toBeDisabled()
     })
 
-    it("メールアドレスを入力した時、登録ボタンがdisabledになっていること", async () => {
+    it("メールアドレスのみを入力した時、登録ボタンがdisabledになっていること", async () => {
       render(<Form5 />)
       await userEvent.type(screen.getByRole("textbox", { name: emailText}), "dummy@example.com")
       expect(screen.getByRole("button", { name: buttonText })).toBeDisabled()
@@ -103,30 +102,18 @@ describe("Form4", () => {
       expect(screen.getByTestId("email-error-message")).toBeTruthy()
     })
 
-    // 正しいユーザー名を入力しフォーカスを外した時、エラーメッセージが表示されないこと
-    // 正しいメールアドレスを入力しフォーカスを外した時、エラーメッセージが表示されないこと
-    /*
-    it("正しくないメールアドレスを入力した時、ボタンがdisabledになっていること", async () => {
-      render(<Form4 />)
-      await userEvent.type(screen.getByTestId("email"), "dummy")
-      expect(screen.getByTestId("submit")).toBeDisabled()
+    it("ユーザー名を入力しフォーカスを外した時、エラーメッセージが表示されないこと", async () => {
+      render(<Form5 />)
+      await userEvent.type(screen.getByRole("textbox", { name: usernameText }), "kento")
+      await userEvent.tab()
+      expect(screen.queryByTestId("username-error-message")).toBeNull()
     })
 
-    it("正しくないメールアドレスを入力しフォーカスを外した時、エラーメッセージが表示されること", async () => {
-      render(<Form4 />)
-      await userEvent.type(screen.getByTestId("email"), "dummy")
+    it("正しいメールアドレスを入力しフォーカスを外した時、エラーメッセージが表示されないこと", async () => {
+      render(<Form5 />)
+      await userEvent.type(screen.getByRole("textbox", { name: emailText }), "dummy@example.com")
       await userEvent.tab()
-      expect(screen.getByTestId("error-message")).toBeTruthy()
+      expect(screen.queryByTestId("email-error-message")).toBeNull()
     })
-
-    it("正しくないメールアドレスを入力しフォーカスを外し、再度フォーカスした時、エラーメッセージが表示されないこと", async () => {
-      render(<Form4 />)
-      const emailForm = screen.getByTestId("email")
-      await userEvent.type(emailForm, "dummy")
-      await userEvent.tab()
-      await userEvent.click(emailForm)
-      expect(screen.queryByTestId("error-message")).toBeNull()
-    })
-  */
   })
 })
