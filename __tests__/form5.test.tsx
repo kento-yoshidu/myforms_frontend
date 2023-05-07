@@ -102,6 +102,22 @@ describe("Form4", () => {
       expect(screen.getByTestId("email-error-message")).toBeTruthy()
     })
 
+    it("ユーザー名フォームに何も入力せずフォーカスを外し、再度フォーカスした時、エラーメッセージが表示されないこと", async () => {
+      render(<Form5 />)
+      await userEvent.click(screen.getByRole("textbox", { name: usernameText }))
+      await userEvent.tab()
+      await userEvent.click(screen.getByRole("textbox", { name: usernameText }))
+      expect(screen.queryByTestId("username-error-message")).toBeNull()
+    })
+
+    it("正しくないメールアドレスを入力しフォーカスを外し、再度フォーカスした時、エラーメッセージが表示されないこと", async () => {
+      render(<Form5 />)
+      await userEvent.type(screen.getByRole("textbox", { name: emailText }), "dummy@example.")
+      await userEvent.tab()
+      await userEvent.click(screen.getByRole("textbox", { name: emailText }))
+      expect(screen.queryByTestId("email-error-message")).toBeNull()
+    })
+
     it("ユーザー名を入力しフォーカスを外した時、エラーメッセージが表示されないこと", async () => {
       render(<Form5 />)
       await userEvent.type(screen.getByRole("textbox", { name: usernameText }), "kento")
