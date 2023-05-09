@@ -9,7 +9,7 @@ import Meta from '../components/meta'
 
 const Home: NextPage = () => (
   <>
-    <Meta pageTitle="My Forms" />
+    <Meta />
 
     <Header isTop />
 

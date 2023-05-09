@@ -9,6 +9,7 @@ import PageLink from "../../components/page-link"
 
 import styles from "../form1/style.module.css"
 import Description from "../../components/description"
+import Meta from "../../components/meta"
 
 const Form2 = () => {
   const [name, setName] = useState("")
@@ -47,9 +48,7 @@ const Form2 = () => {
 
   return (
     <>
-      <Head>
-        <title>Form2 | My Forms</title>
-      </Head>
+      <Meta pageTitle="Form2" />
 
       <Header />
 
