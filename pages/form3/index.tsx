@@ -9,6 +9,7 @@ import HomeLink from "../../components/home-link"
 import styles from "../form1/style.module.css"
 import Description from "../../components/description"
 import PageLink from "../../components/page-link"
+import Meta from "../../components/meta"
 
 const Form3 = () => {
   const [password, setPassword] = useState("")
@@ -53,9 +54,7 @@ const Form3 = () => {
 
   return (
     <>
-      <Head>
-        <title>Form3 | My Forms</title>
-      </Head>
+      <Meta pageTitle="Form3" />
 
       <Header />
 

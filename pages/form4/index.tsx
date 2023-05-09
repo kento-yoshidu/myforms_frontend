@@ -8,6 +8,7 @@ import { useState } from "react"
 import Description from "../../components/description"
 import PageLink from "../../components/page-link"
 import HomeLink from "../../components/home-link"
+import Meta from "../../components/meta"
 
 const Form4 = () => {
   const [email, SetEmail] = useState("")
@@ -55,9 +56,7 @@ const Form4 = () => {
 
   return (
     <>
-      <Head>
-        <title>Form4 | My Forms</title>
-      </Head>
+      <Meta pageTitle="Form4" />
 
       <Header />
 
