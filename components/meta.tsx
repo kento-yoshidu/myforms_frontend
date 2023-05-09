@@ -13,11 +13,11 @@ type Props = {
 }
 
 const Meta = ({ pageTitle, pageDesc }: Props) => {
-  const router = useRouter()
+  // const router = useRouter()
 
   const title = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle
   const desc = pageDesc ?? siteDesc
-  const url = `${siteUrl}${router.asPath}`
+  // const url = `${siteUrl}${router.asPath}`
 
   const img = siteImage.src
   const imgW = siteImage.width
@@ -30,8 +30,10 @@ const Meta = ({ pageTitle, pageDesc }: Props) => {
       <meta property="og:title" content={pageTitle} />
       <meta name="description" content={desc} />
       <meta property="og:description" content={desc} />
+      {/*
       <link rel="canonical" href={url} />
       <meta property="og:url" content={url} />
+    */}
 
       <meta property="og:site_name" content={siteTitle} />
       <meta property="og:type" content={siteType} />
