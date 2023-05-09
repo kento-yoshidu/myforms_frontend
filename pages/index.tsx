@@ -5,12 +5,11 @@ import Header from '../components/header'
 
 import styles from "../styles/style.module.css"
 import Description from '../components/description'
+import Meta from '../components/meta'
 
 const Home: NextPage = () => (
   <>
-    <Head>
-      <title>My Forms</title>
-    </Head>
+    <Meta pageTitle="My Forms" />
 
     <Header isTop />
 
