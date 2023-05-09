@@ -15,9 +15,8 @@
   background-color: rgba(250, 250, 250, 0.9);
 }
 
-.text {
-  padding: 1em 3em 1.14em;
-  font-size: clamp(0.95rem, 1.8vw, 0.98rem);
+.content {
+  overflow: hidden;
 }
 
 @media (width < 768px) {
@@ -26,21 +25,26 @@
   }
 }
 
-.text section {
+.contentInner {
+  padding: 1em 3em 1.14em;
+  font-size: clamp(0.95rem, 1.8vw, 0.98rem);
+}
+
+.contentInner section {
   margin: 0 auto 40px;
 }
 
-.text p {
+.contentInner p {
   text-indent: 0.75rem;
   margin: 10px 0;
   line-height: 1.85;
 }
 
-.text ol {
+.contentInner ol {
   width: 90%;
   margin: 20px auto;
 }
 
-.text li {
+.contentInner li {
   margin-bottom: 8px;
 }
