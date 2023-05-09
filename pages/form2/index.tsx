@@ -48,7 +48,10 @@ const Form2 = () => {
 
   return (
     <>
-      <Meta pageTitle="Form2" />
+      <Meta
+        pageTitle="Form2"
+        pageDesc="入力された名前を大文字にして返すフォーム（エラーメッセージ表示機能付き）です。"
+      />
 
       <Header />
 
