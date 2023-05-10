@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import Head from "next/head"
 
 import Container from "../../components/container"
 import Header from "../../components/header"
@@ -61,7 +60,7 @@ const Form3 = () => {
       <PageTitle
         pageTitle="Form3"
         postdate="2023-04-29"
-        update="2023-05-01"
+        update="2023-05-10"
       />
 
       <Container>
@@ -89,7 +88,7 @@ const Form3 = () => {
             />
 
             {isShowError && (
-              <p className={styles.errorMessage} data-testid="error-message">パスワードは8文字必要です。</p>
+              <p className={styles.errorMessage} data-testid="error-message">パスワードは8文字以上必要です。</p>
             )}
 
             <button
@@ -114,9 +113,9 @@ const Form3 = () => {
         <Description>
           <p>Form3では<strong>リアルタイムバリデーション</strong>を実装してみました。送信ボタンを押して初めてエラーメッセージが表示されるのではなく、送信ボタンを押す前に表示されるアレですね。</p>
 
-          <p>しかし、<strong>入力途中</strong>でエラーメッセージが出るとイラッとします。今回の例ですと最低文字数は8文字ですから、1～7文字目を打っている間にずっとエラーメッセージが表示されるわけです。これから勉強しようとしている時に、お母さんに「勉強しなさい！」と怒られた時の感情と似ています。これは良くありませんね。</p>
+          <p>しかし、<strong>入力途中</strong>でエラーメッセージが出るとイラッとします。今回の例ですと最低文字数は8文字ですから、1~7文字目を打っている間にずっとエラーメッセージが表示されるわけです。これから勉強しようとしている時に、お母さんに「勉強しなさい！」と怒られた時の感情と似ています。これは良くありませんね。</p>
 
-          <p>さらに言うと、タイプミスして最初から入力し直す場合もあるので、入力中は黙っておいて欲しいわけです。</p>
+          <p>さらに言うと、タイプミスして最初から入力し直す場合もあるので、入力中は黙っておいて欲しいわけです（パスワードはその性質上、特に打ち直す可能性が高いと思われます）。</p>
 
           <p>onChangeで文字数をカウントするのは筋が悪いので、onBlurを使用することにしました。onBlurはフォーカスが外れた時に動作するイベントハンドラーです。フォーカスが外れた時に文字数をカウントして、8文字未満ならエラーメッセージを表示させます。</p>
 
@@ -138,6 +137,12 @@ const Form3 = () => {
           </ol>
 
           <p>を行っています。</p>
+        </Description>
+
+        <Description heading="更新履歴">
+          <ul>
+            <li><time dateTime="2023-05-10">2023年05月10日</time>エラーメッセージ「パスワードは8文字必要です。」を「パスワードは8文字<em>以上</em>必要です。」に修正。その他細かい文言を修正。</li>
+          </ul>
         </Description>
 
         <PageLink prev="2" next="4" />
