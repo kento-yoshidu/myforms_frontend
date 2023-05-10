@@ -6,6 +6,7 @@ import Header from '../components/header'
 import styles from "../styles/style.module.css"
 import Description from '../components/description'
 import Meta from '../components/meta'
+import Gacha from '../components/gacha'
 
 const Home: NextPage = () => (
   <>
@@ -47,7 +48,9 @@ const Home: NextPage = () => (
       </section>
 
       <section className={styles.section}>
-        <h2 className={styles.h2}>&lt;!-- フォームガチャを回す（実装中🙇‍♂️） --&gt;</h2>
+        <h2 className={styles.h2}>フォームガチャを回す（実装中👷‍♂️）</h2>
+
+        <Gacha />
 
       </section>
 
