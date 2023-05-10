@@ -47,4 +47,14 @@
 
 .contentInner li {
   margin-bottom: 8px;
+  line-height: 1.75;
+}
+
+.contentInner li time {
+  margin-right: 1.5rem;
+}
+
+.contentInner em {
+  font-weight: bolder;
+  font-style: normal;
 }
