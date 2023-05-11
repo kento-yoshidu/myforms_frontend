@@ -6,6 +6,12 @@
   border: 3px dotted var(--border-color);
 }
 
+@media (width < 768px) {
+  .wrapper {
+    padding: 20px;
+  }
+}
+
 .button {
   padding: 15px 30px;
   border: 1px solid var(--border-color);
@@ -18,6 +24,12 @@
   background-color: #eee;
 }
 
+@media (width < 768px) {
+  .button {
+    padding: 12px;
+  }
+}
+
 .result {
   width: 33%;
   margin-left: 20px;
@@ -27,11 +39,24 @@
   font-size: 1.05rem;
 }
 
+@media (width < 768px) {
+  .result {
+    width: 53%;
+  }
+}
+
 .message {
   padding: 12px 15px;
   border: 3px dotted var(--border-color);
   border-radius: 2px;
   font-size: 0.9rem;
+}
+
+@media (width < 768px) {
+  .message {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
 }
 
 .link {
