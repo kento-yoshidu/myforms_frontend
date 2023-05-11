@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import Head from "next/head"
 
 import Container from "../../components/container"
 import Header from "../../components/header"
