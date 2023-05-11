@@ -28,27 +28,36 @@ const Gacha = () => {
       <button
         className={styles.button}
         onClick={handleClick}
+        disabled={isLoading}
+        aria-disabled={isLoading}
       >
         ガチャを回す
       </button>
 
-      {isLoading
-        ? (
-          <Loading />
-        )
-        : (
-          <div
-            className={styles.result}
-          >
-            {form
-              ? (
-                <Link href={`form${form}`}>Form{form}</Link>
-              )
-              : (
-                <p>ガチャを回してね</p>
-              )}
-          </div>
-        )}
+      <div
+        className={styles.result}
+      >
+        {isLoading
+          ? (
+            <Loading />
+          )
+          : (
+            <>
+              {form
+                ? (
+                  <Link
+                    className={styles.link}
+                    href={`form${form}`}
+                  >
+                    Form{form}
+                  </Link>
+                )
+                : (
+                  <p className={styles.message}>ガチャを回してね</p>
+                )}
+            </>
+          )}
+        </div>
     </div>
   )
 }
