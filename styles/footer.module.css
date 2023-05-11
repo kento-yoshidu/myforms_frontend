@@ -1,11 +1,10 @@
 .footer {
-  height: 80px;
+  padding: 20px 0;
   background-color: #222;
   text-align: center;
 }
 
 .link {
   color: #fff;
-  font-size: clamp(2.5rem, 2vw, 3rem);
-  line-height: 80px;
+  font-size: clamp(2.5rem, 4.2vw, 3.2rem);
 }
