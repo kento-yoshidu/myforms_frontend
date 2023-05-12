@@ -92,3 +92,7 @@
   text-align: center;
   font-size: clamp(0.95rem, 2vw, 1rem);
 }
+
+.input[aria-invalid=true] {
+  border: 1px solid red;
+}

@@ -9,9 +9,12 @@ import { useEffect, useState } from "react"
 const Form6 = () => {
   const [name, setName] = useState("")
   const [convertedName, setConvertedName] = useState("")
+  const [isInputValid, setIsInputValid] = useState(true)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value)
+    setName(e.target.value.trim())
+
+    setIsInputValid(e.target.validity.valid)
   }
 
   const submit = async (e: React.FormEvent) => {
@@ -50,23 +53,28 @@ const Form6 = () => {
           <form className={styles.form} onSubmit={submit}>
 
             <label htmlFor="name" className={styles.label}>
-              ご意見 <span>※必須</span>
+              お名前 <span>※必須</span>
             </label>
 
             <input
               id="name"
               className={styles.input}
               placeholder="Taro Yamada"
+              pattern="[a-z]+"
               onChange={handleChange}
               required
               aria-required="true"
+              aria-invalid={!isInputValid}
             />
+
+            {!isInputValid && (
+              <p>エラーです。</p>
+            )}
 
             <button
               className={styles.button}
-              data-testid="submit"
               type="submit"
-              name="Sign Up"
+              disabled={!isInputValid}
             >
               送信する
             </button>
