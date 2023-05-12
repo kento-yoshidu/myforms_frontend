@@ -47,3 +47,7 @@ https://developer.mozilla.org/ja/docs/Learn/Accessibility/WAI-ARIA_basics
 そもそも、いわゆる「送信ボタン」の類に`disabled`を付けていいかを考える所からスタートする。`disabled`を付けるとTabキーでは移動できなくなり、ユーザーがボタンの存在を認識できなくなる可能性がある。ましてや、スクリーンリーダーで読み取れない可能性も高い。
 
 上述したように`aria-disabled="true"`を付けてもボタンは無効化されないので、Tabキーで移動させることがでいるし、支援機能も要素を扱うことができる。「ボタンの無効化/有効化」を切り替えるのはJavaScriptを用いて実現する。
+
+## 今日からやろう
+
+### 必須項目にはaria-required属性を付ける
