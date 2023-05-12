@@ -90,6 +90,13 @@ const Home: NextPage = () => (
               {/* @ts-ignore */}
               <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
             </li>
+            <li>
+              <a href="https://github.com/kento-yoshidu/MyForms/blob/main/doc/document.md#%E3%83%86%E3%82%B9%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%82%E3%82%8C%E3%81%93%E3%82%8C" target="_blank">
+                テストについてあれこれ
+              </a>
+              {/* @ts-ignore */}
+              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+            </li>
           </ul>
         </section>
       </Description>
