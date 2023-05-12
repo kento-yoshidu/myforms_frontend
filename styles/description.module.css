@@ -40,9 +40,15 @@
   line-height: 1.85;
 }
 
-.contentInner ol {
+.contentInner a {
+  color: #444;
+}
+
+.contentInner ol,
+.contentInner ul {
   width: 90%;
   margin: 20px auto;
+  box-sizing: border-box;
 }
 
 .contentInner li {
@@ -52,6 +58,11 @@
 
 .contentInner li time {
   margin-right: 1.5rem;
+}
+
+.contentInner li a {
+  display: inline-block;
+  margin-right: 10px;
 }
 
 .contentInner em {
