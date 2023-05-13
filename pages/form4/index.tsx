@@ -69,6 +69,7 @@ const Form4 = () => {
       <Container>
         <div className={styles.wrapper}>
           <h3
+            id="form-title"
             className={styles.title}
           >
             メールアドレス登録フォーム
@@ -76,7 +77,11 @@ const Form4 = () => {
 
           <p className={styles.text}>利用するメールアドレスを入力してください（適当なアドレスでOKです。ただ、バリデーションがかかりますので、形式は正しいものにしてください）。</p>
 
-          <form className={styles.form} onSubmit={submit}>
+          <form
+            className={styles.form}
+            aria-labelledby="form-title"
+            onSubmit={submit}
+          >
             <label htmlFor="email" className={styles.label}>
               メールアドレス <span>(※必須)</span>
             </label>

@@ -60,14 +60,21 @@ const Form1 = () => {
 
       <Container>
         <div className={styles.wrapper}>
-          <h3 className={styles.title}>
+          <h3
+            id="form-title"
+            className={styles.title}
+          >
             名前変換フォーム(ver1.0)
           </h3>
 
           <p className={styles.text}>あなたの名前を半角のアルファベットで入力し、「変換する」ボタンをクリックしてください。</p>
           <p className={styles.text}>小文字を大文字に変換して表示します。</p>
 
-          <form className={styles.form} onSubmit={submit}>
+          <form
+            className={styles.form}
+            aria-labelledby="form-title"
+            onSubmit={submit}
+          >
             <label htmlFor="name" className={styles.label}>
               お名前 <span>※必須</span>
             </label>
