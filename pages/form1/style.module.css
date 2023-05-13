@@ -96,3 +96,8 @@
 .input[aria-invalid=true] {
   border: 1px solid red;
 }
+
+.notice {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
