@@ -4,7 +4,7 @@ import PageTitle from "../../components/page-header"
 import Container from "../../components/container"
 
 import styles from "../form1/style.module.css"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 const Form6 = () => {
   const [name, setName] = useState("")
@@ -14,7 +14,11 @@ const Form6 = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value.trim())
 
-    setIsInputValid(e.target.validity.valid)
+    if (e.target.validity.valid && e.target.value.trim().length !== 0) {
+      setIsInputValid(true)
+    } else {
+      setIsInputValid(false)
+    }
   }
 
   const submit = async (e: React.FormEvent) => {
@@ -68,16 +72,18 @@ const Form6 = () => {
             <input
               id="name"
               className={styles.input}
-              placeholder="Taro Yamada"
-              pattern="[a-z]+"
+              placeholder="taro yamada"
+              pattern="^[a-z ]+$"
               onChange={handleChange}
               required
               aria-required="true"
               aria-invalid={!isInputValid}
             />
 
+            <p className={styles.notice}>お名前は半角小文字アルファベットで入力してください。</p>
+
             {!isInputValid && (
-              <p>エラーです。</p>
+              <p>半角小文字アルファベットと半角スペースのみ入力可能です。</p>
             )}
 
             <button
