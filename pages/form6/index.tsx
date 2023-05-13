@@ -46,11 +46,20 @@ const Form6 = () => {
 
       <Container>
         <div className={styles.wrapper}>
-          <h2 className={styles.title}>名前変換フォーム(ver1.2)</h2>
+          <h3
+            id="form-title"
+            className={styles.title}
+          >
+            名前変換フォーム(ver1.2)
+          </h3>
 
           <p className={styles.text}></p>
 
-          <form className={styles.form} onSubmit={submit}>
+          <form
+            className={styles.form}
+            aria-labelledby="form-title"
+            onSubmit={submit}
+          >
 
             <label htmlFor="name" className={styles.label}>
               お名前 <span>※必須</span>

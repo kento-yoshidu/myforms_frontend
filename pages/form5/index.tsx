@@ -108,6 +108,7 @@ const Form4 = () => {
       <Container>
         <div className={styles.wrapper}>
           <h3
+            id="form-title"
             className={styles.title}
           >
             ユーザー登録フォーム
@@ -115,7 +116,11 @@ const Form4 = () => {
 
           <p className={styles.text}>ユーザー名とメールアドレスを入力し、ユーザー登録するボタンをクリックしてください。</p>
 
-          <form className={styles.form} onSubmit={submit}>
+          <form
+            className={styles.form}
+            aria-labelledby="form-title"
+            onSubmit={submit}
+          >
 
             <label htmlFor="username" className={styles.label}>
               ユーザー名 <span>(※必須)</span>

@@ -65,14 +65,21 @@ const Form3 = () => {
 
       <Container>
         <div className={styles.wrapper}>
-          <h3 className={styles.title}>
+          <h3
+            id="form-title"
+            className={styles.title}
+          >
             パスワード設定フォーム
           </h3>
 
           <p className={styles.text}>あなたのパスワードを設定します。任意のパスワード8文字を入力したら、「パスワードを設定する」ボタンをクリックしてください。</p>
           <p className={styles.text}>あなたが入力したパスワードを表示します。</p>
 
-          <form className={styles.form} onSubmit={submit}>
+          <form
+            className={styles.form}
+            aria-labelledby="form-title"
+            onSubmit={submit}
+          >
             <label htmlFor="password" className={styles.label}>
               パスワード(8文字以上) <span>※必須</span>
             </label>
