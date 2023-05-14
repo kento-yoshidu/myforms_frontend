@@ -12,20 +12,24 @@ import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons"
 import PageLink from "../../components/page-link"
 import HomeLink from "../../components/home-link"
 import Description from "../../components/description"
+import Gacha from "../../components/gacha"
 
 
 const Form6 = () => {
   const [name, setName] = useState("")
   const [convertedName, setConvertedName] = useState("")
   const [isInputValid, setIsInputValid] = useState(true)
+  const [isFormValid, setIsFormValid] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value.trim())
 
     if (e.target.validity.valid && e.target.value.trim().length !== 0) {
       setIsInputValid(true)
+      setIsFormValid(true)
     } else {
       setIsInputValid(false)
+      setIsFormValid(false)
     }
   }
 
@@ -91,25 +95,30 @@ const Form6 = () => {
             <p className={styles.notice}>
               {/* @ts-ignore */}
               <FontAwesomeIcon icon={faCircleExclamation} />
-              半角小文字アルファベット
+              半角小文字アルファベット、半角スペースのみ
             </p>
 
             {!isInputValid && (
-              <p className={styles.errorMessage}>半角小文字アルファベットと半角スペースのみ入力可能です。</p>
+              <p
+                className={styles.errorMessage}
+                data-testid="error-message"
+              >
+                半角小文字アルファベットと半角スペースのみ入力可能です。
+              </p>
             )}
 
             <button
               className={styles.button}
               type="submit"
-              disabled={!isInputValid}
+              disabled={!isFormValid}
             >
-              送信する
+              変換する
             </button>
           </form>
 
         {convertedName && (
           <section className={styles.result} data-testid="result-area">
-            <p>{convertedName}</p>
+            <p>あなたの名前を大文字に変換しました！<br />{convertedName}</p>
           </section>
         )}
         </div>
