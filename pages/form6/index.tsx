@@ -1,10 +1,18 @@
 import Head from "next/head"
+import { useState } from "react"
+
 import Header from "../../components/header"
 import PageTitle from "../../components/page-header"
 import Container from "../../components/container"
 
 import styles from "../form1/style.module.css"
-import { useState } from "react"
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons"
+import PageLink from "../../components/page-link"
+import HomeLink from "../../components/home-link"
+import Description from "../../components/description"
+
 
 const Form6 = () => {
   const [name, setName] = useState("")
@@ -80,10 +88,14 @@ const Form6 = () => {
               aria-invalid={!isInputValid}
             />
 
-            <p className={styles.notice}>お名前は半角小文字アルファベットで入力してください。</p>
+            <p className={styles.notice}>
+              {/* @ts-ignore */}
+              <FontAwesomeIcon icon={faCircleExclamation} />
+              半角小文字アルファベット
+            </p>
 
             {!isInputValid && (
-              <p>半角小文字アルファベットと半角スペースのみ入力可能です。</p>
+              <p className={styles.errorMessage}>半角小文字アルファベットと半角スペースのみ入力可能です。</p>
             )}
 
             <button
@@ -101,6 +113,14 @@ const Form6 = () => {
           </section>
         )}
         </div>
+
+        <Description>
+          <p>書きます。</p>
+        </Description>
+
+        <PageLink prev="5" />
+
+        <HomeLink />
       </Container>
     </>
   )
