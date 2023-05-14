@@ -5,6 +5,9 @@ import Loading from "./loading"
 
 import styles from "../styles/gacha.module.css"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCircleLeft } from "@fortawesome/free-solid-svg-icons"
+
 const Gacha = () => {
   const [form, setForm] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -12,7 +15,7 @@ const Gacha = () => {
   const handleClick = () => {
     new Promise((resolve) => {
       setIsLoading(true)
-      setForm(Math.ceil(Math.random() * 5))
+      setForm(Math.ceil(Math.random() * 6))
 
       setTimeout(() => {
         resolve("")
@@ -53,7 +56,10 @@ const Gacha = () => {
                   </Link>
                 )
                 : (
-                  <p className={styles.message}>ガチャを回してね</p>
+                  <p className={styles.message}>
+                    {/* @ts-ignore */}
+                    <FontAwesomeIcon icon={faCircleLeft} />
+                    ガチャを回してね</p>
                 )}
             </>
           )}
