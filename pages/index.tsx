@@ -54,7 +54,7 @@ const Home: NextPage = () => (
       </section>
 
       <section className={styles.section}>
-        <h2 className={styles.h2}>フォームガチャ（実装中👷‍♂️）</h2>
+        <h2 className={styles.h2}>フォームガチャ</h2>
 
         <Gacha />
 
