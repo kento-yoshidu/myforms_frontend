@@ -46,6 +46,10 @@ const Home: NextPage = () => (
           <li>
             <Link href="/form5">Form5</Link>
           </li>
+
+          <li>
+            <Link href="/form6">Form6</Link>
+          </li>
         </ul>
       </section>
 
