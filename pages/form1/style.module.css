@@ -45,7 +45,7 @@
 .label span {
   display: inline-block;
   margin-left: 8px;
-  color: rgb(220, 50, 50);
+  color: var(--invalid-color);
   font-size: 0.9em;
   font-weight: bold;
 }
@@ -59,7 +59,7 @@
 
 .errorMessage {
   margin-top: 10px;
-  color: rgb(220, 50, 50);
+  color: var(--invalid-color);
   font-size: 0.95rem;
   font-weight: bold;
 }
@@ -89,9 +89,9 @@
 }
 
 .input[aria-invalid=true] {
-  border: 1px solid red;
-  box-shadow: 0 0 4px 0 rgb(220, 50, 50);
-  outline: 1px solid red;
+  border: 1px solid var(--invalid-color);
+  box-shadow: 0 0 4px 0 var(--invalid-color);
+  outline: 1px solid var(--invalid-color);
 }
 
 .notice {
