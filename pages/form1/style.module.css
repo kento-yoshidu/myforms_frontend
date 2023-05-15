@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 20px 0 40px;
+  padding: 30px 0 0;
   border: 1px solid var(--border-color);
   border-radius: 2px;
   width: 100%;
@@ -84,8 +84,9 @@
 }
 
 .result {
-  text-align: center;
+  margin-bottom: 40px;
   font-size: clamp(0.95rem, 2vw, 1rem);
+  text-align: center;
 }
 
 .input[aria-invalid=true] {
@@ -98,6 +99,7 @@
   margin-top: 3px;
   color: #888;
   font-size: 0.9rem;
+  text-overflow: unset;
 }
 
 .notice svg {
