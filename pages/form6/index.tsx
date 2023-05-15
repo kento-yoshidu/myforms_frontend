@@ -12,8 +12,6 @@ import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons"
 import PageLink from "../../components/page-link"
 import HomeLink from "../../components/home-link"
 import Description from "../../components/description"
-import Gacha from "../../components/gacha"
-
 
 const Form6 = () => {
   const [name, setName] = useState("")
@@ -27,6 +25,9 @@ const Form6 = () => {
     if (e.target.validity.valid && e.target.value.trim().length !== 0) {
       setIsInputValid(true)
       setIsFormValid(true)
+    } else if (e.target.value.trim().length === 0) {
+      setIsInputValid(true)
+      setIsFormValid(false)
     } else {
       setIsInputValid(false)
       setIsFormValid(false)
@@ -129,9 +130,10 @@ const Form6 = () => {
 
           <p>テストコードは<a href="https://github.com/kento-yoshidu/MyForms/blob/main/__tests__/form6.test.tsx">こちら</a>です。テストに関して特筆すべきことはしていないので省略します。</p>
 
-          <p>ただ、CSSに関連してはARIA属性を絡めたコードを書いているので補足します。</p>
+          <p>ただ、今回はARIA属性を絡めたコードを書いているので補足します。</p>
 
-          <p>// Todo <br />aria-invalidについてちゃんと調べて書く</p>
+          <p>フォームに入力された値が送信不可文字を含んでいる場合、useStateを用いて<em>aria-invalid属性</em>の値をtrueにするようにコードを書いています。</p>
+          <p>aria-invalid属性とは何でしょうか？私も詳しくは説明できないので仕様書を読んでほしいのですが（<a href="https://www.w3.org/TR/wai-aria-1.1/#aria-invalid">WAI-ARIAの仕様書</a>）、入力された値が不正な場合は値をtrueにして、その旨をユーザーに知らせるaria属性である、と読み取りました。</p>
         </Description>
 
         <Description heading="更新履歴">
