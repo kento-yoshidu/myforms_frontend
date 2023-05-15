@@ -210,7 +210,7 @@ const Form4 = () => {
 
         </Description>
 
-        <PageLink prev="4" />
+        <PageLink prev="4" next="6" />
 
         <HomeLink />
       </Container>
