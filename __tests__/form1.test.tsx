@@ -7,6 +7,7 @@ import "@testing-library/jest-dom/extend-expect"
 import 'cross-fetch/polyfill'
 
 import Form1 from "../pages/form1"
+import { input } from "@testing-library/user-event/dist/types/event"
 
 const server = setupServer(
   rest.post("/api/form1", (req, res, ctx) => {
@@ -23,6 +24,9 @@ afterEach(() => {
 
 afterAll(() => server.close())
 
+const inputText = "お名前 ※必須"
+const buttonText = "変換する"
+
 describe("Form1", () => {
   describe("初回レンダリング時、各要素が正しく表示されていること", () => {
     it("Form1がレンダリングされること", () => {
@@ -37,16 +41,16 @@ describe("Form1", () => {
 
     it("初回レンダリング時, 変換ボタンがdisabledになっていること", () => {
       render(<Form1 />)
-      expect(screen.getByRole("button", { name: "変換する" })).toBeDisabled()
+      expect(screen.getByRole("button", { name: buttonText })).toBeDisabled()
     })
   })
 
   describe("フォームを送信した時、正しい結果が得られること", () => {
     it("フォームを送信した時, 変換された名前が表示されること", async () => {
       render(<Form1 />)
-      const nameForm = screen.getByRole("textbox", { name: /^お名前/ }) as HTMLInputElement
+      const nameForm = screen.getByRole("textbox", { name: inputText }) as HTMLInputElement
       await userEvent.type(nameForm, "kento")
-      await userEvent.click(screen.getByRole("button", { name: "変換する" }))
+      await userEvent.click(screen.getByRole("button", { name: buttonText }))
       expect(screen.getByTestId("result-area")).toHaveTextContent("KENTO")
     })
   })
@@ -54,14 +58,14 @@ describe("Form1", () => {
   describe("フォームに名前を入力した時、各要素が正しい状態に変化すること", () => {
     it("名前を入力した時、変換ボタンのdisabledが解除されること", async () => {
       render(<Form1 />)
-      await userEvent.type(screen.getByRole("textbox", { name: /^お名前/ }), "kento")
-      expect(screen.getByRole("button", { name: "変換する" })).not.toBeDisabled()
+      await userEvent.type(screen.getByRole("textbox", { name: inputText }), "kento")
+      expect(screen.getByRole("button", { name: buttonText })).not.toBeDisabled()
     })
 
     it("フォームに半角スペースのみを入力した時、変換ボタンがdisabledになっていること", async () => {
       render(<Form1 />)
-      await userEvent.type(screen.getByRole("textbox", { name: /^お名前/ }), " ")
-      expect(screen.getByRole("button", { name: "変換する" })).toBeDisabled()
+      await userEvent.type(screen.getByRole("textbox", { name: inputText }), " ")
+      expect(screen.getByRole("button", { name: buttonText })).toBeDisabled()
     })
   })
 })
