@@ -35,7 +35,6 @@
 .label {
   display: block;
   margin-bottom: 3px;
-  font-size: 1.05rem;
 }
 
 .label:not(:first-of-type) {
@@ -54,7 +53,6 @@
   display: block;
   padding: 8px 10px;
   width: 100%;
-  font-size: 1.1rem;
 }
 
 .errorMessage {

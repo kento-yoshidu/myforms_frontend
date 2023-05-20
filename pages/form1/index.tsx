@@ -54,7 +54,7 @@ const Form1 = () => {
       <PageTitle
         pageTitle="Form1"
         postdate="2023-02-01"
-        update="2023-05-01"
+        update="2023-05-20"
       />
 
       <Container>
@@ -110,18 +110,22 @@ const Form1 = () => {
 
           <p>フロントエンドではuseStateで入力値を管理し、fetch関数でAPIを叩いています。React Hook FormもZodも使っていないシンプルな構成です。</p>
 
-          <p>バックエンドではNext.jsのAPI Routeの機能を用いてAPIエンドポイントを作成し、そこで大文字への変換を行いJSONとして返しています。</p>
-
           <p>テストコードは<a href="https://github.com/kento-yoshidu/MyForms/blob/main/__tests__/form1.test.tsx">こちら</a>です。テストは、</p>
 
           <ol>
             <li>初回レンダリング時、変換結果が表示されるエリアに何も表示されていないこと</li>
             <li>テキストボックスに何も文字が入力されていない時、送信ボタンがdisabledになっていること</li>
-            <li>テキストボックスに文字が入力されている時、送信ボタンがdisabledになっていないこと</li>
+            <li>テキストボックスに文字（半角スペースのみ除く）が入力されている時、送信ボタンがdisabledになっていないこと</li>
             <li>テキストボックスに名前を入力し送信ボタンを押すことで、大文字になった名前が表示されること</li>
           </ol>
 
           <p>のみを行っています。</p>
+        </Description>
+
+        <Description heading="更新履歴">
+          <ul>
+            <li><time dateTime="2023-05-20">2023年05月20日</time> こぼれ話への追記、誤字脱字の修正。</li>
+          </ul>
         </Description>
 
         <PageLink next="2" />
