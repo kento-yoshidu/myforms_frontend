@@ -1,4 +1,4 @@
-import { cleanup, getByRole, render, screen } from "@testing-library/react"
+import { cleanup, getByRole, getRoles, render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { rest } from "msw"
 import { setupServer } from "msw/node"
@@ -7,6 +7,7 @@ import "@testing-library/jest-dom/extend-expect"
 import 'cross-fetch/polyfill'
 
 import Form6 from "../pages/form6"
+import { input } from "@testing-library/user-event/dist/types/event"
 
 const server = setupServer(
   rest.post("/api/form1", (_req, res, ctx) => {
@@ -71,6 +72,13 @@ describe("Form6", () => {
       expect(screen.queryByTestId("error-message")).toBeNull()
     })
 
+    it("名前を正しく入力した時、aria-invalid属性がfalseであること", async () => {
+      render(<Form6 />)
+      const inputForm = screen.getByRole("textbox", { name: inputText })
+      await userEvent.type(inputForm, "kento")
+      expect(inputForm).toHaveAttribute("aria-invalid", "false")
+    })
+
     it("名前を正しくない形式で入力した時、登録ボタンのdisabledが解除されないこと", async () => {
       render(<Form6 />)
       await userEvent.type(screen.getByRole("textbox", { name: inputText }), "kento111")
@@ -81,6 +89,19 @@ describe("Form6", () => {
       render(<Form6 />)
       await userEvent.type(screen.getByRole("textbox", { name: inputText }), "kento111")
       expect(screen.getByTestId("error-message")).toBeTruthy()
+    })
+
+    it("名前を正しくない形式で入力した時、エラーメッセージが表示されること", async () => {
+      render(<Form6 />)
+      await userEvent.type(screen.getByRole("textbox", { name: inputText }), "kento111")
+      expect(screen.getByTestId("error-message")).toBeTruthy()
+    })
+
+    it("名前を正しくない形式で入力した時、aria-invalid属性がtrueになること", async () => {
+      render(<Form6 />)
+      const inputForm = screen.getByRole("textbox", { name: inputText })
+      await userEvent.type(inputForm, "kento111")
+      expect(inputForm).toHaveAttribute("aria-invalid", "true")
     })
   })
 })
