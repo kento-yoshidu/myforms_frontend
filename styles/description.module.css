@@ -5,7 +5,7 @@
 }
 
 .summary {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 2vw, 1.05rem);
   text-align: center;
   height: var(--clickable-height);
   line-height: var(--clickable-height);
@@ -26,12 +26,12 @@
 }
 
 .contentInner {
-  padding: 1em 3em 1.14em;
+  padding: 1em 3em;
   font-size: clamp(0.95rem, 1.8vw, 0.98rem);
 }
 
 .contentInner section {
-  margin: 0 auto 40px;
+  margin: 0 auto 30px;
 }
 
 .contentInner p {

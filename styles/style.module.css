@@ -48,7 +48,6 @@
 
 .list li {
   border: 1px solid var(--border-color);
-  padding: 8px 15px;
 }
 
 .list li:hover {
@@ -56,6 +55,8 @@
 }
 
 .list a {
+  display: inline-block;
+  padding: 8px 15px;
   color: #444;
   font-size: clamp(0.9rem, 1.35vw, 1.05rem);
 }
