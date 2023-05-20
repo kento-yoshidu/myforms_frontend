@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import Head from "next/head"
 
 import Container from "../../components/container"
 import Header from "../../components/header"
@@ -8,8 +7,8 @@ import HomeLink from "../../components/home-link"
 import PageLink from "../../components/page-link"
 
 import styles from "../form1/style.module.css"
-import descStyles from "../../styles/description.module.css"
 import Description from "../../components/description"
+import Meta from "../../components/meta"
 
 const Form2 = () => {
   const [name, setName] = useState("")
@@ -48,9 +47,10 @@ const Form2 = () => {
 
   return (
     <>
-      <Head>
-        <title>Form2 | My Forms</title>
-      </Head>
+      <Meta
+        pageTitle="Form2"
+        pageDesc="入力された名前を大文字にして返すフォーム（エラーメッセージ表示機能付き）です。"
+      />
 
       <Header />
 
@@ -62,14 +62,21 @@ const Form2 = () => {
 
       <Container>
         <div className={styles.wrapper}>
-          <h3 className={styles.title} data-testid="form-title">
+          <h3
+            id="form-title"
+            className={styles.title}
+          >
             名前変換フォーム(ver1.1)
           </h3>
 
           <p className={styles.text}>あなたの名前を半角のアルファベットで入力し、「変換する」ボタンをクリックしてください。</p>
           <p className={styles.text}>小文字を大文字に変換して表示します。</p>
 
-          <form className={styles.form} onSubmit={submit}>
+          <form
+            className={styles.form}
+            aria-labelledby="form-title"
+            onSubmit={submit}
+          >
             <label htmlFor="name" className={styles.label}>
               お名前 <span>※必須</span>
             </label>
@@ -78,11 +85,8 @@ const Form2 = () => {
               id="name"
               className={styles.input}
               type="text"
-              onChange={handleChange}
               placeholder="Taro Yamada"
-              data-testid="name"
-              autoComplete="off"
-              value={name}
+              onChange={handleChange}
             />
 
             {isInputInvalid && (
@@ -96,25 +100,23 @@ const Form2 = () => {
 
             <button
               className={styles.button}
-              data-testid="submit"
               type="submit"
-              name="Sign Up"
               disabled={!isClickable}
-              aria-disabled="true"
+              aria-disabled={!isClickable}
             >
               変換する
             </button>
           </form>
 
           {convertedData && (
-            <div className={styles.result} data-testid="result-area">
+            <section className={styles.result} data-testid="result-area">
               <p>あなたの名前を大文字に変換しました！<br />{convertedData}</p>
-            </div>
+            </section>
           )}
         </div>
 
         <Description>
-          <p>Form2の構成はForm1とほとんど同じです。違う点は、テキストボックスに文字を入力した後で、文字を全て削除すると、「文字が入力されていません」というエラーメッセージが表示される点です。</p>
+          <p>Form2の構成はForm1とほとんど同じです。違う点は、テキストボックスに文字を入力した後で文字を全て削除すると、「文字が入力されていません」というエラーメッセージが表示される点です。</p>
 
           <p>onChangeイベントハンドラーで入力された文字数をカウントし、0になった時にエラーメッセージのstateを変化させ表示させます。</p>
 

@@ -16,3 +16,11 @@
   gap: 20px;
   font-size: 0.95rem;
 }
+
+@media (width < 768px) {
+  .date {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+}

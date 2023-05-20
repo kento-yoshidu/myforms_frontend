@@ -8,6 +8,7 @@ import { useState } from "react"
 import Description from "../../components/description"
 import PageLink from "../../components/page-link"
 import HomeLink from "../../components/home-link"
+import Meta from "../../components/meta"
 
 const Form4 = () => {
   const [email, SetEmail] = useState("")
@@ -55,9 +56,7 @@ const Form4 = () => {
 
   return (
     <>
-      <Head>
-        <title>Form4 | My Forms</title>
-      </Head>
+      <Meta pageTitle="Form4" />
 
       <Header />
 
@@ -70,15 +69,19 @@ const Form4 = () => {
       <Container>
         <div className={styles.wrapper}>
           <h3
+            id="form-title"
             className={styles.title}
-            data-testid="form-title"
           >
             メールアドレス登録フォーム
           </h3>
 
           <p className={styles.text}>利用するメールアドレスを入力してください（適当なアドレスでOKです。ただ、バリデーションがかかりますので、形式は正しいものにしてください）。</p>
 
-          <form className={styles.form} onSubmit={submit}>
+          <form
+            className={styles.form}
+            aria-labelledby="form-title"
+            onSubmit={submit}
+          >
             <label htmlFor="email" className={styles.label}>
               メールアドレス <span>(※必須)</span>
             </label>
@@ -89,7 +92,6 @@ const Form4 = () => {
               type="email"
               className={styles.input}
               placeholder="dummy@example.com"
-              data-testid="email"
               onChange={handleChange}
               onBlur={handleBlur}
               onFocus={handleFocus}
@@ -106,10 +108,9 @@ const Form4 = () => {
 
             <button
               className={styles.button}
-              data-testid="submit"
               type="submit"
-              name="Sign Up"
               disabled={!isFormValid}
+              aria-disabled={!isFormValid}
             >
               送信する
             </button>
@@ -148,7 +149,7 @@ const Form4 = () => {
           <p>を行っています。</p>
         </Description>
 
-        <PageLink prev="3" />
+        <PageLink prev="3" next="5" />
 
         <HomeLink />
       </Container>

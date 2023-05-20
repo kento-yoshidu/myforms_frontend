@@ -1,12 +1,13 @@
 .main {
   max-width: var(--max-width);
   margin: 50px auto;
+  padding-bottom: 60px;
 }
 
 @media (width < 768px) {
   .main {
     margin: 20px auto;
-    padding: 10px 0;
+    padding: 10px 0 30px;
     width: 87%;
   }
 }
@@ -15,9 +16,26 @@
   margin: 50px 0;
 }
 
+@media (width < 768px) {
+  .section {
+    margin: 40px 0;
+  }
+
+  .section:first-of-type {
+    margin: 0;
+  }
+}
+
+.h1 {
+  margin-bottom: 10px;
+  font-size: clamp(1.45rem, 3vw, 2.25rem);
+  font-weight: normal;
+}
+
 .h2 {
   margin-bottom: 10px;
-  font-size: clamp(1.35rem, 1.4vw, 1.65rem);
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  font-weight: normal;
 }
 
 .list {

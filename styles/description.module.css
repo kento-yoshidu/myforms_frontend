@@ -1,104 +1,71 @@
-.open,
-.close {
+.details {
+  width: 100%;
   border: 1px solid var(--border-color);
+  cursor: pointer;
 }
 
-.heading {
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
+.summary {
+  font-size: clamp(1rem, 2vw, 1.25rem);
   text-align: center;
   height: var(--clickable-height);
+  line-height: var(--clickable-height);
 }
 
-.heading:hover {
+.summary:hover {
   background-color: rgba(250, 250, 250, 0.9);
 }
 
-.heading button {
-  all: unset;
-  outline: revert;
-  -webkit-tap-highlight-color: transparent;
-  cursor: pointer;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 15px;
-  display: flex;
-  justify-content: center;
-  gap: 1em;
-  display: flex;
-  align-items: center;
-}
-
-.icon {
-  color: #888;
-  font-size: 1.25rem;
-  transition: 0.5s;
-}
-
-.open .icon {
-  transform: rotate(180deg);
-}
-
-.text {
+.content {
   overflow: hidden;
-  height: 0px;
-  transition: none;
-}
-
-.open .text {
-  animation: openAnime 0.5s forwards;
-}
-
-.close .text {
-  animation: closeAnime 0.5s forwards;
-}
-
-@keyframes openAnime {
-  0% {
-    height: 0px;
-  }
-  99% {
-    height: var(--text-height);
-  }
-  100% {
-    height: auto;
-  }
-}
-
-@keyframes closeAnime {
-  0% {
-    height: var(--text-height);
-  }
-  100% {
-    height: 0px;
-  }
-}
-
-.textInner {
-  padding: 1em 3em 1.14em;
-  font-size: clamp(0.95rem, 1.8vw, 0.98rem);
 }
 
 @media (width < 768px) {
-  .textInner {
+  .text {
     padding: 1em 1em 1.14em;
   }
 }
 
-.textInner section {
+.contentInner {
+  padding: 1em 3em 1.14em;
+  font-size: clamp(0.95rem, 1.8vw, 0.98rem);
+}
+
+.contentInner section {
   margin: 0 auto 40px;
 }
 
-.textInner p {
+.contentInner p {
   text-indent: 0.75rem;
   margin: 10px 0;
   line-height: 1.85;
 }
 
-.textInner ol {
-  width: 90%;
-  margin: 20px auto;
+.contentInner a {
+  color: #444;
 }
 
-.textInner li {
+.contentInner ol,
+.contentInner ul {
+  width: 90%;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+
+.contentInner li {
   margin-bottom: 8px;
+  line-height: 1.75;
+}
+
+.contentInner li time {
+  margin-right: 1.5rem;
+}
+
+.contentInner li a {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.contentInner em {
+  font-weight: bolder;
+  font-style: normal;
 }

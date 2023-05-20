@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 20px 0;
+  padding: 30px 0 0;
   border: 1px solid var(--border-color);
   border-radius: 2px;
   width: 100%;
@@ -19,12 +19,6 @@
   text-align: center;
 }
 
-@media (width < 768px) {
-  .text {
-    width: 100%;
-  }
-}
-
 .form {
   display: flex;
   flex-direction: column;
@@ -41,7 +35,7 @@
 .label {
   display: block;
   margin-bottom: 3px;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
 }
 
 .label:not(:first-of-type) {
@@ -51,26 +45,27 @@
 .label span {
   display: inline-block;
   margin-left: 8px;
-  color: rgb(255, 50, 50);
-  font-size: 0.8em;
+  color: var(--invalid-color);
+  font-size: 0.9em;
   font-weight: bold;
 }
 
 .input {
   display: block;
-  padding: 5px 8px;
+  padding: 8px 10px;
   width: 100%;
+  font-size: 1.1rem;
 }
 
 .errorMessage {
-  margin-top: 5px;
-  color: red;
-  font-size: 0.8rem;
+  margin-top: 10px;
+  color: var(--invalid-color);
+  font-size: 0.95rem;
   font-weight: bold;
 }
 
 .button {
-  margin: 40px auto 0;
+  margin: 30px auto 10px;
   padding: 0 10px;
   cursor: pointer;
   background-color: #efefef;
@@ -89,6 +84,25 @@
 }
 
 .result {
-  text-align: center;
+  margin-bottom: 40px;
   font-size: clamp(0.95rem, 2vw, 1rem);
+  text-align: center;
+}
+
+.input[aria-invalid=true] {
+  border: 1px solid var(--invalid-color);
+  box-shadow: 0 0 4px 0 var(--invalid-color);
+  outline: 1px solid var(--invalid-color);
+}
+
+.notice {
+  margin-top: 3px;
+  color: #888;
+  font-size: 0.9rem;
+  text-overflow: unset;
+}
+
+.notice svg {
+  display: inline-block;
+  margin-right: 5px;
 }

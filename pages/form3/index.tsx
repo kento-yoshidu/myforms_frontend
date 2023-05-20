@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import Head from "next/head"
 
 import Container from "../../components/container"
 import Header from "../../components/header"
@@ -9,6 +8,7 @@ import HomeLink from "../../components/home-link"
 import styles from "../form1/style.module.css"
 import Description from "../../components/description"
 import PageLink from "../../components/page-link"
+import Meta from "../../components/meta"
 
 const Form3 = () => {
   const [password, setPassword] = useState("")
@@ -53,28 +53,33 @@ const Form3 = () => {
 
   return (
     <>
-      <Head>
-        <title>Form3 | My Forms</title>
-      </Head>
+      <Meta pageTitle="Form3" />
 
       <Header />
 
       <PageTitle
         pageTitle="Form3"
         postdate="2023-04-29"
-        update="2023-05-01"
+        update="2023-05-10"
       />
 
       <Container>
         <div className={styles.wrapper}>
-          <h3 className={styles.title} data-testid="form-title">
+          <h3
+            id="form-title"
+            className={styles.title}
+          >
             パスワード設定フォーム
           </h3>
 
           <p className={styles.text}>あなたのパスワードを設定します。任意のパスワード8文字を入力したら、「パスワードを設定する」ボタンをクリックしてください。</p>
           <p className={styles.text}>あなたが入力したパスワードを表示します。</p>
 
-          <form className={styles.form} onSubmit={submit}>
+          <form
+            className={styles.form}
+            aria-labelledby="form-title"
+            onSubmit={submit}
+          >
             <label htmlFor="password" className={styles.label}>
               パスワード(8文字以上) <span>※必須</span>
             </label>
@@ -83,43 +88,41 @@ const Form3 = () => {
               id="password"
               className={styles.input}
               type="password"
+              placeholder="Password"
               onChange={handleChange}
               onBlur={handleBlur}
               onFocus={handleFocus}
-              placeholder="Password"
-              data-testid="password"
             />
 
             {isShowError && (
-              <p className={styles.errorMessage} data-testid="error-message">パスワードは8文字必要です。</p>
+              <p className={styles.errorMessage} data-testid="error-message">パスワードは8文字以上必要です。</p>
             )}
 
             <button
               className={styles.button}
-              data-testid="submit"
               type="submit"
-              name="Sign Up"
               disabled={!isInputValid}
+              aria-disabled={!isInputValid}
             >
               パスワードを設定する
             </button>
           </form>
 
           {convertedData && (
-            <div className={styles.result} data-testid="result-area">
+            <section className={styles.result} data-testid="result-area">
               <p>あなたが設定したパスワードは<br />
               {convertedData} <br />
               ですね！</p>
-            </div>
+            </section>
           )}
         </div>
 
         <Description>
           <p>Form3では<strong>リアルタイムバリデーション</strong>を実装してみました。送信ボタンを押して初めてエラーメッセージが表示されるのではなく、送信ボタンを押す前に表示されるアレですね。</p>
 
-          <p>しかし、<strong>入力途中</strong>でエラーメッセージが出るとイラッとします。今回の例ですと最低文字数は8文字ですから、1～7文字目を打っている間にずっとエラーメッセージが表示されるわけです。これから勉強しようとしている時に、お母さんに「勉強しなさい！」と怒られた時の感情と似ています。これは良くありませんね。</p>
+          <p>しかし、<strong>入力途中</strong>でエラーメッセージが出るとイラッとします。今回の例ですと最低文字数は8文字ですから、1~7文字目を打っている間にずっとエラーメッセージが表示されるわけです。これから勉強しようとしている時に、お母さんに「勉強しなさい！」と怒られた時の感情と似ています。これは良くありませんね。</p>
 
-          <p>さらに言うと、タイプミスして最初から入力し直す場合もあるので、入力中は黙っておいて欲しいわけです。</p>
+          <p>さらに言うと、タイプミスして最初から入力し直す場合もあるので、入力中は黙っておいて欲しいわけです（パスワードはその性質上、特に打ち直す可能性が高いと思われます）。</p>
 
           <p>onChangeで文字数をカウントするのは筋が悪いので、onBlurを使用することにしました。onBlurはフォーカスが外れた時に動作するイベントハンドラーです。フォーカスが外れた時に文字数をカウントして、8文字未満ならエラーメッセージを表示させます。</p>
 
@@ -141,6 +144,12 @@ const Form3 = () => {
           </ol>
 
           <p>を行っています。</p>
+        </Description>
+
+        <Description heading="更新履歴">
+          <ul>
+            <li><time dateTime="2023-05-10">2023年05月10日</time>エラーメッセージ「パスワードは8文字必要です。」を「パスワードは8文字<em>以上</em>必要です。」に修正。その他細かい文言を修正。</li>
+          </ul>
         </Description>
 
         <PageLink prev="2" next="4" />

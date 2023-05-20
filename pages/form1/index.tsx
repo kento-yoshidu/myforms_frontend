@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import Head from "next/head"
 
 import Container from "../../components/container"
 import Header from "../../components/header"
@@ -9,6 +8,7 @@ import PageLink from "../../components/page-link"
 
 import styles from "./style.module.css"
 import Description from "../../components/description"
+import Meta from "../../components/meta"
 
 const Form1 = () => {
   const [name, setName] = useState("")
@@ -44,9 +44,10 @@ const Form1 = () => {
 
   return (
     <>
-      <Head>
-        <title>Form1 | My Forms</title>
-      </Head>
+      <Meta
+        pageTitle="Form1"
+        pageDesc="入力された名前を大文字にして返すフォームです。"
+      />
 
       <Header />
 
@@ -58,14 +59,21 @@ const Form1 = () => {
 
       <Container>
         <div className={styles.wrapper}>
-          <h3 className={styles.title}>
+          <h3
+            id="form-title"
+            className={styles.title}
+          >
             名前変換フォーム(ver1.0)
           </h3>
 
           <p className={styles.text}>あなたの名前を半角のアルファベットで入力し、「変換する」ボタンをクリックしてください。</p>
           <p className={styles.text}>小文字を大文字に変換して表示します。</p>
 
-          <form className={styles.form} onSubmit={submit}>
+          <form
+            className={styles.form}
+            aria-labelledby="form-title"
+            onSubmit={submit}
+          >
             <label htmlFor="name" className={styles.label}>
               お名前 <span>※必須</span>
             </label>

@@ -1,57 +1,88 @@
-import { CSSProperties, ReactNode, useRef, useState } from "react"
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCircleChevronDown } from "@fortawesome/free-solid-svg-icons"
+import { ReactNode, useRef, useState } from "react"
 
 import styles from "../styles/description.module.css"
 
-type Props = {
-  children: ReactNode,
-  heading?: string
+const animeTiming = {
+  duration: 800,
+  easing: "ease"
 }
 
-const Description = ({ children, heading }: Props) => {
-  const [textIsOpen, setTextIsOpen] = useState(false)
-
-  const toggleText = () => {
-    setTextIsOpen((prev) => !prev)
+const closingAnimeKeyframes = (content: HTMLDivElement) => [
+  {
+    height: content.offsetHeight + "px",
+    opacity: 1
+  },
+  {
+    height: 0,
+    opacity: 0
   }
+]
 
-  const refText = useRef<HTMLDivElement>(null)
+const openingAnimKeyframes = (content: HTMLDivElement) => [
+  {
+    height: 0,
+    opacity: 0,
+  }, {
+    height: content.offsetHeight + 'px',
+    opacity: 1,
+  }
+];
 
+
+type Props = {
+  heading?: string
+  children: ReactNode,
+}
+
+const Description = ({ heading, children }: Props) => {
+  const refContent = useRef<HTMLDivElement>(null)
+
+  const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+    e.preventDefault()
+
+    const detailsElement = refContent.current?.parentNode as HTMLDialogElement
+
+    if (detailsElement.dataset.animStatus === "running") {
+      return
+    }
+
+    if (detailsElement.open) {
+      detailsElement.dataset.animeStatus = "running"
+
+      refContent.current!.animate(closingAnimeKeyframes(refContent.current!), animeTiming).onfinish = () => {
+        detailsElement.removeAttribute("open")
+        detailsElement.dataset.animeStatus = ""
+      }
+    } else {
+      detailsElement.setAttribute("open", "true")
+
+      const openAnimation = refContent.current?.animate(openingAnimKeyframes(refContent.current), animeTiming)
+
+      detailsElement.dataset.animeStatus = "running"
+
+      openAnimation!.onfinish = () => {
+        detailsElement.dataset.animeStatus = ""
+      }
+    }
+  }
   return (
-    <div
-      className={textIsOpen ? styles.open : styles.close}
-    >
-      <h3 className={styles.heading}>
-        <button onClick={toggleText}>
-          {heading
-            ? heading
-            : "こぼれ話"
-          }
-          <FontAwesomeIcon
-            /* @ts-ignore */
-            icon={faCircleChevronDown}
-            className={styles.icon}
-          />
-        </button>
-      </h3>
+    <details className={styles.details}>
+      <summary
+        className={styles.summary}
+        onClick={handleClick}
+      >
+        { heading ? heading : "こぼれ話" }
+      </summary>
 
       <div
-        aria-hidden={textIsOpen ? "false" : "true"}
-        className={styles.text}
-        ref={refText}
-        style={{
-          "--text-height": refText.current
-            ?  `${refText.current?.scrollHeight}px`
-            : "0px"
-        } as CSSProperties}
+        className={styles.content}
+        ref={refContent}
       >
-        <div className={styles.textInner}>
+        <div className={styles.contentInner}>
           {children}
         </div>
       </div>
-    </div>
+    </details>
   )
 }
 
