@@ -57,5 +57,11 @@ describe("Form1", () => {
       await userEvent.type(screen.getByRole("textbox", { name: /^お名前/ }), "kento")
       expect(screen.getByRole("button", { name: "変換する" })).not.toBeDisabled()
     })
+
+    it("フォームに半角スペースのみを入力した時、変換ボタンがdisabledになっていること", async () => {
+      render(<Form1 />)
+      await userEvent.type(screen.getByRole("textbox", { name: /^お名前/ }), " ")
+      expect(screen.getByRole("button", { name: "変換する" })).toBeDisabled()
+    })
   })
 })
