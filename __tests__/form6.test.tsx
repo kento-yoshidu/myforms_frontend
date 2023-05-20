@@ -1,4 +1,4 @@
-import { cleanup, getByRole, render, screen } from "@testing-library/react"
+import { cleanup, getByRole, getRoles, render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { rest } from "msw"
 import { setupServer } from "msw/node"
@@ -81,6 +81,18 @@ describe("Form6", () => {
       render(<Form6 />)
       await userEvent.type(screen.getByRole("textbox", { name: inputText }), "kento111")
       expect(screen.getByTestId("error-message")).toBeTruthy()
+    })
+
+    it("名前を正しくない形式で入力した時、エラーメッセージが表示されること", async () => {
+      render(<Form6 />)
+      await userEvent.type(screen.getByRole("textbox", { name: inputText }), "kento111")
+      expect(screen.getByTestId("error-message")).toBeTruthy()
+    })
+
+    it("aria-invalidを見れるかテスト", async () => {
+      render(<Form6 />)
+      await userEvent.type(screen.getByRole("textbox", { name: inputText }), "kento111")
+      expect(screen.getByRole("textbox", { name: inputText})).toHaveAttribute("aria-invalid", "false")
     })
   })
 })
