@@ -23,6 +23,9 @@ afterEach(() => {
 
 afterAll(() => server.close())
 
+const inputText = "お名前 ※必須"
+const buttonText = "変換する"
+
 describe("Form2", () => {
   describe("初回レンダリング時、各要素が正しく表示されていること", () => {
     it("Form2がレンダリングされること", () => {
@@ -30,7 +33,7 @@ describe("Form2", () => {
       expect(screen.getByRole("heading", { level: 3, name: /^名前変換フォーム/ })).toBeTruthy()
     })
 
-    it("初回レンダリング時, 変換結果が表示されるエリアに何も表示されていないこと", () => {
+    it("初回レンダリング時、変換結果が表示されるエリアに何も表示されていないこと", () => {
       render(<Form2 />)
       expect(screen.queryByTestId("result-area")).toBeNull()
     })
@@ -40,31 +43,43 @@ describe("Form2", () => {
       expect(screen.queryByTestId("error-message")).toBeNull()
     })
 
-    it("初回レンダリング時, 送信ボタンがdisabledになっていること", () => {
+    it("初回レンダリング時、変換ボタンがdisabledになっていること", () => {
       render(<Form2 />)
-      expect(screen.getByRole("button", { name: /^変換する$/ })).toBeDisabled()
+      expect(screen.getByRole("button", { name: buttonText })).toBeDisabled()
     })
   })
 
   describe("フォームを送信した時、正しい結果が得られること", () => {
-    it("フォームを送信した時, 変換された名前が表示されること", async () => {
+    it("フォームを送信した時、変換された名前が表示されること", async () => {
       render(<Form2 />)
-      await userEvent.type(screen.getByRole("textbox", { name: /^お名前/ }), "kento")
-      await userEvent.click(screen.getByRole("button", { name: /^変換する$/}))
+      await userEvent.type(screen.getByRole("textbox", { name: inputText }), "kento")
+      await userEvent.click(screen.getByRole("button", { name: buttonText }))
       expect(screen.getByTestId("result-area")).toHaveTextContent("KENTO")
     })
   })
 
   describe("フォームに名前を入力した時、各要素が正しい状態になること", () => {
-    it("名前を入力した時、変換ボタンのdisabledが解除されること", async () => {
+    it("フォームに名前を入力した時、変換ボタンのdisabledが解除されること", async () => {
       render(<Form2 />)
-      await userEvent.type(screen.getByRole("textbox", { name: /^お名前/ }), "kento")
-      expect(screen.getByRole("button", { name: /^変換する$/ })).toBeEnabled()
+      await userEvent.type(screen.getByRole("textbox", { name: inputText }), "kento")
+      expect(screen.getByRole("button", { name: buttonText })).toBeEnabled()
     })
 
-    it("名前を入力してから削除した時、エラーメッセージが表示されること", async () => {
+    it("フォームに半角スペースのみを入力した時、変換ボタンがdisabledになっていること", async () => {
       render(<Form2 />)
-      const inputForm = screen.getByRole("textbox", { name: /^お名前/ })
+      await userEvent.type(screen.getByRole("textbox", { name: inputText }), " ")
+      expect(screen.getByRole("button", { name: buttonText })).toBeDisabled()
+    })
+
+    it("フォームに半角スペースのみを入力した時、エラーメッセージが表示されること", async () => {
+      render(<Form2 />)
+      await userEvent.type(screen.getByRole("textbox", { name: inputText }), " ")
+      expect(screen.getByTestId("error-message")).toBeTruthy()
+    })
+
+    it("フォームに名前を入力してから削除した時、エラーメッセージが表示されること", async () => {
+      render(<Form2 />)
+      const inputForm = screen.getByRole("textbox", { name: inputText })
       await userEvent.type(inputForm, "kento")
       await userEvent.clear(inputForm)
       expect(screen.getByTestId("error-message")).toBeTruthy()
