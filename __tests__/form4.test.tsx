@@ -23,7 +23,7 @@ afterEach(() => {
 
 afterAll(() => server.close())
 
-const inputText = "メールアドレス (※必須)"
+const inputText = "メールアドレス ※必須"
 const buttonText = "送信する"
 
 describe("Form4", () => {
