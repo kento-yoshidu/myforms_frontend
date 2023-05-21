@@ -16,6 +16,10 @@
   margin: 50px 0;
 }
 
+.section p {
+  line-height: 1.7;
+}
+
 @media (width < 768px) {
   .section {
     margin: 40px 0;

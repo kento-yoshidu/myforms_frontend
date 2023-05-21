@@ -7,16 +7,17 @@
 
 .title {
   margin-bottom: 30px;
-  font-size: clamp(1.45rem, 2.8vw, 1.75rem);
+  font-size: clamp(1.35rem, 2.8vw, 1.65rem);
   font-weight: normal;
   text-align: center;
 }
 
 .text {
-  width: 80%;
+  width: 90%;
   margin: 0 auto 10px;
   font-size: clamp(0.9rem, 2vw, 0.95rem);
   text-align: center;
+  line-height: 1.7;
 }
 
 .form {
