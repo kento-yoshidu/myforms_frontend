@@ -7,7 +7,6 @@ import "@testing-library/jest-dom/extend-expect"
 import 'cross-fetch/polyfill'
 
 import Form1 from "../pages/form1"
-import { input } from "@testing-library/user-event/dist/types/event"
 
 const server = setupServer(
   rest.post("/api/form1", (req, res, ctx) => {
