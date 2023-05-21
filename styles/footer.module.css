@@ -1,10 +1,10 @@
 .footer {
-  padding: 15px 0;
+  padding: 18px 0;
   background-color: #222;
   text-align: center;
 }
 
 .link {
   color: #fff;
-  font-size: clamp(2rem, 4.2vw, 3rem);
+  font-size: clamp(2.2rem, 4.2vw, 2.8rem);
 }
