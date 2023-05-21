@@ -83,7 +83,7 @@ const Form4 = () => {
             onSubmit={submit}
           >
             <label htmlFor="email" className={styles.label}>
-              メールアドレス <span>(※必須)</span>
+              メールアドレス <span>※必須</span>
             </label>
 
             <input
@@ -92,6 +92,7 @@ const Form4 = () => {
               type="email"
               className={styles.input}
               placeholder="dummy@example.com"
+              inputMode="email"
               onChange={handleChange}
               onBlur={handleBlur}
               onFocus={handleFocus}
