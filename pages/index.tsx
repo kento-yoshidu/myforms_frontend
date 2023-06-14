@@ -26,31 +26,33 @@ const Home: NextPage = () => (
       <section className={styles.section}>
         <h2 className={styles.h2}>フォーム一覧</h2>
 
-        <ul className={styles.list}>
-          <li>
-            <Link href="/form1">Form1</Link>
-          </li>
+        <nav>
+          <ul className={styles.list}>
+            <li>
+              <Link href="/form1">Form1</Link>
+            </li>
 
-          <li>
-            <Link href="/form2">Form2</Link>
-          </li>
+            <li>
+              <Link href="/form2">Form2</Link>
+            </li>
 
-          <li>
-            <Link href="/form3">Form3</Link>
-          </li>
+            <li>
+              <Link href="/form3">Form3</Link>
+            </li>
 
-          <li>
-            <Link href="/form4">Form4</Link>
-          </li>
+            <li>
+              <Link href="/form4">Form4</Link>
+            </li>
 
-          <li>
-            <Link href="/form5">Form5</Link>
-          </li>
+            <li>
+              <Link href="/form5">Form5</Link>
+            </li>
 
-          <li>
-            <Link href="/form6">Form6</Link>
-          </li>
-        </ul>
+            <li>
+              <Link href="/form6">Form6</Link>
+            </li>
+          </ul>
+        </nav>
       </section>
 
       <section className={styles.section}>

@@ -36,7 +36,7 @@ const Form2 = () => {
     const data = await fetch("/api/form1", {
       method: "POST",
       body: JSON.stringify(name),
-      headers: { 'Content-Type': 'application/json' }
+      headers: { "Content-Type": "application/json" }
     })
 
     if (data.status === 200) {

@@ -4,14 +4,14 @@
   align-items: center;
   gap: 30px;
   max-width: var(--max-width);
-  margin: 30px auto;
+  margin: 30px auto 50px;
 }
 
 @media (width < 768px) {
   .container {
-    margin: 20px auto;
-    padding: 10px 0;
-    width: 87%;
     gap: 20px;
+    width: 87%;
+    margin: 20px auto 30px;
+    padding: 10px 0;
   }
 }

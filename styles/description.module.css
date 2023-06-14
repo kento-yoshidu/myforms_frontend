@@ -26,7 +26,8 @@
 }
 
 .contentInner {
-  padding: 1em 3em;
+  cursor: auto;
+  padding: 1em 3em 1.14em;
   font-size: clamp(0.95rem, 1.8vw, 0.98rem);
 }
 
@@ -68,4 +69,12 @@
 .contentInner em {
   font-weight: bolder;
   font-style: normal;
+}
+
+.contentInner code {
+  padding: 4px 4px 0 4px;
+  background-color: #ddd;
+  font-family: inherit;
+  font-weight: bolder;
+  cursor: auto;
 }
