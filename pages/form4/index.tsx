@@ -150,6 +150,12 @@ const Form4 = () => {
           <p>を行っています。</p>
         </Description>
 
+        <Description heading="更新履歴">
+          <ul>
+            <li><time dateTime="2023-05-21">2023年05月21日</time>input要素に<code>inputMode=&ldquo;email&rdquo;</code>を付与。</li>
+          </ul>
+        </Description>
+
         <PageLink prev="3" next="5" />
 
         <HomeLink />
