@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
   status: boolean,
+  errorStatus?: "id" | "pass"
 }
 
 export default function handler(
