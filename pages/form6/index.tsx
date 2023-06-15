@@ -4,14 +4,14 @@ import { useState } from "react"
 import Header from "../../components/header"
 import PageTitle from "../../components/page-header"
 import Container from "../../components/container"
+import PageLink from "../../components/page-link"
+import HomeLink from "../../components/home-link"
+import Description from "../../components/description"
 
 import styles from "../form1/style.module.css"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons"
-import PageLink from "../../components/page-link"
-import HomeLink from "../../components/home-link"
-import Description from "../../components/description"
 
 const Form6 = () => {
   const [name, setName] = useState("")
@@ -50,7 +50,7 @@ const Form6 = () => {
   return (
     <>
       <Head>
-        <title>Form6 | My Forms</title>
+        <title>Form6 | MyForms</title>
       </Head>
 
       <Header />
@@ -77,7 +77,6 @@ const Form6 = () => {
             aria-labelledby="form-title"
             onSubmit={submit}
           >
-
             <label htmlFor="name" className={styles.label}>
               お名前 <span>※必須</span>
             </label>

@@ -12,7 +12,13 @@ export default function handler(
   try {
     const data = req.body
 
-    res.status(200).json({ status: true })
+    setTimeout(() => {
+      if (data.id === "id" && data.password === "pass") {
+        res.status(200).json({ status: true })
+      } else {
+        res.status(401).json({ status: false })
+      }
+    }, 1000)
   } catch (e) {
     res.status(500)
   }

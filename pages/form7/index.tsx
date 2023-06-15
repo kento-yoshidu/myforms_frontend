@@ -6,23 +6,45 @@ import Container from "../../components/container"
 
 import styles from "../form1/style.module.css"
 import { useState } from "react"
+import { UserData } from "../form5"
+
+type LoginData = {
+  username: string
+  password: string
+}
 
 const Form7 = () => {
-  const [result, setResult] = useState("")
+  const [formData, setFormData] = useState<LoginData>({
+    username: "",
+    password: ""
+  })
+
+  const [isLoading, setIsLoading] = useState(false)
+  const [isLogin, setIsLogin] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   }
 
-  const submit =async (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const data = await fetch("/api/api5", {
-      method: "POST",
-      body: JSON.stringify({ id: "hoge", password: "pass"}),
-      headers: { "Content-Type": "application/json" }
-    })
+    if (!isLogin) {
+      setIsLoading(true)
 
-    console.log("data is = ", data)
+      const data = await fetch("/api/api5", {
+        method: "POST",
+        body: JSON.stringify({ id: "id", password: "pass"}),
+        headers: { "Content-Type": "application/json" }
+      })
+
+      setIsLoading(false)
+
+      if (data.ok) {
+        setIsLogin(true)
+      }
+    } else {
+      setIsLogin(false)
+    }
   }
 
   return (
@@ -59,6 +81,7 @@ const Form7 = () => {
               id="id"
               className={styles.input}
               placeholder="ID"
+              onChange={handleChange}
               required
             />
 
@@ -73,13 +96,30 @@ const Form7 = () => {
               required
             />
 
-            <button
-              className={styles.button}
-              type="submit"
-              // disabled={!isFormValid}
-            >
-              ログイン
-            </button>
+            {isLogin
+              ? (
+                <button type="submit">
+                  ログアウト
+                </button>
+              ) : (
+                <>
+                  {isLoading
+                    ? (
+                      <p>ロード中...</p>
+                    ) : (
+                      <button
+                        className={styles.button}
+                        type="submit"
+                      >
+                        ログイン
+                      </button>
+                    )}
+                </>
+              )}
+
+              {isLogin && (
+                <p>ログインに成功しました！</p>
+              )}
           </form>
         </div>
       </Container>
