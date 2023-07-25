@@ -6,16 +6,17 @@ import Container from "../../components/container"
 
 import styles from "../form1/style.module.css"
 import { useState } from "react"
-import { UserData } from "../form5"
+import PageLink from "../../components/page-link"
+import HomeLink from "../../components/home-link"
 
 type LoginData = {
-  username: string
+  id: string
   password: string
 }
 
 const Form7 = () => {
   const [formData, setFormData] = useState<LoginData>({
-    username: "",
+    id: "",
     password: ""
   })
 
@@ -23,6 +24,8 @@ const Form7 = () => {
   const [isLogin, setIsLogin] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
   }
 
   const submit = async (e: React.FormEvent) => {
@@ -33,7 +36,7 @@ const Form7 = () => {
 
       const data = await fetch("/api/api5", {
         method: "POST",
-        body: JSON.stringify({ id: "id", password: "pass"}),
+        body: JSON.stringify({ id: formData.id, password: formData.password }),
         headers: { "Content-Type": "application/json" }
       })
 
@@ -57,8 +60,8 @@ const Form7 = () => {
 
       <PageTitle
         pageTitle="Form7"
-        postdate="2023-01-15"
-        update="2023-06-15"
+        postdate="2023-07-25"
+        update="2023-07-25"
       />
 
       <Container>
@@ -79,8 +82,9 @@ const Form7 = () => {
 
             <input
               id="id"
+              name="id"
               className={styles.input}
-              placeholder="ID"
+              placeholder="id"
               onChange={handleChange}
               required
             />
@@ -91,8 +95,10 @@ const Form7 = () => {
 
             <input
               id="password"
+              name="password"
               className={styles.input}
               placeholder="password"
+              onChange={handleChange}
               required
             />
 
@@ -114,16 +120,20 @@ const Form7 = () => {
                         ログイン
                       </button>
                     )}
-                </>
-              )}
+                  </>
+                )
+            }
 
-              {isLogin && (
-                <p>ログインに成功しました！</p>
-              )}
+            {isLogin && (
+              <p>ログインに成功しました！</p>
+            )}
           </form>
         </div>
-      </Container>
 
+        <PageLink prev="6" />
+
+        <HomeLink />
+      </Container>
     </>
   )
 }
