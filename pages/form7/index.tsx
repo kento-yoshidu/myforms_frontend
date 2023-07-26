@@ -1,13 +1,15 @@
+import { useState } from "react"
+
 import Head from "next/head"
 
 import PageTitle from "../../components/page-header"
 import Header from "../../components/header"
 import Container from "../../components/container"
-
-import styles from "../form1/style.module.css"
-import { useState } from "react"
 import PageLink from "../../components/page-link"
 import HomeLink from "../../components/home-link"
+import Description from "../../components/description"
+
+import styles from "../form1/style.module.css"
 
 type LoginData = {
   id: string
@@ -22,6 +24,7 @@ const Form7 = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -44,8 +47,13 @@ const Form7 = () => {
 
       if (data.ok) {
         setIsLogin(true)
+        setErrorMessage(null)
+      } else {
+        const res = await data.json()
+        setErrorMessage(res.errorMessage)
       }
     } else {
+      // ログアウト
       setIsLogin(false)
     }
   }
@@ -61,7 +69,7 @@ const Form7 = () => {
       <PageTitle
         pageTitle="Form7"
         postdate="2023-07-25"
-        update="2023-07-25"
+        update="2023-07-26"
       />
 
       <Container>
@@ -70,7 +78,7 @@ const Form7 = () => {
             ログインフォーム
           </h3>
 
-          <p className={styles.text}>ユーザーIDとパスワードを入力してください（ID = user、パスワード = pass でログインできます）。</p>
+          <p className={styles.text}>ユーザーIDとパスワードを入力してください<br />（ID = user、パスワード = pass でログインできます）。</p>
 
           <form
             className={styles.form}
@@ -87,6 +95,7 @@ const Form7 = () => {
               placeholder="id"
               onChange={handleChange}
               required
+              disabled={isLogin}
             />
 
             <label htmlFor="password" className={styles.label}>
@@ -100,18 +109,29 @@ const Form7 = () => {
               placeholder="password"
               onChange={handleChange}
               required
+              disabled={isLogin}
             />
+
+            {errorMessage && (
+              <>
+                <p>エラー発生!</p>
+                <p>{errorMessage}</p>
+              </>
+            )}
 
             {isLogin
               ? (
-                <button type="submit">
+                <button
+                  className={styles.button}
+                  type="submit"
+                >
                   ログアウト
                 </button>
               ) : (
                 <>
                   {isLoading
                     ? (
-                      <p>ロード中...</p>
+                      <p>認証中...</p>
                     ) : (
                       <button
                         className={styles.button}
@@ -129,6 +149,10 @@ const Form7 = () => {
             )}
           </form>
         </div>
+
+        <Description>
+          <p>7月26日時点、まだ作業中。。。👷‍♂️</p>
+        </Description>
 
         <PageLink prev="6" />
 
