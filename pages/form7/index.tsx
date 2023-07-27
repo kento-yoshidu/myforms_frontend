@@ -24,7 +24,7 @@ const Form7 = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
-  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [isLoginFailed, setIsLoginFailed] = useState<boolean>(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -47,10 +47,10 @@ const Form7 = () => {
 
       if (data.ok) {
         setIsLogin(true)
-        setErrorMessage(null)
+        setIsLoginFailed(false)
       } else {
         const res = await data.json()
-        setErrorMessage(res.errorMessage)
+        setIsLoginFailed(true)
       }
     } else {
       // ログアウト
@@ -69,7 +69,7 @@ const Form7 = () => {
       <PageTitle
         pageTitle="Form7"
         postdate="2023-07-25"
-        update="2023-07-26"
+        update="2023-07-27"
       />
 
       <Container>
@@ -112,11 +112,21 @@ const Form7 = () => {
               disabled={isLogin}
             />
 
-            {errorMessage && (
-              <>
-                <p>エラー発生!</p>
-                <p>{errorMessage}</p>
-              </>
+            {isLoginFailed && (
+              <p
+                className={styles.errorMessage}
+                data-testid="error-message"
+              >
+                ユーザーID、パスワードの入力に間違いがあるか、ユーザー登録がされていません。
+              </p>
+            )}
+
+            {isLogin && (
+              <p
+                className={styles.successMessage}
+              >
+                ログインに成功しました！
+              </p>
             )}
 
             {isLogin
@@ -144,14 +154,11 @@ const Form7 = () => {
                 )
             }
 
-            {isLogin && (
-              <p>ログインに成功しました！</p>
-            )}
           </form>
         </div>
 
         <Description>
-          <p>7月26日時点、まだ作業中。。。👷‍♂️</p>
+          <p>7月27日時点、まだ作業中。。。👷‍♂️</p>
         </Description>
 
         <PageLink prev="6" />
