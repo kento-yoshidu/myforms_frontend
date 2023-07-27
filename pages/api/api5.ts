@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next"
 
 type Data = {
   status: boolean,
-  errorMessage?: string
 }
 
 export default function handler(
@@ -16,9 +15,9 @@ export default function handler(
       if (data.id === "user" && data.password === "pass") {
         res.status(200).json({ status: true })
       } else if (data.id !== "user") {
-        res.status(401).json({ status: false, errorMessage: "id-error" })
+        res.status(401).json({ status: false })
       } else if (data.password !== "pass") {
-        res.status(401).json({ status: false, errorMessage: "password-error" })
+        res.status(401).json({ status: false })
       }
     }, 1000)
   } catch (e) {
