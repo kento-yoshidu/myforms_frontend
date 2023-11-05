@@ -21,14 +21,38 @@ const Form7 = () => {
     id: "",
     password: ""
   })
+  // id, passwordがちゃんと入力されているか
+  const [isInputForm, setIsInputForm] = useState({
+    id: false,
+    password: false
+  })
+  // フォーム全体として送信可能な状態か
+  const [isFormValid, setIsFormValid] = useState(false)
 
   const [isLoading, setIsLoading] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
   const [isLoginFailed, setIsLoginFailed] = useState<boolean>(false)
+  const [isIdValid, setIsInputValid] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
+
+    const trimmedValue = value.trim()
+
+    const data = {...formData, [name]: trimmedValue}
+
+    setFormData(data)
+
+    checkFormValid(data)
+  }
+
+  // 入力内容から送信ボタンのON/OFFを切り替える
+  const checkFormValid = ({id, password}: LoginData) => {
+    if (id && password) {
+      setIsFormValid(true)
+    } else {
+      setIsFormValid(false)
+    }
   }
 
   const submit = async (e: React.FormEvent) => {
@@ -69,7 +93,7 @@ const Form7 = () => {
       <PageTitle
         pageTitle="Form7"
         postdate="2023-07-25"
-        update="2023-07-27"
+        update="2023-11-05"
       />
 
       <Container>
@@ -146,6 +170,7 @@ const Form7 = () => {
                       <button
                         className={styles.button}
                         type="submit"
+                        disabled={!isFormValid}
                       >
                         ログイン
                       </button>
@@ -158,7 +183,7 @@ const Form7 = () => {
         </div>
 
         <Description>
-          <p>7月27日時点、まだ作業中。。。👷‍♂️</p>
+          <p>11月5日時点、作業中。。。👷‍♂️</p>
         </Description>
 
         <PageLink prev="6" />
