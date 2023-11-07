@@ -23,8 +23,8 @@ const Form7 = () => {
   })
   // id, passwordがちゃんと入力されているか
   const [isInputForm, setIsInputForm] = useState({
-    id: false,
-    password: false
+    id: true,
+    password: true
   })
   // フォーム全体として送信可能な状態か
   const [isFormValid, setIsFormValid] = useState(false)
@@ -32,7 +32,6 @@ const Form7 = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
   const [isLoginFailed, setIsLoginFailed] = useState<boolean>(false)
-  const [isIdValid, setIsInputValid] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -53,6 +52,33 @@ const Form7 = () => {
     } else {
       setIsFormValid(false)
     }
+  }
+
+  // フォームのフォーカスを外した時、エラーメッセージの表示/非表示を切り替える
+  const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, validity } = e.target
+
+    // Todo : validity.validでリファクタ
+    // Todo : この辺換数に切り出せない？
+    if (name === "id") {
+      if (value.trim().length !== 0) {
+        setIsInputForm((prevState) => ({...prevState, id: true}))
+      } else {
+        setIsInputForm((prevState) => ({...prevState, id: false}))
+      }
+    }
+
+    if (name === "password") {
+      if (value && validity.valid) {
+        setIsInputForm((prevState) => ({...prevState, password: true}))
+      } else {
+        setIsInputForm((prevState) => ({...prevState, password: false}))
+      }
+    }
+  }
+
+  const handleFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsInputForm((prevState) => ({...prevState, [e.target.name]: true}))
   }
 
   const submit = async (e: React.FormEvent) => {
@@ -109,7 +135,7 @@ const Form7 = () => {
             onSubmit={submit}
           >
             <label htmlFor="id" className={styles.label}>
-              ユーザーID
+              ユーザーID <span>(※必須)</span>
             </label>
 
             <input
@@ -118,12 +144,22 @@ const Form7 = () => {
               className={styles.input}
               placeholder="id"
               onChange={handleChange}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
               required
               disabled={isLogin}
             />
+            {!isInputForm.id && (
+              <p
+                className={styles.errorMessage}
+                data-testid="username-error-message"
+              >
+                ユーザー名を入力してください。
+              </p>
+            )}
 
             <label htmlFor="password" className={styles.label}>
-              パスワード
+              パスワード <span>(※必須)</span>
             </label>
 
             <input
@@ -132,9 +168,19 @@ const Form7 = () => {
               className={styles.input}
               placeholder="password"
               onChange={handleChange}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
               required
               disabled={isLogin}
             />
+            {!isInputForm.password && (
+              <p
+                className={styles.errorMessage}
+                data-testid="email-error-message"
+              >
+                パスワードを入力してください。
+              </p>
+            )}
 
             {isLoginFailed && (
               <p
