@@ -28,7 +28,7 @@ const Home: NextPage = () => (
 
         <nav>
           <ul className={styles.list}>
-            {[...Array(7)].map((_, i) => (
+            {[...Array(6)].map((_, i) => (
               <li key={i}>
                 <Link href={`/form${i+1}`}>Form{i+1}</Link>
               </li>
