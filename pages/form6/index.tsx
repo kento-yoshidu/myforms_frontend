@@ -144,7 +144,7 @@ const Form6 = () => {
           </ul>
         </Description>
 
-        <PageLink prev="5" next="7" />
+        <PageLink prev="5" />
 
         <HomeLink />
       </Container>
