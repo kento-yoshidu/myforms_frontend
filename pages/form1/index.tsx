@@ -9,6 +9,7 @@ import PageLink from "../../components/page-link"
 import styles from "./style.module.css"
 import Description from "../../components/description"
 import Meta from "../../components/meta"
+import { toast } from "sonner"
 
 const Form1 = () => {
   const [name, setName] = useState("")
@@ -30,15 +31,23 @@ const Form1 = () => {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const data = await fetch("/api/form1", {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/form1`, {
       method: "POST",
-      body: JSON.stringify(name),
+      body: JSON.stringify({
+        name,
+      }),
       headers: { 'Content-Type': 'application/json' }
     })
 
     if (data.status === 200) {
       const result = await data.json()
       setConvertedData(result.name)
+
+      toast.success(
+        <span style={{ display: "block", width: "100%", textAlign: "center" }}>
+          {result.message}
+        </span>
+      )
     }
   }
 
