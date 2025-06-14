@@ -1,8 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next"
 
 type Data = {
   status: boolean,
-  errorStatus?: "id" | "pass"
 }
 
 export default function handler(
@@ -13,9 +12,11 @@ export default function handler(
     const data = req.body
 
     setTimeout(() => {
-      if (data.id === "id" && data.password === "pass") {
+      if (data.id === "user" && data.password === "pass") {
         res.status(200).json({ status: true })
-      } else {
+      } else if (data.id !== "user") {
+        res.status(401).json({ status: false })
+      } else if (data.password !== "pass") {
         res.status(401).json({ status: false })
       }
     }, 1000)

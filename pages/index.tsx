@@ -28,29 +28,11 @@ const Home: NextPage = () => (
 
         <nav>
           <ul className={styles.list}>
-            <li>
-              <Link href="/form1">Form1</Link>
-            </li>
-
-            <li>
-              <Link href="/form2">Form2</Link>
-            </li>
-
-            <li>
-              <Link href="/form3">Form3</Link>
-            </li>
-
-            <li>
-              <Link href="/form4">Form4</Link>
-            </li>
-
-            <li>
-              <Link href="/form5">Form5</Link>
-            </li>
-
-            <li>
-              <Link href="/form6">Form6</Link>
-            </li>
+            {[...Array(6)].map((_, i) => (
+              <li key={i}>
+                <Link href={`/form${i+1}`}>Form{i+1}</Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </section>
