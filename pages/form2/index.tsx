@@ -1,14 +1,13 @@
 import React, { useState } from "react"
-
 import Container from "../../components/container"
 import Header from "../../components/header"
 import PageTitle from "../../components/page-header"
 import HomeLink from "../../components/home-link"
 import PageLink from "../../components/page-link"
-
 import styles from "../form1/style.module.css"
 import Description from "../../components/description"
 import Meta from "../../components/meta"
+import { toast } from "sonner"
 
 const Form2 = () => {
   const [name, setName] = useState("")
@@ -33,15 +32,23 @@ const Form2 = () => {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const data = await fetch("/api/form1", {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/form2`, {
       method: "POST",
-      body: JSON.stringify(name),
-      headers: { "Content-Type": "application/json" }
+      body: JSON.stringify({
+        name,
+      }),
+      headers: { 'Content-Type': 'application/json' }
     })
 
     if (data.status === 200) {
       const result = await data.json()
       setConvertedData(result.name)
+
+      toast.success(
+        <span style={{ display: "block", width: "100%", textAlign: "center" }}>
+          {result.message}
+        </span>
+      )
     }
   }
 
