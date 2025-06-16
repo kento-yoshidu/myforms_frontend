@@ -2,14 +2,12 @@ import { cleanup, render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { rest } from "msw"
 import { setupServer } from "msw/node"
-
 import "@testing-library/jest-dom/extend-expect"
 import 'cross-fetch/polyfill'
-
 import Form2 from "../pages/form2"
 
 const server = setupServer(
-  rest.post("/api/form1", (req, res, ctx) => {
+  rest.post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/form2`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ name: "KENTO" }))
   })
 )

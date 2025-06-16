@@ -9,7 +9,7 @@ import 'cross-fetch/polyfill'
 import Form1 from "../pages/form1"
 
 const server = setupServer(
-  rest.post("/api/form1", (_req, res, ctx) => {
+  rest.post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/form1`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ name: "KENTO" }))
   })
 )
