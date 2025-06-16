@@ -1,11 +1,9 @@
 import React, { useState } from "react"
-
 import Container from "../../components/container"
 import Header from "../../components/header"
 import PageTitle from "../../components/page-header"
 import HomeLink from "../../components/home-link"
 import PageLink from "../../components/page-link"
-
 import styles from "./style.module.css"
 import Description from "../../components/description"
 import Meta from "../../components/meta"
