@@ -32,7 +32,7 @@ const Form2 = () => {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const data = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/form1`, {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/form2`, {
       method: "POST",
       body: JSON.stringify({
         name,
